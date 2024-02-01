@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../colors.dart';
 
 class BtnCustom extends StatelessWidget {
-  //untuk text pada buttin
+  //untuk text pada button
   final String text;
 
-  // untuk action pada botton 
+  // untuk action pada button 
   final VoidCallback onPressed;
 
   const BtnCustom({
@@ -25,7 +25,7 @@ class BtnCustom extends StatelessWidget {
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10))),
               elevation: MaterialStateProperty.all(4),
-              backgroundColor: MaterialStateProperty.all<Color>(greenColor)),
+              backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).colorScheme.onSecondary,)),
           child: Text(text,
               style: whiteTextStyly.copyWith(fontSize: 20, fontWeight: bold)),
         ));

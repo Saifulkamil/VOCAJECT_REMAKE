@@ -8,6 +8,7 @@ abstract class Routes {
   static const REGITER = _Paths.REGITER;
   static const SPLASH = _Paths.SPLASH;
   static const INITIAL = _Paths.INITIAL;
+  static const PICKROLE = _Paths.PICKROLE;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const REGITER = '/regiter';
   static const SPLASH = '/splash';
   static const INITIAL = '/initial';
+  static const PICKROLE = '/PickRole';
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_btn_custom.dart';
 import '../../../utils/component/widget_text_button.dart';
@@ -15,7 +16,9 @@ class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // final loginC = Get.find<LoginController>();
+    final loginC = Get.find<LoginController>();
+
+    // ukur height screen
     double buttom = 0.0;
     final currentheight = MediaQuery.of(context).size.height;
     if (currentheight < 800) {
@@ -48,12 +51,7 @@ class LoginView extends GetView<LoginController> {
             elevation: 0,
             pinned: true,
             // floating: true,
-            leading: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: Theme.of(context).colorScheme.secondary,
-                )),
+            leading: null,
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
                 padding: const EdgeInsets.only(top: 60, left: 50, right: 50),
@@ -83,7 +81,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                   Text(
                     Kuy_masuk_lagi,
-                    style: ColorApp.WhiteTextStyly(context)
+                    style: ColorApp.secondColorTextStyly(context)
                         .copyWith(fontSize: 15, fontWeight: reguler),
                   ),
                   const SizedBox(
@@ -99,7 +97,7 @@ class LoginView extends GetView<LoginController> {
                       children: [
                         Text(
                           Email,
-                          style: ColorApp.WhiteTextStyly(context)
+                          style: ColorApp.secondColorTextStyly(context)
                               .copyWith(fontSize: 15, fontWeight: reguler),
                         ),
                         const SizedBox(
@@ -112,63 +110,62 @@ class LoginView extends GetView<LoginController> {
                         ),
                         Text(
                           Kata_sandi,
-                          style: ColorApp.WhiteTextStyly(context)
+                          style: ColorApp.secondColorTextStyly(context)
                               .copyWith(fontSize: 15, fontWeight: reguler),
                         ),
                         const SizedBox(
                           height: 16,
                         ),
-                        // Obx(() =>
-                        TextFormField(
-                          // validator: (value) {
-                          //   if (value!.isEmpty) {
-                          //     return "* Password Harus Di Masukan";
-                          //   } else if (value.length < 8) {
-                          //     return "* Password harus 8 huruf";
-                          //   }
+                        Obx(() => TextFormField(
+                              // validator: (value) {
+                              //   if (value!.isEmpty) {
+                              //     return "* Password Harus Di Masukan";
+                              //   } else if (value.length < 8) {
+                              //     return "* Password harus 8 huruf";
+                              //   }
 
-                          //   return null;
-                          // },
-                          cursorColor: Theme.of(context).colorScheme.secondary,
-                          autocorrect: false,
-                          // controller: loginc.passC,
-                          keyboardType: TextInputType.visiblePassword,
-                          // obscureText: loginC.isHidden.value,
-                          decoration: InputDecoration(
-                              suffixIcon: IconButton(
-                                color: Theme.of(context).colorScheme.secondary,
-                                onPressed: () {
-                                  // loginC.isHidden.toggle();
-                                },
-                                icon: Icon(
-                                    // loginC.isHidden.isFalse
-                                    //     ? Icons.visibility_off
-                                    //     :
-                                    Icons.visibility),
-                              ),
-                              filled: true,
-                              // fillColor: ColorGrey,
-                              hintText: Kata_sandi,
-                              labelText: Kata_sandi,
-                              hintStyle:
-                                  ColorApp.WhiteTextStyly(context).copyWith(),
-                              labelStyle:
-                                  ColorApp.WhiteTextStyly(context).copyWith(),
-                              prefixIcon: const Icon(Icons.key),
-                              prefixIconColor: Colors.grey,
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 10.0),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8)),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .secondary),
-                                borderRadius: BorderRadius.circular(8),
-                              )),
-                          // )
-                        ),
+                              //   return null;
+                              // },
+                              cursorColor:
+                                  Theme.of(context).colorScheme.secondary,
+                              autocorrect: false,
+                              // controller: loginC.isHidden.value,
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: loginC.isHidden.value,
+                              decoration: InputDecoration(
+                                  suffixIcon: IconButton(
+                                    color: greyColor,
+                                    onPressed: () {
+                                      loginC.isHidden.toggle();
+                                    },
+                                    icon: Icon(loginC.isHidden.isFalse
+                                        ? Icons.visibility_off
+                                        : Icons.visibility),
+                                  ),
+                                  filled: true,
+                                  // fillColor: ColorGrey,
+                                  hintText: Kata_sandi,
+                                  labelText: Kata_sandi,
+                                  hintStyle:
+                                      ColorApp.secondColorTextStyly(context)
+                                          .copyWith(),
+                                  labelStyle:
+                                      ColorApp.secondColorTextStyly(context)
+                                          .copyWith(),
+                                  prefixIcon: const Icon(Icons.key),
+                                  prefixIconColor: Colors.grey,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      vertical: 15, horizontal: 10.0),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8)),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary),
+                                    borderRadius: BorderRadius.circular(8),
+                                  )),
+                            )),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -187,7 +184,7 @@ class LoginView extends GetView<LoginController> {
                           text: Masuk,
                           onPressed: () {
                             // Ganti dengan logika navigasi yang sesuai
-                            // Get.toNamed(Routes.NAVIGATIONBAR);
+                            Get.toNamed(Routes.HOME);
                             Get.changeTheme(
                                 Get.isDarkMode ? lightTheme : darkTheme);
                           },
@@ -202,12 +199,12 @@ class LoginView extends GetView<LoginController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(Belum_punya_akun_gan,
-                          style: ColorApp.WhiteTextStyly(context)
+                          style: ColorApp.secondColorTextStyly(context)
                               .copyWith(fontSize: 14, fontWeight: semiBold)),
                       WidgetTextButton(
                         text: Kuy_daftar,
                         onPressed: () {
-                          // Get.toNamed(Routes.PAGE_DAFTAR);
+                          Get.toNamed(Routes.PICKROLE);
                         },
                       )
                     ],

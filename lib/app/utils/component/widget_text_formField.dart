@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import '../colors.dart';
 
 class WidgetTextFormField extends StatelessWidget {
-
+  //untuk text pada button
   final String text;
+
+  //untuk icon prefix textform
   final IconData iconData;
 
   const WidgetTextFormField({required this.iconData, required this.text,
@@ -40,8 +42,8 @@ class WidgetTextFormField extends StatelessWidget {
           prefixIconColor: greyColor,
           contentPadding: const EdgeInsets.symmetric(
               vertical: 15, horizontal: 10.0),
-          hintStyle: ColorApp.WhiteTextStyly(context).copyWith(),
-          labelStyle: ColorApp.WhiteTextStyly(context).copyWith(),
+          hintStyle: ColorApp.secondColorTextStyly(context).copyWith(),
+          labelStyle: ColorApp.secondColorTextStyly(context).copyWith(),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8)),
           focusedBorder: OutlineInputBorder(

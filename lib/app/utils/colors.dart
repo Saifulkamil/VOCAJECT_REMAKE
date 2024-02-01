@@ -51,7 +51,7 @@ class ColorApp {
     );
   }
   
-  static TextStyle WhiteTextStyly(BuildContext context) {
+  static TextStyle secondColorTextStyly(BuildContext context) {
     return GoogleFonts.poppins(
       color: Theme.of(context).colorScheme.secondary,
     );

@@ -2,14 +2,16 @@ import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../responsive/initial/bindings/initial_binding.dart';
-import '../responsive/initial/views/initial_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/regiter/bindings/regiter_binding.dart';
+import '../modules/regiter/views/pick_role.dart';
 import '../modules/regiter/views/regiter_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/tesst/bindings/tesst_binding.dart';
+import '../responsive/initial/bindings/initial_binding.dart';
+import '../responsive/initial/views/initial_view.dart';
 
 part 'app_routes.dart';
 
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.INITIAL,
       page: () => const InitialView(),
       binding: InitialBinding(),
+    ),
+    GetPage(
+      name: _Paths.PICKROLE,
+      page: () => const PickRoleScreen(),
+      binding: TesstBinding(),
     ),
   ];
 }
