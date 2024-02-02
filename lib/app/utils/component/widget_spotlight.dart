@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
+import '../../routes/app_pages.dart';
 import '../colors.dart';
 import '../string.dart';
 
-class WidgetChildProgress extends StatelessWidget {
-  const WidgetChildProgress({
+// kerangka widget progress
+class WidgetSpotlight extends StatelessWidget {
+  const WidgetSpotlight({
     super.key,
   });
 
@@ -24,13 +27,15 @@ class WidgetChildProgress extends StatelessWidget {
                     padding: const EdgeInsets.only(right:15.0),
                     child: InkWell(
                         onTap: () {
-                          // Get.toNamed(Routes.PAGE_PROGRES_PROJECT);
+                          Get.toNamed(Routes.PROJECT_PROGRESS);
                         },
                         child: const ChildProgress()),
                   );
                 }, childCount: 10),
                 prototypeItem: const Padding(
                   padding: EdgeInsets.only(right:16.0),
+
+                  // decoration widget progress
                   child: ChildProgress(),
                 ))
           ],
@@ -40,6 +45,7 @@ class WidgetChildProgress extends StatelessWidget {
   }
 }
 
+// decoration widget progress
 class ChildProgress extends StatelessWidget {
   const ChildProgress({
     super.key,

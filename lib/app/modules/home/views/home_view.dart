@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_cari_text_from_field.dart';
-import '../../../utils/component/widget_child_progress.dart';
-import '../../../utils/component/widget_img_poject.dart';
+import '../../../utils/component/widget_spotlight.dart';
+import '../../../utils/component/widget_poject_terbaru.dart';
 import '../../../utils/component/widget_kategori_poject.dart';
 import '../../../utils/string.dart';
 import '../controllers/home_controller.dart';
@@ -16,7 +17,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
      appBar: AppBar(
-        backgroundColor: whiteColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
         toolbarHeight: 63,
         leadingWidth: 148,
@@ -27,7 +28,7 @@ class HomeView extends GetView<HomeController> {
             children: [
               Text(
                 Haii,
-                style: black50TextStyly.copyWith(
+                style: ColorApp.secondColorTextStyly(context).copyWith(
                     fontSize: 15, fontWeight: reguler),
               ),
               const SizedBox(
@@ -50,13 +51,15 @@ class HomeView extends GetView<HomeController> {
       ),
       body: CustomScrollView(
         slivers: [
-          const SliverAppBar(
+           SliverAppBar(
             pinned: true,
             automaticallyImplyLeading: false,
             toolbarHeight: 55,
-            backgroundColor: whiteColor,
+            backgroundColor: Theme.of(context).colorScheme.background,
             centerTitle: true,
-            title: WidgetCariTextFromField(),
+
+            // widget pencarian
+            title: const WidgetCariTextFromField(),
           ),
           SliverToBoxAdapter(
             child: Padding(
@@ -69,13 +72,15 @@ class HomeView extends GetView<HomeController> {
                   ),
                   Text(
                     Spotlight,
-                    style: blackTextStyly.copyWith(
+                    style: ColorApp.secondColorTextStyly(context).copyWith(
                         fontSize: 15, fontWeight: medium),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
-                  const WidgetChildProgress(),
+
+                  // widget spotlight
+                  const WidgetSpotlight(),
                   const SizedBox(
                     height: 7,
                   ),
@@ -84,14 +89,14 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       Text(
                         Kategori,
-                        style: blackTextStyly.copyWith(
+                        style: ColorApp.secondColorTextStyly(context).copyWith(
                             fontSize: 15, fontWeight: medium),
                       ),
                       TextButton(
                         onPressed: () {},
                         child: Text(
                           Lihat_semua,
-                          style: ColorApp.secondColorTextStyly(context).copyWith(
+                          style: ColorApp.greenTextStyly(context).copyWith(
                               fontSize: 15, fontWeight: medium),
                         ),
                       )
@@ -106,7 +111,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                   Text(
                     Proyek_terbaru,
-                    style: blackTextStyly.copyWith(
+                    style: ColorApp.secondColorTextStyly(context).copyWith(
                         fontSize: 15, fontWeight: medium),
                   ),
                   const SizedBox(
@@ -122,12 +127,14 @@ class HomeView extends GetView<HomeController> {
                   padding: const EdgeInsets.only(left: 15.0, right: 15, bottom: 20),
                   child: InkWell(
                       onTap: () {
-                        // Get.toNamed(Routes.PAGE_DETAIL_PROJECT);
+                        Get.toNamed(Routes.PROJECT_DETAILS);
                       },
-                      child: const WidgetImgPoject()),
+
+                      //widget tampilan project
+                      child: const WidgetPojectTerbaru()),
                 );
               }, childCount: 10),
-              prototypeItem: const WidgetImgPoject())
+              prototypeItem: const WidgetPojectTerbaru())
         ],
       ),
     );

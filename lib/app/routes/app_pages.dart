@@ -4,6 +4,12 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/projec_kategori/bindings/projec_kategori_binding.dart';
+import '../modules/projec_kategori/views/projec_kategori_view.dart';
+import '../modules/project_details/bindings/project_details_binding.dart';
+import '../modules/project_details/views/project_details_view.dart';
+import '../modules/project_progress/bindings/project_progress_binding.dart';
+import '../modules/project_progress/views/project_progress_view.dart';
 import '../modules/regiter/bindings/regiter_binding.dart';
 import '../modules/regiter/views/pick_role.dart';
 import '../modules/regiter/views/regiter_view.dart';
@@ -50,6 +56,45 @@ class AppPages {
       name: _Paths.PICKROLE,
       page: () => const PickRoleScreen(),
       binding: TesstBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROJECT_PROGRESS,
+      page: () => const ProjectProgressView(),
+      binding: ProjectProgressBinding(),
+      children: [
+        GetPage(
+          name: _Paths.PROJECT_PROGRESS,
+          page: () => const ProjectProgressView(),
+          binding: ProjectProgressBinding(),
+        ),
+        GetPage(
+          name: _Paths.PROJECT_PROGRESS,
+          page: () => const ProjectProgressView(),
+          binding: ProjectProgressBinding(),
+        ),
+      ],
+    ),
+    GetPage(
+      name: _Paths.PROJECT_DETAILS,
+      page: () => const ProjectDetailsView(),
+      binding: ProjectDetailsBinding(),
+      children: [
+        GetPage(
+          name: _Paths.PROJECT_DETAILS,
+          page: () => const ProjectDetailsView(),
+          binding: ProjectDetailsBinding(),
+        ),
+        GetPage(
+          name: _Paths.PROJECT_DETAILS,
+          page: () => const ProjectDetailsView(),
+          binding: ProjectDetailsBinding(),
+        ),
+      ],
+    ),
+    GetPage(
+      name: _Paths.PROJEC_KATEGORI,
+      page: () => const ProjecKategoriView(),
+      binding: ProjecKategoriBinding(),
     ),
   ];
 }

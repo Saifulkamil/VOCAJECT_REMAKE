@@ -31,7 +31,7 @@ class AppbarTransparant extends StatelessWidget implements PreferredSizeWidget {
           )),
       title: Text(
         title,
-        style: ColorApp.secondColorTextStyly(context).copyWith(fontWeight: semiBold),
+        style: ColorApp.secondColorTextStyly(context).copyWith(fontWeight: reguler),
       ),
     );
   }
@@ -55,7 +55,7 @@ class AppbarNoLeading extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       title: Text(
         title,
-        style: ColorApp.secondColorTextStyly(context).copyWith(fontWeight: semiBold),
+        style: ColorApp.secondColorTextStyly(context).copyWith(fontWeight: light),
       ),
     );
   }

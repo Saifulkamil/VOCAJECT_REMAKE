@@ -9,6 +9,9 @@ abstract class Routes {
   static const SPLASH = _Paths.SPLASH;
   static const INITIAL = _Paths.INITIAL;
   static const PICKROLE = _Paths.PICKROLE;
+  static const PROJECT_PROGRESS = _Paths.PROJECT_PROGRESS;
+  static const PROJECT_DETAILS = _Paths.PROJECT_DETAILS;
+  static const PROJEC_KATEGORI = _Paths.PROJEC_KATEGORI;
 }
 
 abstract class _Paths {
@@ -19,4 +22,7 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const INITIAL = '/initial';
   static const PICKROLE = '/PickRole';
+  static const PROJECT_PROGRESS = '/project-progress';
+  static const PROJECT_DETAILS = '/project-details';
+  static const PROJEC_KATEGORI = '/projec-kategori';
 }

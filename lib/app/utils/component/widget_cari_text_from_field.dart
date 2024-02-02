@@ -14,7 +14,8 @@ class WidgetCariTextFromField extends StatelessWidget {
     return Container(
       height: 45,
       decoration: BoxDecoration(
-          color: blackColor10, borderRadius: BorderRadius.circular(8)),
+          color: Theme.of(context).colorScheme.secondaryContainer, 
+          borderRadius: BorderRadius.circular(8)),
       child: Center(
         child: TextFormField(
           cursorColor: blackColor10,
@@ -23,13 +24,12 @@ class WidgetCariTextFromField extends StatelessWidget {
               filled: true,
               fillColor: colorTransparan,
               hintText: Cari_Proyek_anda_inginkan,
-              contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
               prefixIcon: const Icon(
                 Icons.search,
-                color: blackColor,
+                color: greyColor,
               ),
               hintStyle: const TextStyle(color: greyColor),
-              labelStyle: const TextStyle(color: blackColor),
+              labelStyle: const TextStyle(color: greyColor),
               border: InputBorder.none,
               focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: colorTransparan),

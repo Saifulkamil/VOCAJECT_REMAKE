@@ -3,8 +3,10 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 import '../colors.dart';
 import '../string.dart';
-class WidgetImgPoject extends StatelessWidget {
-  const WidgetImgPoject({
+
+//widget tampilan project
+class WidgetPojectTerbaru extends StatelessWidget {
+  const WidgetPojectTerbaru({
     super.key,
   });
 

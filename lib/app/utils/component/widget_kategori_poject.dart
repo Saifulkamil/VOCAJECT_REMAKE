@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../routes/app_pages.dart';
 import '../colors.dart';
 import '../string.dart';
 
@@ -13,15 +15,16 @@ class WidgetKategoriPoject extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: 14.5, bottom: 10),
       decoration: BoxDecoration(
-          color: whiteColor, borderRadius: BorderRadius.circular(8)),
+          color: Theme.of(context).colorScheme.secondaryContainer,
+           borderRadius: BorderRadius.circular(8)),
       child: Column(children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             InkWell(
               onTap: () {
-                // Get.toNamed(Routes.PAGE_KATEGORI_PROJECT,
-                //     arguments: Aplikasi_seluler);
+                Get.toNamed(Routes.PROJEC_KATEGORI,
+                    arguments: Aplikasi_seluler);
                 // Get.to(() => CategoriUserDosen(item: "aplikasi seluler",));
                 //     Get.put<Categori>(Categori(item:"aplikasi-seluler"));
               },
@@ -39,14 +42,15 @@ class WidgetKategoriPoject extends StatelessWidget {
                     height: 5,
                   ),
                   Text(Mobile,
-                      style: blackTextStyly.copyWith(
+                      style: ColorApp.secondColorTextStyly(context).copyWith(
                           fontSize: 12, fontWeight: light))
                 ],
               ),
             ),
             InkWell(
               onTap: () {
-                // Get.toNamed(Routes.PAGE_KATEGORI_PROJECT, arguments: Website);
+                Get.toNamed(Routes.PROJEC_KATEGORI,
+                     arguments: Website);
 
                 //  Get.to(() => CategoriUserDosen(item: "situs web",));
                 //     Get.put<Categori>(Categori(item:"situs-web"));
@@ -65,7 +69,7 @@ class WidgetKategoriPoject extends StatelessWidget {
                     height: 5,
                   ),
                   Text(Website,
-                      style: blackTextStyly.copyWith(
+                      style: ColorApp.secondColorTextStyly(context).copyWith(
                           fontSize: 12, fontWeight: light))
                 ],
               ),
@@ -73,7 +77,8 @@ class WidgetKategoriPoject extends StatelessWidget {
             
             InkWell(
               onTap: () {
-                // Get.toNamed(Routes.PAGE_KATEGORI_PROJECT, arguments: Design);
+                Get.toNamed(Routes.PROJEC_KATEGORI,
+                    arguments: Design);
 
                 // Get.to(() => CategoriUserDosen(item: "desain grafis",));
                 //     Get.put<Categori>(Categori(item:"desain-grafis"));
@@ -92,14 +97,15 @@ class WidgetKategoriPoject extends StatelessWidget {
                     height: 5,
                   ),
                   Text(Design,
-                      style: blackTextStyly.copyWith(
+                      style: ColorApp.secondColorTextStyly(context).copyWith(
                           fontSize: 12, fontWeight: light))
                 ],
               ),
             ),
             InkWell(
               onTap: () {
-                // Get.toNamed(Routes.PAGE_KATEGORI_PROJECT, arguments: Editor);
+                Get.toNamed(Routes.PROJEC_KATEGORI,
+                    arguments: Editor);
 
                 //  Get.to(() => CategoriUserDosen(item: "editor video",));
                 //     Get.put<Categori>(Categori(item:"editor-video"));
@@ -118,14 +124,15 @@ class WidgetKategoriPoject extends StatelessWidget {
                     height: 5,
                   ),
                   Text(Editor,
-                      style: blackTextStyly.copyWith(
+                      style: ColorApp.secondColorTextStyly(context).copyWith(
                           fontSize: 12, fontWeight: light)),
                 ],
               ),
             ),
             InkWell(
               onTap: () {
-                // Get.toNamed(Routes.PAGE_KATEGORI_PROJECT, arguments: Game);
+                Get.toNamed(Routes.PROJEC_KATEGORI,
+                    arguments: Game);
 
                 // Get.to(() => CategoriUserDosen(item: "pengembangan game",));
                 //     Get.put<Categori>(Categori(item:"pengembangan-game"));
@@ -144,7 +151,7 @@ class WidgetKategoriPoject extends StatelessWidget {
                     height: 5,
                   ),
                   Text(Game,
-                      style: blackTextStyly.copyWith(
+                      style: ColorApp.secondColorTextStyly(context).copyWith(
                           fontSize: 12, fontWeight: light)),
                 ],
               ),

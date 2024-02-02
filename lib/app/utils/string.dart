@@ -123,3 +123,7 @@ const Harga = "Harga";
 const Isideskripsi = "proyek desain grafis yang mengeksplorasi keindahan bentuk-bentuk abstrak. Menggunakan palet warna yang kontras dan seimbang, proyek ini menciptakan karya seni visual yang menyenangkan mata dan merangsang imajinasi.";
 const Pilih_Role = "Pilih Role";
 const Industri = "Industri";
+const lanjutkan = "Lanjutkan";
+const Universitas = "Universitas";
+const cari_Kampus = "Cari Kampus";
+const Pilih_Kampus_Kamu = "Pilih Kampus Kamu";
