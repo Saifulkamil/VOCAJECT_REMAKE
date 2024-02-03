@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/Widget_data_project.dart';
 import '../../../utils/component/widget_card_btn_custom.dart';
@@ -109,18 +110,17 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 WidgetCardBtnCustom(
-                                    text: Kampus,
+                                    text: Daftar_kerja,
                                     image: "assets/image/img_daftar_kerja.png",
                                     onPressed: () {
                                       // mengirim argument ke controler register
-                                      // Get.toNamed(Routes.REGITER, arguments: Kampus);
+                                      Get.toNamed(Routes.TARGET_PROJECT,);
                                     }),
                                 WidgetCardBtnCustom(
-                                    text: Kampus,
+                                    text: Konsultasi,
                                     image: "assets/image/img_chat.png",
-                                    onPressed: () {
-                                      // mengirim argument ke controler register
-                                      // Get.toNamed(Routes.REGITER, arguments: Kampus);
+                                    onPressed: () {          
+                                       Get.toNamed(Routes.KONSULTASI);
                                     }),
                               ],
                             ),
@@ -131,19 +131,17 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 WidgetCardBtnCustom(
-                                    text: Kampus,
+                                    text: Konsultasi,
                                     image: "assets/image/img_logBook.png",
                                     onPressed: () {
-                                      // mengirim argument ke controler register
-                                      // Get.toNamed(Routes.REGITER, arguments: Kampus);
+                                      Get.toNamed(Routes.LOGBOOK,);
+
                                     }),
-                                WidgetCardBtnCustom(
-                                    text: Kampus,
-                                    image: "assets/image/img_uang.png",
-                                    onPressed: () {
-                                      // mengirim argument ke controler register
-                                      // Get.toNamed(Routes.REGITER, arguments: Kampus);
-                                    }),
+                                // WidgetCardBtnCustom(
+                                //     text: LogBook,
+                                //     image: "assets/image/img_uang.png",
+                                //     onPressed: () {
+                                //     }),
                               ],
                             ),
                           ],

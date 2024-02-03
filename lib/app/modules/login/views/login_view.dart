@@ -43,7 +43,6 @@ class LoginView extends GetView<LoginController> {
     }
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      // appBar: appBarTransparan(),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -184,9 +183,7 @@ class LoginView extends GetView<LoginController> {
                           text: Masuk,
                           onPressed: () {
                             // Ganti dengan logika navigasi yang sesuai
-                            Get.toNamed(Routes.HOME);
-                            Get.changeTheme(
-                                Get.isDarkMode ? lightTheme : darkTheme);
+                            Get.toNamed(Routes.NAVIGATIONBAR); 
                           },
                         ),
                       ],
