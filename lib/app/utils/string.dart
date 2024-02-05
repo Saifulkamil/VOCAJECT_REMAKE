@@ -1,7 +1,10 @@
 
+// ignore_for_file: constant_identifier_names
+
 const selamat_datang_kembali = "Selamat datang kembali";
 const Kuy_masuk_lagi = "Kuy masuk lagi";
 const Email = "Email";
+const date = "10/10/2022";
 const Lihat_project = "Lihat project";
 const tanggal_pengerjaan = "Timeline : ";
 const Tim = "Tim : ";
@@ -91,6 +94,8 @@ const Catatan_untuk_perusahaan = "Catatan untuk perusahaan";
 const Ketikan = "Ketikan...";
 const Tambahkan_mahasiswa = "Tambahkan mahasiswa";
 const Yeii_berhasil_Mengajukan_Proposal = "Yeii berhasil Mengajukan Proposal";
+const Semangat_Membuat_LogBook_Selanjutnya = "Semangat Membuat LogBook Selanjutnya";
+const Kamu_Berhasil_Membuat_Mimpi_baru = "Kamu Berhasil Membuat Mimpi Baru";
 const Ketikkan_pesan = "Ketikkan pesan...";
 const Progress = "Progress";
 const Daftar_kerja = "Daftar Kerja";
@@ -113,6 +118,7 @@ const Beranda = "Beranda";
 const Daftar_Project = "Daftar Proyek";
 const Saiful_Kamil = "Saiful Kamil";
 const no_nim = "2020903430045";
+const no_phone = "0895600518662";
 const Aplikasi_Vocaject = "Aplikasi Vocaject";  
 const Profil = "Profil";  
 const Lihat_semua = "Lihat semua >> ";
@@ -132,3 +138,31 @@ const descripsi_light = "Tampilan yang cerah ini sangat sesuai untuk digunakan p
 const descripsi_dark = "Tampilan yang gelap ini sangat sesuai untuk digunakan pada malam hari atau di tempat yang gelap.";
 const Dark_Mode = "Dark Mode";
 const Light_Mode = "Light Mode";
+const Verifikasi_kode_OTP = "Verifikasi Kode OTP";
+const Verifikasi = "Verifikasi";
+const Kode_OTP = "Kode Verifikasi";
+const Masuk_Kode_OTP = "Masukan Kode Verifikasi";
+const Silahkan_Cek_Email_Anda_Untuk_Kode_Verifikasi = "Silahkan Cek Email Anda Untuk Kode OTP";
+const Atur_Ulang_Kata_Sandi = "Atur Ulang Kata Sandi";
+
+const Masukkan_email_yang_terdaftar = "Masukkan e-mail yang terdaftar.";
+const atur_ulang_kata_sandi_Baru = "atur ulang kata sandi Baru";
+const Untuk_atur_ulang_kata_sandi = "Untuk atur ulang kata sandi";
+const kata_sandi_Baru = "kata Sandi Baru";
+const Setelah_Kata_Sandi_Di_Ubah = "Setelah Kata Sandi Di Ubah, Silahkan Masuk Kembali Dengan Kata Sandi Baru.";
+const Buat_kata_Sandi_Yang_Baru_Untuk_Akun_Dengan_email = "Buat kata Sandi Yang Baru Untuk Akun Dengan e-mail";
+
+const Pilih_Email_untuk_ubah_Kata_Sandi = "Pilih Email untuk ubah Kata Sandi";
+const Pilih_Email = "Pilih Email";
+const Oke_bang = "Oke Bang";
+const Cek_Lagi_Dehh = "Cek Lagi Dehh";
+const Pesan = "Pesan";
+const Gambar = "Gambar";
+const File = "File";
+const Mantul = "Mantul";
+const daftar_mahasiswa = "Daftar Mahasiswa";
+const Yok_cari_project_lain_yang_sesuai_dengan_mu = "Yok cari project lain yang sesuai dengan mu";
+const Kamu_sudah_mengajukan_untuk_project_ini_sebelumnya = "Kamu sudah mengajukan untuk project ini sebelumnya";
+const Kamu_sudah_yakin_untuk_project_ini = "Kamu sudah yakin untuk project ini?";
+const Kalau_sudah_Dikonfirmasi = "Kalau sudah Dikonfirmasi, Project Yang Kamu Ajukan Tidak Bisa Di bateli lhooo";
+

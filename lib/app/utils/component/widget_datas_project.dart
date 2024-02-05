@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
+
+import '../../routes/app_pages.dart';
 
 class WidgetDatasProject extends StatelessWidget {
   const WidgetDatasProject({
@@ -13,7 +16,7 @@ class WidgetDatasProject extends StatelessWidget {
       height: 502,
       decoration:  BoxDecoration(
           color: Theme.of(context).colorScheme.background,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(15),
               topRight: Radius.circular(15))),
       child: Padding(
@@ -133,6 +136,7 @@ class WidgetDatasProject extends StatelessWidget {
                   onTap: () {
                     // Get.to(() =>
                     //     ProfilindustribyProject(list: list, index: index));
+                    Get.toNamed(Routes.PROFILE_INDUSTRI);
                   },
                   child: Container(
                     decoration: BoxDecoration(

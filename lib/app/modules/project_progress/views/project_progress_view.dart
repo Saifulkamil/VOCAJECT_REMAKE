@@ -131,10 +131,10 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 WidgetCardBtnCustom(
-                                    text: Konsultasi,
+                                    text: LogBook,
                                     image: "assets/image/img_logBook.png",
                                     onPressed: () {
-                                      Get.toNamed(Routes.LOGBOOK,);
+                                      Get.toNamed(Routes.LIST_MHS_LOGBOOK,);
 
                                     }),
                                 // WidgetCardBtnCustom(

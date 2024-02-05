@@ -1,63 +1,78 @@
+import 'dart:async';
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
+import 'package:vocaject_remake_v1/app/utils/component/widget_failed.dart';
+import 'package:vocaject_remake_v1/app/utils/component/widget_konfirm.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
-class widgetAjukanProject extends StatelessWidget {
-  const widgetAjukanProject({
+import '../../controllers/fungsi_widget_random.dart';
+import '../../modules/project_details/controllers/project_details_controller.dart';
+
+class WidgetAjukanProject extends GetView<ProjectDetailsController> {
+  const WidgetAjukanProject({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final flowC = Get.put(WidgetController());
+
     return Container(
       height: 702,
-      decoration:  BoxDecoration(
+      decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.background,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15),
-              topRight: Radius.circular(15))),
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment:
-                CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: Center(
                   child: Container(
                     height: 5,
                     width: 90,
                     decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10),
                         color: greyColor),
                   ),
                 ),
               ),
               Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     Ajukan_Proposal,
-                    style: ColorApp.secondColorTextStyly(context).copyWith(
-                        fontSize: 20,
-                        fontWeight: reguler),
+                    style: ColorApp.secondColorTextStyly(context)
+                        .copyWith(fontSize: 20, fontWeight: reguler),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        flowC.Loading();
+                        Timer(const Duration(milliseconds: 1000), () {
+                          Get.back();
+                          // WidgetListproject();
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            builder: (BuildContext context) {
+                              return const Widgetkonfirm();
+                            },
+                          );
+                        });
+                      },
                       child: Text(
                         simpan,
-                        style:
-                            ColorApp.greenTextStyly(context).copyWith(
-                               
-                                fontSize: 18,
-                                fontWeight: reguler),
+                        style: ColorApp.greenTextStyly(context)
+                            .copyWith(fontSize: 18, fontWeight: reguler),
                       ))
                 ],
               ),
@@ -66,12 +81,9 @@ class widgetAjukanProject extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondaryContainer,
-                    borderRadius:
-                        BorderRadius.circular(15)),
+                    borderRadius: BorderRadius.circular(15)),
                 child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(
-                            horizontal: 15.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: DropdownSearch
                         // <KampusModel>
                         (
@@ -80,7 +92,7 @@ class widgetAjukanProject extends StatelessWidget {
                       // Uri url = Uri.parse(
                       //     // "${UrlDomain.baseurl}/api/user/r/college"
                       //     );
-                          
+
                       // try {
                       //   final response =
                       //       await http
@@ -90,7 +102,7 @@ class widgetAjukanProject extends StatelessWidget {
                       //           .body) as Map<
                       //       String, dynamic>;
                       //   print(data);
-                          
+
                       //   var ListAllKampus =
                       //       data["data"]
                       //           as List<
@@ -104,7 +116,7 @@ class widgetAjukanProject extends StatelessWidget {
                       //         .name
                       //         ?.capitalize;
                       //   }
-                          
+
                       //   return models;
                       // } catch (err) {
                       //   print(err);
@@ -112,33 +124,24 @@ class widgetAjukanProject extends StatelessWidget {
                       //       KampusModel>.empty();
                       // }
                       // },
-                      popupProps:
-                          const PopupProps.menu(
+                      popupProps: const PopupProps.menu(
                         showSearchBox: true,
                         searchFieldProps: TextFieldProps(
                             decoration: InputDecoration(
-                                suffixIcon: Icon(
-                                    Icons.search),
-                                hintStyle: TextStyle(
-                                    fontFamily:
-                                        "poppins"),
-                                hintText:
-                                    cari_mahasiswa,
-                                contentPadding:
-                                    EdgeInsets.all(
-                                        15))),
-                        searchDelay: Duration(
-                            milliseconds: 10),
+                                suffixIcon: Icon(Icons.search),
+                                hintStyle: TextStyle(fontFamily: "poppins"),
+                                hintText: cari_mahasiswa,
+                                contentPadding: EdgeInsets.all(15))),
+                        searchDelay: Duration(milliseconds: 10),
                       ),
-                      dropdownDecoratorProps:
-                           DropDownDecoratorProps(
-                        dropdownSearchDecoration:
-                            InputDecoration(
+                      dropdownDecoratorProps: DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
                           // labelText: Mahasiswa,
                           border: InputBorder.none,
-                          
+
                           hintText: pilih_mahasiswa,
-                          hintStyle: ColorApp.secondColorTextStyly(context).copyWith(),
+                          hintStyle:
+                              ColorApp.secondColorTextStyly(context).copyWith(),
                         ),
                       ),
                       // itemAsString:
@@ -154,7 +157,7 @@ class widgetAjukanProject extends StatelessWidget {
                       // },
                       // onChanged: (Value) {
                       //   idkampus = Value!.id;
-                          
+
                       //   print(Value.id);
                       // }
                       //           ),
@@ -175,23 +178,17 @@ class widgetAjukanProject extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondaryContainer,
-                    borderRadius:
-                        BorderRadius.circular(15)),
+                    borderRadius: BorderRadius.circular(15)),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 15.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment
-                            .spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(children: [
                         Text(
                           Lapiran,
-                          style:
-                              ColorApp.secondColorTextStyly(context).copyWith(
-                                  fontSize: 15,
-                                  fontWeight: medium),
+                          style: ColorApp.secondColorTextStyly(context)
+                              .copyWith(fontSize: 15, fontWeight: medium),
                         )
                       ]),
                       const Icon(
@@ -210,23 +207,17 @@ class widgetAjukanProject extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondaryContainer,
-                    borderRadius:
-                        BorderRadius.circular(15)),
+                    borderRadius: BorderRadius.circular(15)),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 15.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment
-                            .spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(children: [
                         Text(
                           Optional_lampiran,
-                          style:
-                              ColorApp.secondColorTextStyly(context).copyWith(
-                                  fontSize: 15,
-                                  fontWeight: medium),
+                          style: ColorApp.secondColorTextStyly(context)
+                              .copyWith(fontSize: 15, fontWeight: medium),
                         )
                       ]),
                       const Icon(
@@ -242,8 +233,8 @@ class widgetAjukanProject extends StatelessWidget {
               ),
               Text(
                 Catatan_untuk_perusahaan,
-                style: ColorApp.secondColorTextStyly(context).copyWith(
-                    fontSize: 15, fontWeight: medium),
+                style: ColorApp.secondColorTextStyly(context)
+                    .copyWith(fontSize: 15, fontWeight: medium),
               ),
               const SizedBox(
                 height: 15,
@@ -253,8 +244,7 @@ class widgetAjukanProject extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondaryContainer,
-                    borderRadius:
-                        BorderRadius.circular(15)),
+                    borderRadius: BorderRadius.circular(15)),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 15, horizontal: 15.0),
@@ -267,18 +257,12 @@ class widgetAjukanProject extends StatelessWidget {
                         filled: true,
                         fillColor: colorTransparan,
                         hintText: Ketikan,
-                        hintStyle: const TextStyle(
-                            color: greyColor),
-                        labelStyle: const TextStyle(
-                            color: greyColor),
+                        hintStyle: const TextStyle(color: greyColor),
+                        labelStyle: const TextStyle(color: greyColor),
                         border: InputBorder.none,
-                        focusedBorder:
-                            OutlineInputBorder(
-                          borderSide: const BorderSide(
-                              color: colorTransparan),
-                          borderRadius:
-                              BorderRadius.circular(
-                                  8),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: colorTransparan),
+                          borderRadius: BorderRadius.circular(8),
                         )),
                   ),
                 ),

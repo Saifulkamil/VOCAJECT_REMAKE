@@ -21,7 +21,7 @@ class RegiterView extends GetView<RegiterController> {
             SliverToBoxAdapter(
                 child: Theme(
               data: Theme.of(context).copyWith(
-                  colorScheme: ColorScheme.light(primary: greenColor2)),
+                  colorScheme: const ColorScheme.light(primary: greenColor2)),
               child: Obx(
                 () => Stepper(
                   // tipe stepper yaitu vertical

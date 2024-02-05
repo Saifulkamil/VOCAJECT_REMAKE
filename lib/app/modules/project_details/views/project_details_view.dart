@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:vocaject_remake_v1/app/routes/app_pages.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_ajukan_project.dart';
@@ -187,8 +188,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                             borderRadius: BorderRadius.circular(8),
                             child: InkWell(
                               onTap: () {
-                                // Get.to(() =>
-                                // ProfilindustribyProject(list: list, index: index));
+                                Get.toNamed(Routes.PROFILE_INDUSTRI);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),
@@ -281,7 +281,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
             ))
           ],
         ),
-        bottomNavigationBar: Container(
+        bottomNavigationBar: SizedBox(
             height: 60,
             // color: Colors.blue, // Color of the footer
             child: Container(
@@ -296,16 +296,21 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                       height: 60,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Get.toNamed(Routes.PAGE_CHAT);
+                          Get.toNamed(Routes.KONSULTASI);
                         },
                         style: ButtonStyle(
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
-                              side: const BorderSide(color: greyColor, width: 0.5,),)),
+                              side: const BorderSide(
+                                color: greyColor,
+                                width: 0.5,
+                              ),
+                            )),
                             elevation: MaterialStateProperty.all(0),
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                Theme.of(context).colorScheme.secondaryContainer,)),
+                              Theme.of(context).colorScheme.secondaryContainer,
+                            )),
                         child: const Icon(
                           Icons.chat_outlined,
                           color: greyColor,
@@ -326,7 +331,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
                               builder: (BuildContext context) {
-                                return const widgetAjukanProject();
+                                return const WidgetAjukanProject();
                               },
                             );
                           },

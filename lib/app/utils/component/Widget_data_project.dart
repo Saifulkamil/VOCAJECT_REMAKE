@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
+import 'widget_tim.dart';
+
+
 class WidgetDataProject extends StatelessWidget {
   const WidgetDataProject({
     super.key,
@@ -42,39 +45,52 @@ class WidgetDataProject extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      Tim,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: ColorApp.secondColorTextStyly(context).copyWith(
-                          fontSize: 15, fontWeight: medium),
-                    ),
-                    SizedBox(
-                      height: 25,
-                      width: 150,
-                      child: Scaffold(
-                          backgroundColor: colorTransparan,
-                          body: CustomScrollView(
-                            scrollDirection:
-                                Axis.horizontal,
-                            slivers: [
-                              SliverPrototypeExtentList(
-                                delegate:
-                                    SliverChildBuilderDelegate(
-                                        (context, index) {
-                                  return const CircleAvatar();
-                                }, childCount: 10),
-                                prototypeItem:
-                                    const CircleAvatar(
-                                  radius: 13,
-                                ),
-                              )
-                            ],
-                          )),
-                    )
-                  ],
+                InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              builder: (BuildContext context) {
+                                return const WidgetTim();
+                              },
+                            );
+                  },
+                  child: Row(
+                    children: [
+                      Text(
+                        Tim,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: ColorApp.secondColorTextStyly(context).copyWith(
+                            fontSize: 15, fontWeight: medium),
+                      ),
+                      SizedBox(
+                        height: 25,
+                        width: 150,
+                        child: Scaffold(
+                            backgroundColor: colorTransparan,
+                            body: CustomScrollView(
+                              scrollDirection:
+                                  Axis.horizontal,
+                              slivers: [
+                                SliverPrototypeExtentList(
+                                  delegate:
+                                      SliverChildBuilderDelegate(
+                                          (context, index) {
+                                    return const CircleAvatar();
+                                  }, childCount: 10),
+                                  prototypeItem:
+                                      const CircleAvatar(
+                                    radius: 13,
+                                  ),
+                                )
+                              ],
+                            )),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 10,

@@ -16,7 +16,6 @@ class WidgetCardBtnCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(onPressed);
     return Material(
       color: colorTransparan,
       child: InkWell(

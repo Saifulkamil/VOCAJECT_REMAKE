@@ -19,16 +19,16 @@ class ResponsiveView extends GetView<StatelessWidget> {
           return const Mobile1();
           // screen  390×844
         } else if (constraints.maxWidth < 390 || constraints.maxHeight < 844) {
-          return const mobile2();
+          return const Mobile2();
           // screen  414×896
         } else if (constraints.maxWidth < 393 || constraints.maxHeight < 873) {
-          return const mobile3();
+          return const Mobile3();
           // screen 393×873
         } else if (constraints.maxWidth < 414 || constraints.maxHeight < 896) {
-          return const mobile4();
+          return const Mobile4();
           // screen 412×915
         } else if (constraints.maxWidth < 412 || constraints.maxHeight < 915) {
-          return const mobile5();
+          return const Mobile5();
         } else {
           return const Center();
         }

@@ -59,7 +59,7 @@ class ProfileView extends GetView<ProfileController> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Row(
@@ -131,7 +131,7 @@ class ProfileView extends GetView<ProfileController> {
                                   onPressed: () {
                                     Get.toNamed(Routes.EDIT_PROFILE);
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.edit,
                                     size: 30,
                                     color: greyColor,
@@ -229,7 +229,7 @@ class ProfileView extends GetView<ProfileController> {
                       const SizedBox(height: 15),
                       InkWell(
                         onTap: () {
-                          // Get.to(() => aturulangPasswordklikEmail());
+                          Get.toNamed(Routes.RESET_PASSWORD_KLIK);
                         },
                         child: ListTile(
                           leading: const Icon(
@@ -239,10 +239,10 @@ class ProfileView extends GetView<ProfileController> {
                           title: Text(Ubah_kata_sandi,
                               style: ColorApp.secondColorTextStyly(context)
                                   .copyWith(fontSize: 17, fontWeight: reguler)),
-                          trailing: Icon(
+                          trailing: const Icon(
                             Icons.arrow_right,
                             size: 30,
-                            color: Colors.blueGrey[900],
+                            color: greyColor,
                           ),
                         ),
                       ),

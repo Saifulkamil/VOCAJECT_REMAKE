@@ -1,4 +1,7 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:get/get.dart';
+import 'package:vocaject_remake_v1/app/modules/profile/views/profile_industri.dart';
 
 import '../modules/changeTheme/bindings/change_theme_binding.dart';
 import '../modules/changeTheme/views/change_theme_view.dart';
@@ -8,13 +11,16 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/konsultasi/bindings/konsultasi_binding.dart';
 import '../modules/konsultasi/views/konsultasi_view.dart';
+import '../modules/konsultasi/views/list_chat.dart';
 import '../modules/langued/bindings/langued_binding.dart';
 import '../modules/langued/views/langued_view.dart';
 import '../modules/logbook/bindings/logbook_binding.dart';
+import '../modules/logbook/views/list_mhs_logbook.dart';
 import '../modules/logbook/views/logbook_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_people.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/projec_kategori/bindings/projec_kategori_binding.dart';
 import '../modules/projec_kategori/views/projec_kategori_view.dart';
@@ -27,11 +33,13 @@ import '../modules/project_progress/views/project_progress_view.dart';
 import '../modules/regiter/bindings/regiter_binding.dart';
 import '../modules/regiter/views/pick_role.dart';
 import '../modules/regiter/views/regiter_view.dart';
+import '../modules/reset_password/bindings/reset_password_binding.dart';
+import '../modules/reset_password/views/atur_ulang_password_klik_email.dart';
+import '../modules/reset_password/views/reset_password_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/target_project/bindings/target_project_binding.dart';
 import '../modules/target_project/views/target_project_view.dart';
-import '../modules/tesst/bindings/tesst_binding.dart';
 import '../responsive/initial/bindings/initial_binding.dart';
 import '../responsive/initial/views/initial_view.dart';
 import '../utils/component/navigationBar.dart';
@@ -45,6 +53,7 @@ class NavigationBarBinding extends Bindings {
       () => const NavigationBar(),
     );
   }
+  
 }
 
 class AppPages {
@@ -69,6 +78,11 @@ class AppPages {
       binding: RegiterBinding(),
     ),
     GetPage(
+      name: _Paths.LIST_MHS_LOGBOOK,
+      page: () => const ListMhsLogbook(),
+      binding: LogbookBinding(),
+    ),
+    GetPage(
       name: _Paths.SPLASH,
       page: () => const SplashView(),
       binding: SplashBinding(),
@@ -86,41 +100,17 @@ class AppPages {
     GetPage(
       name: _Paths.PICKROLE,
       page: () => const PickRoleScreen(),
-      binding: TesstBinding(),
+      binding: RegiterBinding(),
     ),
     GetPage(
       name: _Paths.PROJECT_PROGRESS,
       page: () => const ProjectProgressView(),
       binding: ProjectProgressBinding(),
-      children: [
-        GetPage(
-          name: _Paths.PROJECT_PROGRESS,
-          page: () => const ProjectProgressView(),
-          binding: ProjectProgressBinding(),
-        ),
-        GetPage(
-          name: _Paths.PROJECT_PROGRESS,
-          page: () => const ProjectProgressView(),
-          binding: ProjectProgressBinding(),
-        ),
-      ],
     ),
     GetPage(
       name: _Paths.PROJECT_DETAILS,
       page: () => const ProjectDetailsView(),
       binding: ProjectDetailsBinding(),
-      children: [
-        GetPage(
-          name: _Paths.PROJECT_DETAILS,
-          page: () => const ProjectDetailsView(),
-          binding: ProjectDetailsBinding(),
-        ),
-        GetPage(
-          name: _Paths.PROJECT_DETAILS,
-          page: () => const ProjectDetailsView(),
-          binding: ProjectDetailsBinding(),
-        ),
-      ],
     ),
     GetPage(
       name: _Paths.PROJEC_KATEGORI,
@@ -166,6 +156,31 @@ class AppPages {
       name: _Paths.LOGBOOK,
       page: () => const LogbookView(),
       binding: LogbookBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESET_PASSWORD,
+      page: () => const ResetPasswordView(),
+      binding: ResetPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESET_PASSWORD_KLIK,
+      page: () => const AturUlangPasswordklikEmail(),
+      binding: ResetPasswordBinding(),
+    ),
+     GetPage(
+      name: _Paths.LIST_CHAT,
+      page: () => const ListChat(),
+      binding: KonsultasiBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_PEOPLE,
+      page: () => const ProfilePeople(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_INDUSTRI,
+      page: () => const Profileindustri(),
+      binding: ProfileBinding(),
     ),
   ];
 }

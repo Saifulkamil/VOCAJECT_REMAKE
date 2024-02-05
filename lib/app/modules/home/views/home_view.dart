@@ -16,7 +16,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
         toolbarHeight: 63,
@@ -28,8 +28,8 @@ class HomeView extends GetView<HomeController> {
             children: [
               Text(
                 Haii,
-                style: ColorApp.secondColorTextStyly(context).copyWith(
-                    fontSize: 15, fontWeight: reguler),
+                style: ColorApp.secondColorTextStyly(context)
+                    .copyWith(fontSize: 15, fontWeight: reguler),
               ),
               const SizedBox(
                 height: 3,
@@ -40,18 +40,48 @@ class HomeView extends GetView<HomeController> {
             ],
           ),
         ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 15.0, top: 15),
-            child: CircleAvatar(
-              backgroundImage: AssetImage("assets/image/img_foto.jpg"),
+        actions: [
+          InkWell(
+            child: Padding(
+                padding: const EdgeInsets.only(right: 15.0, top: 18),
+                child: InkWell(
+                  onTap: () {
+                    Get.toNamed(Routes.LIST_CHAT);
+                  },
+                  child: const Stack(
+                    children: [
+                      Icon(
+                        Icons.email_rounded,
+                        size: 30,
+                        color: greyColor,
+                      ),
+                      Positioned(
+                          top: 0,
+                          left: 0,
+                          child: CircleAvatar(
+                            radius: 6,
+                            backgroundColor: redcolor,
+                          )),
+                    ],
+                  ),
+                )),
+          ),
+          InkWell(
+            onTap: () {
+              Get.toNamed(Routes.EDIT_PROFILE);
+            },
+            child: const Padding(
+              padding: EdgeInsets.only(right: 15.0, top: 15),
+              child: CircleAvatar(
+                backgroundImage: AssetImage("assets/image/img_foto.jpg"),
+              ),
             ),
           )
         ],
       ),
       body: CustomScrollView(
         slivers: [
-           SliverAppBar(
+          SliverAppBar(
             pinned: true,
             automaticallyImplyLeading: false,
             toolbarHeight: 55,
@@ -72,8 +102,8 @@ class HomeView extends GetView<HomeController> {
                   ),
                   Text(
                     Spotlight,
-                    style: ColorApp.secondColorTextStyly(context).copyWith(
-                        fontSize: 15, fontWeight: medium),
+                    style: ColorApp.secondColorTextStyly(context)
+                        .copyWith(fontSize: 15, fontWeight: medium),
                   ),
                   const SizedBox(
                     height: 15,
@@ -89,15 +119,15 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       Text(
                         Kategori,
-                        style: ColorApp.secondColorTextStyly(context).copyWith(
-                            fontSize: 15, fontWeight: medium),
+                        style: ColorApp.secondColorTextStyly(context)
+                            .copyWith(fontSize: 15, fontWeight: medium),
                       ),
                       TextButton(
                         onPressed: () {},
                         child: Text(
                           Lihat_semua,
-                          style: ColorApp.greenTextStyly(context).copyWith(
-                              fontSize: 15, fontWeight: medium),
+                          style: ColorApp.greenTextStyly(context)
+                              .copyWith(fontSize: 15, fontWeight: medium),
                         ),
                       )
                     ],
@@ -111,8 +141,8 @@ class HomeView extends GetView<HomeController> {
                   ),
                   Text(
                     Proyek_terbaru,
-                    style: ColorApp.secondColorTextStyly(context).copyWith(
-                        fontSize: 15, fontWeight: medium),
+                    style: ColorApp.secondColorTextStyly(context)
+                        .copyWith(fontSize: 15, fontWeight: medium),
                   ),
                   const SizedBox(
                     height: 15,
@@ -124,7 +154,8 @@ class HomeView extends GetView<HomeController> {
           SliverPrototypeExtentList(
               delegate: SliverChildBuilderDelegate((context, index) {
                 return Padding(
-                  padding: const EdgeInsets.only(left: 15.0, right: 15, bottom: 20),
+                  padding:
+                      const EdgeInsets.only(left: 15.0, right: 15, bottom: 20),
                   child: InkWell(
                       onTap: () {
                         Get.toNamed(Routes.PROJECT_DETAILS);

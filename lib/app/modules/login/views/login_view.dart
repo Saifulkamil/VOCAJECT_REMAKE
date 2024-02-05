@@ -7,8 +7,6 @@ import '../../../utils/colors.dart';
 import '../../../utils/component/widget_btn_custom.dart';
 import '../../../utils/component/widget_text_button.dart';
 import '../../../utils/component/widget_text_formField.dart';
-import '../../../utils/dark_theme.dart';
-import '../../../utils/light_theme.dart';
 import '../../../utils/string.dart';
 import '../controllers/login_controller.dart';
 
@@ -171,7 +169,7 @@ class LoginView extends GetView<LoginController> {
                             WidgetTextButton(
                               text: Lupa_Kata_sandi,
                               onPressed: () {
-                                // Get.offNamed(Routes.PICKREGIROLE);
+                                Get.toNamed(Routes.RESET_PASSWORD);
                               },
                             )
                           ],
@@ -183,7 +181,7 @@ class LoginView extends GetView<LoginController> {
                           text: Masuk,
                           onPressed: () {
                             // Ganti dengan logika navigasi yang sesuai
-                            Get.toNamed(Routes.NAVIGATIONBAR); 
+                            Get.toNamed(Routes.NAVIGATIONBAR);
                           },
                         ),
                       ],
