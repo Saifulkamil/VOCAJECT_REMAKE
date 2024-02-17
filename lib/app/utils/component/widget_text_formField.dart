@@ -2,16 +2,20 @@
 
 import 'package:flutter/material.dart';
 
+import '../../modules/login/controllers/login_controller.dart';
 import '../colors.dart';
 
 class WidgetTextFormField extends StatelessWidget {
   //untuk text pada button
   final String text;
-
+  final LoginController LoginC;
   //untuk icon prefix textform
   final IconData iconData;
 
-  const WidgetTextFormField({required this.iconData, required this.text,
+  const WidgetTextFormField({
+    required this.iconData,
+    required this.LoginC,
+    required this.text,
     super.key,
   });
 
@@ -32,7 +36,7 @@ class WidgetTextFormField extends StatelessWidget {
       // },
       cursorColor: Theme.of(context).colorScheme.secondary,
       autocorrect: false,
-      // controller: loginc.emailC,
+      controller: LoginC.emailC,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
           filled: true,
@@ -40,16 +44,15 @@ class WidgetTextFormField extends StatelessWidget {
           hintText: text,
           prefixIcon: Icon(iconData),
           prefixIconColor: greyColor,
-          contentPadding: const EdgeInsets.symmetric(
-              vertical: 15, horizontal: 10.0),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 15, horizontal: 10.0),
           hintStyle: ColorApp.secondColorTextStyly(context).copyWith(),
           labelStyle: ColorApp.secondColorTextStyly(context).copyWith(),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+            borderSide:
+                BorderSide(color: Theme.of(context).colorScheme.secondary),
             borderRadius: BorderRadius.circular(8),
-            
           )),
     );
   }

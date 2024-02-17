@@ -4,9 +4,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:vocaject_remake_v1/app/utils/dark_theme.dart';
 // import 'package:vocaject_remake_v1/app/utils/dark_theme.dart';
 import 'package:vocaject_remake_v1/app/utils/light_theme.dart';
+import 'app/modules/splash/controllers/splash_controller.dart';
 import 'app/routes/app_pages.dart';
 
 Future<void> main() async {
+  Get.put<SplashController>(SplashController());
+
     await GetStorage.init();
   final readTheme = GetStorage();
   
@@ -19,6 +22,7 @@ Future<void> main() async {
   runApp(
     GetMaterialApp(
       theme: theme,
+      darkTheme: theme,
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

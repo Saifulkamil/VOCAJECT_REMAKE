@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:vocaject_remake_v1/app/Models/UserModel.dart';
 
+// Import Model dan Controller yang digunakan
+import '../../../controllers/authController.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_btn_custom.dart';
@@ -10,35 +12,38 @@ import '../../../utils/component/widget_text_formField.dart';
 import '../../../utils/string.dart';
 import '../controllers/login_controller.dart';
 
+// View untuk halaman Login
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
+
+  // Fungsi untuk membuat tampilan halaman Login
   @override
   Widget build(BuildContext context) {
     final loginC = Get.find<LoginController>();
+    final authC = Get.put(AuthController());
 
-    // ukur height screen
+    final currentHeight = MediaQuery.of(context).size.height;
+
+    // Menentukan kisaran tinggi layar dan nilai buttom yang sesuai
+    final heightRanges = {
+      800: 5.0,
+      826: 35.0,
+      844: 65.0,
+      873: 95.0,
+      896: 125.0,
+      915: 155.0,
+    };
+
+    // Mencari nilai buttom yang sesuai berdasarkan kisaran tinggi layar
     double buttom = 0.0;
-    final currentheight = MediaQuery.of(context).size.height;
-    if (currentheight < 800) {
-      buttom = 5.0;
-      // screen  390×844
-    } else if (currentheight < 826) {
-      buttom = 35.0;
-      // screen  414×896
-    } else if (currentheight < 844) {
-      buttom = 65.0;
-      // screen  414×896
-    } else if (currentheight < 873) {
-      buttom = 95.0;
-
-      // screen 393×873
-    } else if (currentheight < 896) {
-      buttom = 125.0;
-
-      // screen 412×915
-    } else if (currentheight < 915) {
-      buttom = 155.0;
+    for (var height in heightRanges.keys) {
+      if (currentHeight < height) {
+        buttom = heightRanges[height]!;
+        break;
+      }
     }
+
+    // Fungsi untuk membuat tampilan halaman Login
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: CustomScrollView(
@@ -47,7 +52,6 @@ class LoginView extends GetView<LoginController> {
             backgroundColor: colorTransparan,
             elevation: 0,
             pinned: true,
-            // floating: true,
             leading: null,
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
@@ -59,7 +63,6 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
             ),
-
             expandedHeight: 227,
           ),
           SliverToBoxAdapter(
@@ -71,11 +74,14 @@ class LoginView extends GetView<LoginController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Text Selamat Datang Kembali
                   Text(
                     selamat_datang_kembali,
                     style: ColorApp.greenTextStyly(context)
                         .copyWith(fontSize: 20, fontWeight: semiBold),
                   ),
+
+                  // Text Kuy Masuk Lagi
                   Text(
                     Kuy_masuk_lagi,
                     style: ColorApp.secondColorTextStyly(context)
@@ -84,6 +90,8 @@ class LoginView extends GetView<LoginController> {
                   const SizedBox(
                     height: 12,
                   ),
+
+                  // Container untuk form login
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
@@ -92,27 +100,31 @@ class LoginView extends GetView<LoginController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // Text Email
                         Text(
                           Email,
                           style: ColorApp.secondColorTextStyly(context)
                               .copyWith(fontSize: 15, fontWeight: reguler),
                         ),
-                        const SizedBox(
-                          height: 16,
+                        const SizedBox(height: 16),
+
+                        // TextFormField untuk input email
+                        WidgetTextFormField(
+                          LoginC: loginC,
+                          iconData: Icons.email,
+                          text: Email,
                         ),
-                        const WidgetTextFormField(
-                            iconData: Icons.email, text: Email),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        const SizedBox(height: 20),
+
+                        // Text Kata Sandi
                         Text(
                           Kata_sandi,
                           style: ColorApp.secondColorTextStyly(context)
                               .copyWith(fontSize: 15, fontWeight: reguler),
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
+                        const SizedBox(height: 16),
+
+                        // TextFormField untuk input kata sandi
                         Obx(() => TextFormField(
                               // validator: (value) {
                               //   if (value!.isEmpty) {
@@ -126,7 +138,7 @@ class LoginView extends GetView<LoginController> {
                               cursorColor:
                                   Theme.of(context).colorScheme.secondary,
                               autocorrect: false,
-                              // controller: loginC.isHidden.value,
+                              controller: loginC.passC,
                               keyboardType: TextInputType.visiblePassword,
                               obscureText: loginC.isHidden.value,
                               decoration: InputDecoration(
@@ -174,14 +186,23 @@ class LoginView extends GetView<LoginController> {
                             )
                           ],
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 5),
+
+                        // Button untuk melakukan login
                         BtnCustom(
                           text: Masuk,
-                          onPressed: () {
-                            // Ganti dengan logika navigasi yang sesuai
-                            Get.toNamed(Routes.NAVIGATIONBAR);
+                          onPressed: () async {
+                            // Melakukan login dan mendapatkan UserModel
+                            UserModel? user = await authC.login(
+                                loginC.emailC.text, loginC.passC.text);
+
+// Jika login berhasil dan UserModel tidak null, cetak email pengguna di debug console
+                            if (user != null) {
+                              // Perhatikan bahwa untuk mengakses properti dari objek UserModel, Anda perlu mengakses properti datauser, bukan userdata
+                              print('User Email: ${user.data.user.email}');
+                            } else {
+                              print("kosong");
+                            }
                           },
                         ),
                       ],
@@ -193,13 +214,16 @@ class LoginView extends GetView<LoginController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // Text Belum punya akun
                       Text(Belum_punya_akun_gan,
                           style: ColorApp.secondColorTextStyly(context)
                               .copyWith(fontSize: 14, fontWeight: semiBold)),
+                      // Button untuk daftar akun baru
                       WidgetTextButton(
                         text: Kuy_daftar,
                         onPressed: () {
-                          Get.toNamed(Routes.PICKROLE);
+                          // Get.toNamed(Routes.PICKROLE);
+                          // authC.login();
                         },
                       )
                     ],

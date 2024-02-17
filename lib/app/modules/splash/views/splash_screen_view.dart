@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
 
-import '../controllers/splash_controller.dart';
 
-class SplashView extends GetView<SplashController> {
-  const SplashView({Key? key}) : super(key: key);
+class SplashScreenView extends StatelessWidget {
+  const SplashScreenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -18,10 +17,10 @@ class SplashView extends GetView<SplashController> {
           //   height: 250,
           // ),
           Center(
-              child: Image.asset("assets/image/logo_vocaject.png",
+              child: Image.asset("assets/image/img_vocaject.png",
                   height: MediaQuery.of(context).size.height / 3,
                   width: MediaQuery.of(context).size.width / 1.5)),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
