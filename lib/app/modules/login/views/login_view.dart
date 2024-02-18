@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vocaject_remake_v1/app/Models/UserModel.dart';
 
 // Import Model dan Controller yang digunakan
 import '../../../controllers/authController.dart';
@@ -20,7 +19,6 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     final loginC = Get.find<LoginController>();
-    final authC = Get.put(AuthController());
 
     final currentHeight = MediaQuery.of(context).size.height;
 
@@ -193,16 +191,16 @@ class LoginView extends GetView<LoginController> {
                           text: Masuk,
                           onPressed: () async {
                             // Melakukan login dan mendapatkan UserModel
-                            UserModel? user = await authC.login(
-                                loginC.emailC.text, loginC.passC.text);
+                            // UserModel? user = await
+                            final authC = Get.put(AuthController());
 
-// Jika login berhasil dan UserModel tidak null, cetak email pengguna di debug console
-                            if (user != null) {
-                              // Perhatikan bahwa untuk mengakses properti dari objek UserModel, Anda perlu mengakses properti datauser, bukan userdata
-                              print('User Email: ${user.data.user.email}');
-                            } else {
-                              print("kosong");
+                            authC.getUserFromStorage();
+                            final userdata = await authC.login(
+                                loginC.emailC.text, loginC.passC.text);
+                            if (userdata != null) {
+                              Get.toNamed(Routes.NAVIGATIONBAR);
                             }
+                            // Jika login berhasil dan UserModel tidak null, cetak email pengguna di debug console
                           },
                         ),
                       ],

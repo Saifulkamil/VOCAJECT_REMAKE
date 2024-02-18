@@ -1,15 +1,11 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:vocaject_remake_v1/app/utils/component/widget_success.dart';
 
 import '../../../controllers/fungsi_widget_random.dart';
-import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_buat_logbook.dart';
-import '../../../utils/component/widget_failed.dart';
 import '../../../utils/string.dart';
 import '../controllers/logbook_controller.dart';
 

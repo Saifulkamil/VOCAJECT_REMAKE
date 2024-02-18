@@ -9,7 +9,6 @@ import 'package:vocaject_remake_v1/app/utils/string.dart';
 import '../../controllers/fungsi_widget_random.dart';
 import '../../modules/project_details/controllers/project_details_controller.dart';
 import '../../routes/app_pages.dart';
-import 'widget_open_image_kiri.dart';
 
 class Widgetkonfirm extends GetView<ProjectDetailsController> {
   const Widgetkonfirm({
@@ -90,7 +89,7 @@ class Widgetkonfirm extends GetView<ProjectDetailsController> {
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
-                              side: BorderSide(color: greenColor),
+                              side: const BorderSide(color: greenColor),
                             )),
                             elevation: MaterialStateProperty.all(0),
                             backgroundColor: MaterialStateProperty.all<Color>(
@@ -100,39 +99,37 @@ class Widgetkonfirm extends GetView<ProjectDetailsController> {
                                 fontSize: 15, fontWeight: reguler)),
                       ),
                     ),
-                    Container(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          flowC.Loading();
-                          Timer(const Duration(milliseconds: 1000), () {
-                            showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: true,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              builder: (BuildContext context) {
-                                return WidgetSuccess(
-                                  text: Yeii_berhasil_Mengajukan_Proposal,
-                                  onPressed: () {
-                                    Get.toNamed(Routes.NAVIGATIONBAR);
-                                  },
-                                );
-                              },
-                            );
-                          });
-                        },
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8))),
-                            elevation: MaterialStateProperty.all(4),
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(greenColor2)),
-                        child: Text(Oke_bang,
-                            style: whiteTextStyly.copyWith(
-                                fontSize: 15, fontWeight: bold)),
-                      ),
+                    ElevatedButton(
+                      onPressed: () {
+                        flowC.Loading();
+                        Timer(const Duration(milliseconds: 1000), () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            builder: (BuildContext context) {
+                              return WidgetSuccess(
+                                text: Yeii_berhasil_Mengajukan_Proposal,
+                                onPressed: () {
+                                  Get.toNamed(Routes.NAVIGATIONBAR);
+                                },
+                              );
+                            },
+                          );
+                        });
+                      },
+                      style: ButtonStyle(
+                          shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                          elevation: MaterialStateProperty.all(4),
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(greenColor2)),
+                      child: Text(Oke_bang,
+                          style: whiteTextStyly.copyWith(
+                              fontSize: 15, fontWeight: bold)),
                     ),
                   ],
                 ),

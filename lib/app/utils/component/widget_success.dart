@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:vocaject_remake_v1/app/utils/component/widget_btn_custom.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
 import '../../modules/project_details/controllers/project_details_controller.dart';
-import '../../routes/app_pages.dart';
 import '../colors.dart';
 
 class WidgetSuccess extends GetView<ProjectDetailsController> {
@@ -37,7 +35,7 @@ class WidgetSuccess extends GetView<ProjectDetailsController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                   width: 350,
                   height: 350,
                   child: DotLottieLoader.fromAsset(
@@ -56,7 +54,7 @@ class WidgetSuccess extends GetView<ProjectDetailsController> {
                     ColorApp.secondColorTextStyly(context).copyWith(
                                 fontSize: 15, fontWeight: medium)
               ),
-              SizedBox(
+              const SizedBox(
                 height: 100,
               ),
               Text(
@@ -66,7 +64,7 @@ class WidgetSuccess extends GetView<ProjectDetailsController> {
                    ColorApp.secondColorTextStyly(context).copyWith(
                                 fontSize: 15, fontWeight: reguler)
               ),
-              SizedBox(
+              const SizedBox(
                 height: 100,
               ),
               Padding(

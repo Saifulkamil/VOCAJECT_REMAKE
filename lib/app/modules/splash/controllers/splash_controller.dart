@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../routes/app_pages.dart';
-import '../views/splash_screen_view.dart';
 
 class SplashController extends GetxController {
   final splash = GetStorage();
@@ -14,14 +13,14 @@ class SplashController extends GetxController {
     
     if (splash.read('theme') == null) {
       Future.delayed(const Duration(milliseconds: 1000), () {
-        Get.to(()=>const SplashScreenView());
-          // Get.offAllNamed(Routes.NAVIGATIONBAR);
+        // Get.to(()=>const SplashScreenView());
+          Get.offAllNamed(Routes.LOGIN);
 
       });
           // Get.offAllNamed(Routes.NAVIGATIONBAR);
 
     } else {
-          Get.offAllNamed(Routes.NAVIGATIONBAR);
+          Get.offAllNamed(Routes.LOGIN);
 
       // if (splash.read('dataUser') != null) {
       //   Future.delayed(const Duration(milliseconds: 2000), () {

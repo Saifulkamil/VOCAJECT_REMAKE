@@ -41,7 +41,7 @@ class ListChat extends GetView<LogbookController> {
                                             .copyWith(
                                                 fontSize: 11,
                                                 fontWeight: reguler)),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 10,
                                                 ),
                                       CircleAvatar(

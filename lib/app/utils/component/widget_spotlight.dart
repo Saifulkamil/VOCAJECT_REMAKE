@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:vocaject_remake_v1/app/modules/home/controllers/home_controller.dart';
 
 import '../../routes/app_pages.dart';
 import '../colors.dart';
-import '../string.dart';
 
 // kerangka widget progress
 class WidgetSpotlight extends StatelessWidget {
+  //final ProjectModel projectModel; // Ubah tipe parameter menjadi ProjectModel
+  final HomeController controller;
   const WidgetSpotlight({
+    required this.controller,
+    // required this.projectModel,
     super.key,
   });
 
@@ -22,22 +26,24 @@ class WidgetSpotlight extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           slivers: [
             SliverPrototypeExtentList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right:15.0),
-                    child: InkWell(
-                        onTap: () {
-                          Get.toNamed(Routes.PROJECT_PROGRESS);
-                        },
-                        child: const ChildProgress()),
-                  );
-                }, childCount: 10),
-                prototypeItem: const Padding(
-                  padding: EdgeInsets.only(right:16.0),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final project = controller.listProject[index];
 
-                  // decoration widget progress
-                  child: ChildProgress(),
-                ))
+                return Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.PROJECT_PROGRESS);
+                    },
+                    child: ChildProgress(controller: project, index: index),
+                  ),
+                );
+              }, childCount: controller.listProject.length),
+              prototypeItem: const Padding(
+                padding: EdgeInsets.only(right: 16.0),
+                child: ChildProgresskosong(),
+              ),
+            ),
           ],
         ),
       ),
@@ -47,7 +53,12 @@ class WidgetSpotlight extends StatelessWidget {
 
 // decoration widget progress
 class ChildProgress extends StatelessWidget {
+  final dynamic  controller;
+  final int index;
+
   const ChildProgress({
+    required this.controller,
+    required this.index,
     super.key,
   });
 
@@ -92,7 +103,7 @@ class ChildProgress extends StatelessWidget {
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  "12-23-2002",
+                                  controller.deadline_at,
                                   style: whiteTextStyly.copyWith(
                                       fontSize: 12, fontWeight: reguler),
                                 ),
@@ -106,16 +117,17 @@ class ChildProgress extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            Aplikasi_seluler,
+                            controller.title,
+                            overflow: TextOverflow.ellipsis,
                             style: whiteTextStyly.copyWith(
-                                fontSize: 12, fontWeight: reguler),
+                                fontSize: 13, fontWeight: semiBold),
                           ),
                           Text(
-                            E_health,
+                            controller.category.name,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: whiteTextStyly.copyWith(
-                                fontSize: 14, fontWeight: medium),
+                                fontSize: 12, fontWeight: medium),
                           )
                         ],
                       ),
@@ -126,7 +138,25 @@ class ChildProgress extends StatelessWidget {
             ],
           ),
         ),
-      
+      ],
+    );
+  }
+}
+
+class ChildProgresskosong extends StatelessWidget {
+  const ChildProgresskosong({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        SizedBox(
+          height: 122,
+          width: 157,
+        
+        ),
       ],
     );
   }

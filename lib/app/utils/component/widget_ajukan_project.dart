@@ -4,7 +4,6 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
-import 'package:vocaject_remake_v1/app/utils/component/widget_failed.dart';
 import 'package:vocaject_remake_v1/app/utils/component/widget_konfirm.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 

@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +7,6 @@ import 'package:vocaject_remake_v1/app/utils/string.dart';
 
 import '../../modules/project_details/controllers/project_details_controller.dart';
 import '../../routes/app_pages.dart';
-import 'widget_open_image_kiri.dart';
 
 class WidgetFailed extends GetView<ProjectDetailsController> {
   const WidgetFailed({
@@ -73,7 +71,7 @@ class WidgetFailed extends GetView<ProjectDetailsController> {
                 height: 20,
               ),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {

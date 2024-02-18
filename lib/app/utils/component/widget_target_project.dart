@@ -6,7 +6,6 @@ import 'package:vocaject_remake_v1/app/utils/component/widget_success.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
 import '../../routes/app_pages.dart';
-import 'widget_buat_logbook.dart';
 
 class WidgetTargetProject extends StatelessWidget {
   const WidgetTargetProject({

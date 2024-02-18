@@ -119,8 +119,8 @@ class KonsultasiView extends GetView<KonsultasiController> {
                                     children: [
                                       IconButton(onPressed: () {
                                         
-                                      }, icon: Icon(Icons.file_present_rounded, size: 35,color: greenColor)),
-                                      Text(File)
+                                      }, icon: const Icon(Icons.file_present_rounded, size: 35,color: greenColor)),
+                                      const Text(File)
                                     ],
                                   ),
                                   const SizedBox(
@@ -130,8 +130,8 @@ class KonsultasiView extends GetView<KonsultasiController> {
                                     children: [
                                       IconButton(onPressed: () {
                                         
-                                      }, icon: Icon(Icons.image, size: 35, color: greenColor,)),
-                                      Text(Gambar)
+                                      }, icon: const Icon(Icons.image, size: 35, color: greenColor,)),
+                                      const Text(Gambar)
 
                                     ],
                                   )

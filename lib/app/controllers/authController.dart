@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:vocaject_remake_v1/app/Models/UserModel.dart';
 // import 'package:vocaject_remake_v1/app/Models/UserDataResponse.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
@@ -10,6 +11,24 @@ import 'package:http/http.dart' as http;
 import '../utils/baseUrl.dart';
 
 class AuthController extends GetxController {
+  final user = GetStorage();
+
+// Fungsi untuk menyimpan UserModel ke GetStorage
+  void saveUserToStorage(UserModel userModel) {
+    // Simpan UserModel ke GetStorage dengan kunci tertentu, misalnya "user"
+    user.write('user', userModel.toJson());
+  }
+
+  UserModel? getUserFromStorage() {
+    // Baca UserModel dari GetStorage dengan kunci yang sesuai, misalnya "user"
+    final userJson = user.read('user');
+    if (userJson != null) {
+      // Jika UserModel ditemukan, deserialisasi JSON menjadi UserModel
+
+      return UserModel.fromJson(userJson);
+    }
+    return null; // Return null jika UserModel tidak ditemukan
+  }
 
   // ignore: non_constant_identifier_names
   void Loading() {
@@ -25,6 +44,7 @@ class AuthController extends GetxController {
 
   // Fungsi untuk melakukan proses login dan mendapatkan UserModel
   Future<UserModel?> login(String email, String pass) async {
+    Loading();
     // URL endpoint untuk proses login
     Uri url = Uri.parse("${UrlDomain.baseurl}/api/auth/login");
     try {
@@ -46,20 +66,23 @@ class AuthController extends GetxController {
           // Deserialisasi JSON menjadi objek UserModel
           final userdata = UserModel.fromJson(data);
 
+          // Simpan UserModel ke GetStorage
+          saveUserToStorage(userdata);
+
           return userdata;
         } else {
           // Jika 'data' atau 'support' tidak ada, return null
-          // return null;
+          return null;
         }
       } else {
         // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
         print("Error: ${response.reasonPhrase}");
-        // return null; // Return null jika terjadi kesalahan
+        return null; // Return null jika terjadi kesalahan
       }
     } catch (e) {
       // Tangkap dan print error jika ada kesalahan dalam proses request
       print("Error catch $e");
-      // return null; // Return null jika terjadi kesalahan
+      return null; // Return null jika terjadi kesalahan
     }
   }
 }

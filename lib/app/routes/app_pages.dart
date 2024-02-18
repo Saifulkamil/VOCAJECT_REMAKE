@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/modules/profile/views/profile_industri.dart';
+import 'package:vocaject_remake_v1/app/modules/project_history/views/project_history_vmhs_view.dart';
 
 import '../modules/changeTheme/bindings/change_theme_binding.dart';
 import '../modules/changeTheme/views/change_theme_view.dart';
@@ -27,7 +28,7 @@ import '../modules/projec_kategori/views/projec_kategori_view.dart';
 import '../modules/project_details/bindings/project_details_binding.dart';
 import '../modules/project_details/views/project_details_view.dart';
 import '../modules/project_history/bindings/project_history_binding.dart';
-import '../modules/project_history/views/project_history_view.dart';
+import '../modules/project_history/views/project_history_college_view.dart';
 import '../modules/project_progress/bindings/project_progress_binding.dart';
 import '../modules/project_progress/views/project_progress_view.dart';
 import '../modules/regiter/bindings/regiter_binding.dart';
@@ -119,7 +120,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PROJECT_HISTORY,
-      page: () => const ProjectHistoryView(),
+      page: () => const ProjectHistoryCollegeView(),
+      binding: ProjectHistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROJECT_HISTORY_MHS,
+      page: () => const ProjectHistoryMSHView(),
       binding: ProjectHistoryBinding(),
     ),
     GetPage(

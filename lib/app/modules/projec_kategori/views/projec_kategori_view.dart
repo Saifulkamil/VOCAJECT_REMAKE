@@ -25,11 +25,11 @@ class ProjecKategoriView extends GetView<ProjecKategoriController> {
                         (context, index) {
                           return const Padding(
                             padding: EdgeInsets.only(left:15.0, right: 15, bottom: 20),
-                            child: WidgetPojectTerbaru(),
+                            child: WidgetPojectTerbaruKosong(),
                           );
                         },childCount: 10
                       ),
-                      prototypeItem: const WidgetPojectTerbaru()
+                      prototypeItem: const WidgetPojectTerbaruKosong()
                     )
           ],
         )

@@ -21,7 +21,7 @@ class SplashView extends GetView<SplashController> {
               child: Image.asset("assets/image/logo_vocaject.png",
                   height: MediaQuery.of(context).size.height / 3,
                   width: MediaQuery.of(context).size.width / 1.5)),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
