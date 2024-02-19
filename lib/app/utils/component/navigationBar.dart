@@ -77,7 +77,7 @@ class NavigationBar extends StatelessWidget {
     String? selectedRole = role[userRole!.data.user.role];
     if (selectedRole != "student") {
       
-      // Jika peran pengguna bukan "student", tampilkan proyek koleg.
+      // Jika peran pengguna bukan "student", tampilkan proyek collage.
       project = const ProjectHistoryCollegeView();
     } else {
 

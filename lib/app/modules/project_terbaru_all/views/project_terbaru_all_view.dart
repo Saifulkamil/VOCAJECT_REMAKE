@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:vocaject_remake_v1/app/utils/string.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../utils/component/widget_appbar.dart';
 import '../../../utils/component/widget_poject_terbaru.dart';
-import '../controllers/projec_kategori_controller.dart';
+import '../../home/controllers/home_controller.dart';
+import '../controllers/project_terbaru_all_controller.dart';
 
-class ProjecKategoriView extends GetView<ProjecKategoriController> {
-  const ProjecKategoriView({Key? key}) : super(key: key);
+class ProjectTerbaruAllView extends GetView<ProjectTerbaruAllController> {
+  const ProjectTerbaruAllView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final kategoriC = Get.find<ProjecKategoriController>();
 
     return Scaffold(
-        appBar: AppbarTransparant(title: kategoriC.kategoriProject),
-        body: GetX<ProjecKategoriController>(builder: (controller) {
+        appBar: AppbarTransparant(title: Proyek_terbaru),
+        body: GetX<HomeController>(builder: (controller) {
           if (!controller.isProjectLoaded.value) {
             // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
             return const Center(child: CircularProgressIndicator());
@@ -31,8 +32,8 @@ class ProjecKategoriView extends GetView<ProjecKategoriController> {
                             left: 15.0, right: 15, bottom: 20),
                         child: InkWell(
                           onTap: () {
-                            Get.toNamed(Routes.PROJECT_DETAILS,
-                                arguments: project.id);
+                             Get.toNamed(Routes.PROJECT_DETAILS,
+                                  arguments: project.id);
                           },
                           child: WidgetPojectTerbaru(
                             controller: project,

@@ -14,8 +14,8 @@ abstract class Routes {
   static const PROJECT_PROGRESS = _Paths.PROJECT_PROGRESS;
   static const PROJECT_DETAILS = _Paths.PROJECT_DETAILS;
   static const PROJEC_KATEGORI = _Paths.PROJEC_KATEGORI;
-  static const PROJECT_HISTORY = _Paths.PROJECT_HISTORY; 
-  static const PROJECT_HISTORY_MHS = _Paths.PROJECT_HISTORY_MHS; 
+  static const PROJECT_HISTORY = _Paths.PROJECT_HISTORY;
+  static const PROJECT_HISTORY_MHS = _Paths.PROJECT_HISTORY_MHS;
   static const PROFILE = _Paths.PROFILE;
   static const NAVIGATIONBAR = _Paths.NAVIGATIONBAR;
   static const CHANGE_THEME = _Paths.CHANGE_THEME;
@@ -30,6 +30,7 @@ abstract class Routes {
   static const LIST_CHAT = _Paths.LIST_CHAT;
   static const PROFILE_PEOPLE = _Paths.PROFILE_PEOPLE;
   static const PROFILE_INDUSTRI = _Paths.PROFILE_INDUSTRI;
+  static const PROJECT_TERBARU_ALL = _Paths.PROJECT_TERBARU_ALL;
 }
 
 abstract class _Paths {
@@ -45,8 +46,8 @@ abstract class _Paths {
   static const PROJECT_PROGRESS = '/project-progress';
   static const PROJECT_DETAILS = '/project-details';
   static const PROJEC_KATEGORI = '/projec-kategori';
-  static const PROJECT_HISTORY = '/project-history'; 
-  static const PROJECT_HISTORY_MHS = '/project-history'; 
+  static const PROJECT_HISTORY = '/project-history';
+  static const PROJECT_HISTORY_MHS = '/project-history-mhs';
   static const PROFILE = '/profile';
   static const CHANGE_THEME = '/change-theme';
   static const LANGUED = '/langued';
@@ -59,6 +60,5 @@ abstract class _Paths {
   static const LIST_CHAT = '/list-chat';
   static const PROFILE_PEOPLE = '/profile-people';
   static const PROFILE_INDUSTRI = '/profile-industri';
-  
-  
+  static const PROJECT_TERBARU_ALL = '/project-terbaru-all';
 }

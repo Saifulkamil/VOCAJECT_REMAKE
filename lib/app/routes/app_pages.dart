@@ -1,8 +1,4 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:get/get.dart';
-import 'package:vocaject_remake_v1/app/modules/profile/views/profile_industri.dart';
-import 'package:vocaject_remake_v1/app/modules/project_history/views/project_history_vmhs_view.dart';
 
 import '../modules/changeTheme/bindings/change_theme_binding.dart';
 import '../modules/changeTheme/views/change_theme_view.dart';
@@ -21,6 +17,7 @@ import '../modules/logbook/views/logbook_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_industri.dart';
 import '../modules/profile/views/profile_people.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/projec_kategori/bindings/projec_kategori_binding.dart';
@@ -29,8 +26,11 @@ import '../modules/project_details/bindings/project_details_binding.dart';
 import '../modules/project_details/views/project_details_view.dart';
 import '../modules/project_history/bindings/project_history_binding.dart';
 import '../modules/project_history/views/project_history_college_view.dart';
+import '../modules/project_history/views/project_history_vmhs_view.dart';
 import '../modules/project_progress/bindings/project_progress_binding.dart';
 import '../modules/project_progress/views/project_progress_view.dart';
+import '../modules/project_terbaru_all/bindings/project_terbaru_all_binding.dart';
+import '../modules/project_terbaru_all/views/project_terbaru_all_view.dart';
 import '../modules/regiter/bindings/regiter_binding.dart';
 import '../modules/regiter/views/pick_role.dart';
 import '../modules/regiter/views/regiter_view.dart';
@@ -45,6 +45,8 @@ import '../responsive/initial/bindings/initial_binding.dart';
 import '../responsive/initial/views/initial_view.dart';
 import '../utils/component/navigationBar.dart';
 
+// ignore_for_file: constant_identifier_names
+
 part 'app_routes.dart';
 
 class NavigationBarBinding extends Bindings {
@@ -54,7 +56,6 @@ class NavigationBarBinding extends Bindings {
       () => const NavigationBar(),
     );
   }
-  
 }
 
 class AppPages {
@@ -173,7 +174,7 @@ class AppPages {
       page: () => const AturUlangPasswordklikEmail(),
       binding: ResetPasswordBinding(),
     ),
-     GetPage(
+    GetPage(
       name: _Paths.LIST_CHAT,
       page: () => const ListChat(),
       binding: KonsultasiBinding(),
@@ -187,6 +188,11 @@ class AppPages {
       name: _Paths.PROFILE_INDUSTRI,
       page: () => const Profileindustri(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROJECT_TERBARU_ALL,
+      page: () => const ProjectTerbaruAllView(),
+      binding: ProjectTerbaruAllBinding(),
     ),
   ];
 }

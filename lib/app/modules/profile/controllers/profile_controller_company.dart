@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 
+import '../../../Models/ProjectModelSingle.dart';
 
-class ProfileController extends GetxController {
-  ProfileController? dataProfil;
+
+class ProfileControllerCompany extends GetxController {
+  ProjectModelSingle? dataProfil;
  
 
   var isProjectLoaded = false.obs;

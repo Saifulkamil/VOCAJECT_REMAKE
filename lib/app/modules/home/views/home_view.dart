@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:vocaject_remake_v1/app/Models/ProjectModel.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
@@ -10,13 +9,14 @@ import '../../../utils/component/widget_spotlight.dart';
 import '../../../utils/component/widget_poject_terbaru.dart';
 import '../../../utils/component/widget_kategori_poject.dart';
 import '../../../utils/string.dart';
+import '../../project_history/controllers/project_history_controller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // final projectC = Get.find<HomeController>();
+    final projectC = Get.find<ProjectHistoryController>();
 
     return Scaffold(
         appBar: AppBar(
@@ -49,7 +49,7 @@ class HomeView extends GetView<HomeController> {
                   padding: const EdgeInsets.only(right: 15.0, top: 18),
                   child: InkWell(
                     onTap: () {
-                       Get.toNamed(Routes.LIST_CHAT);
+                      Get.toNamed(Routes.LIST_CHAT);
                       // projectC.getProject();
                     },
                     child: const Stack(
@@ -106,72 +106,81 @@ class HomeView extends GetView<HomeController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Builder(
-                          builder: (context) {
-                            if (controller.listProject.isEmpty) {
-                              // Jika data spotlight kosong, tampilkan pesan atau widget lain
-                              return const Center();
-                            } else {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    Spotlight,
-                                    style:
-                                        ColorApp.secondColorTextStyly(context)
-                                            .copyWith(
-                                                fontSize: 15,
-                                                fontWeight: medium),
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
+                        // Builder(builder: (context) {
+                        //   if (projectC.isProjectLoaded.isFalse) {
+                        //     print(projectC.isProjectLoaded.value);
+                        //     // Jika data spotlight kosong, tampilkan pesan atau widget lain
+                        //     return const Center();
+                        //   } else if (projectC.isProjectLoaded.isTrue) {
+                        //     print(projectC.isProjectLoaded.value);
 
-                                  WidgetSpotlight(controller: controller),
-                                  const SizedBox(
-                                    height: 7,
-                                  ),
-                                ],
-                              );
-                            }
-                          },
+                        //     return
+                        //   } else {
+                        //     return Center();
+                        //   }
+                        // }),
+                        GetX<ProjectHistoryController>(
+                            builder: (historyController) {
+                          if (!historyController.isProjectLoaded.value) {
+                            // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else if (historyController.listProject.isEmpty) {
+                            return const Center();
+                          } else {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Text(
+                                  Spotlight,
+                                  style: ColorApp.secondColorTextStyly(context)
+                                      .copyWith(
+                                          fontSize: 15, fontWeight: medium),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                WidgetSpotlight(controller: historyController),
+                                const SizedBox(
+                                  height: 7,
+                                ),
+                              ],
+                            );
+                          }
+                        }),
+
+                        Text(
+                          Kategori,
+                          style: ColorApp.secondColorTextStyly(context)
+                              .copyWith(fontSize: 15, fontWeight: medium),
                         ),
-                        
-                            Text(
-                              Kategori,
-                              style: ColorApp.secondColorTextStyly(context)
-                                  .copyWith(fontSize: 15, fontWeight: medium),
-                            ),
-                           
                         const SizedBox(
                           height: 7,
                         ),
                         const WidgetKategoriPoject(),
-                      
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                           children: [
                             Text(
                               Proyek_terbaru,
                               style: ColorApp.secondColorTextStyly(context)
                                   .copyWith(fontSize: 15, fontWeight: medium),
                             ),
-                             TextButton(
-                              onPressed: () {},
+                            TextButton(
+                              onPressed: () {
+                                Get.toNamed(Routes.PROJECT_TERBARU_ALL,);
+                              },
                               child: Text(
                                 Lihat_semua,
                                 style: ColorApp.greenTextStyly(context)
                                     .copyWith(fontSize: 15, fontWeight: medium),
                               ),
-                           
-                        ),
+                            ),
                           ],
                         ),
-                        
                       ],
                     ),
                   ),
@@ -179,22 +188,21 @@ class HomeView extends GetView<HomeController> {
                 SliverPrototypeExtentList(
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final project = controller.listProject[index];
-                      
-                      return 
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 15.0, right: 15, bottom: 20),
-                            child: InkWell(
-                                onTap: () {
-                                  Get.toNamed(Routes.PROJECT_DETAILS);
-                                },
-                          
-                                //widget tampilan project
-                                child:  WidgetPojectTerbaru(controller: project)),
-                         
+
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 15.0, right: 15, bottom: 20),
+                        child: InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.PROJECT_DETAILS,
+                                  arguments: project.id);
+                            },
+
+                            //widget tampilan project
+                            child: WidgetPojectTerbaru(controller: project)),
                       );
                     }, childCount: controller.listProject.length),
-                    prototypeItem:  const WidgetPojectTerbaruKosong())
+                    prototypeItem: const WidgetPojectTerbaruKosong())
               ],
             );
           }

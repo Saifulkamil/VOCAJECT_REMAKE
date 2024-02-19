@@ -3,10 +3,14 @@ import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
+import '../../modules/profile/controllers/profile_controller_company.dart';
 import '../../routes/app_pages.dart';
 
 class WidgetListproject extends StatelessWidget {
+  final ProfileControllerCompany dataCompany;
+
   const WidgetListproject({
+   required this.dataCompany,
     super.key,
   });
 

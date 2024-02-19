@@ -16,17 +16,17 @@ class WidgetKategoriPoject extends StatelessWidget {
       padding: const EdgeInsets.only(top: 14.5, bottom: 10),
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondaryContainer,
-           borderRadius: BorderRadius.circular(8)),
+          borderRadius: BorderRadius.circular(8)),
       child: Column(children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             InkWell(
               onTap: () {
-                Get.toNamed(Routes.PROJEC_KATEGORI,
-                    arguments: Aplikasi_seluler);
-                // Get.to(() => CategoriUserDosen(item: "aplikasi seluler",));
-                //     Get.put<Categori>(Categori(item:"aplikasi-seluler"));
+                Get.toNamed(Routes.PROJEC_KATEGORI, arguments: {
+                  "name": Aplikasi_seluler,
+                  "slug": "aplikasi-seluler",
+                });
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -42,15 +42,17 @@ class WidgetKategoriPoject extends StatelessWidget {
                     height: 5,
                   ),
                   Text(Mobile,
-                      style: ColorApp.secondColorTextStyly(context).copyWith(
-                          fontSize: 12, fontWeight: light))
+                      style: ColorApp.secondColorTextStyly(context)
+                          .copyWith(fontSize: 12, fontWeight: light))
                 ],
               ),
             ),
             InkWell(
               onTap: () {
-                Get.toNamed(Routes.PROJEC_KATEGORI,
-                     arguments: Website);
+                Get.toNamed(Routes.PROJEC_KATEGORI, arguments: {
+                  "name": Website,
+                  "slug": "situs-web",
+                });
 
                 //  Get.to(() => CategoriUserDosen(item: "situs web",));
                 //     Get.put<Categori>(Categori(item:"situs-web"));
@@ -69,16 +71,17 @@ class WidgetKategoriPoject extends StatelessWidget {
                     height: 5,
                   ),
                   Text(Website,
-                      style: ColorApp.secondColorTextStyly(context).copyWith(
-                          fontSize: 12, fontWeight: light))
+                      style: ColorApp.secondColorTextStyly(context)
+                          .copyWith(fontSize: 12, fontWeight: light))
                 ],
               ),
             ),
-            
             InkWell(
               onTap: () {
-                Get.toNamed(Routes.PROJEC_KATEGORI,
-                    arguments: Design);
+                Get.toNamed(Routes.PROJEC_KATEGORI, arguments: {
+                  "name": Design,
+                  "slug": "desain-grafis",
+                });
 
                 // Get.to(() => CategoriUserDosen(item: "desain grafis",));
                 //     Get.put<Categori>(Categori(item:"desain-grafis"));
@@ -93,19 +96,21 @@ class WidgetKategoriPoject extends StatelessWidget {
                       "assets/image/ic_desain.png",
                     ),
                   ),
-                   const SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Text(Design,
-                      style: ColorApp.secondColorTextStyly(context).copyWith(
-                          fontSize: 12, fontWeight: light))
+                      style: ColorApp.secondColorTextStyly(context)
+                          .copyWith(fontSize: 12, fontWeight: light))
                 ],
               ),
             ),
             InkWell(
               onTap: () {
-                Get.toNamed(Routes.PROJEC_KATEGORI,
-                    arguments: Editor);
+                Get.toNamed(Routes.PROJEC_KATEGORI, arguments: {
+                  "name": Editor,
+                  "slug": "video-editing",
+                });
 
                 //  Get.to(() => CategoriUserDosen(item: "editor video",));
                 //     Get.put<Categori>(Categori(item:"editor-video"));
@@ -120,19 +125,21 @@ class WidgetKategoriPoject extends StatelessWidget {
                       "assets/image/ic_editor.png",
                     ),
                   ),
-                   const SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Text(Editor,
-                      style: ColorApp.secondColorTextStyly(context).copyWith(
-                          fontSize: 12, fontWeight: light)),
+                      style: ColorApp.secondColorTextStyly(context)
+                          .copyWith(fontSize: 12, fontWeight: light)),
                 ],
               ),
             ),
             InkWell(
               onTap: () {
-                Get.toNamed(Routes.PROJEC_KATEGORI,
-                    arguments: Game);
+                Get.toNamed(Routes.PROJEC_KATEGORI, arguments: {
+                  "name": Game,
+                  "slug": "video-permainan",
+                });
 
                 // Get.to(() => CategoriUserDosen(item: "pengembangan game",));
                 //     Get.put<Categori>(Categori(item:"pengembangan-game"));
@@ -147,12 +154,12 @@ class WidgetKategoriPoject extends StatelessWidget {
                       "assets/image/ic_game.png",
                     ),
                   ),
-                   const SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Text(Game,
-                      style: ColorApp.secondColorTextStyly(context).copyWith(
-                          fontSize: 12, fontWeight: light)),
+                      style: ColorApp.secondColorTextStyly(context)
+                          .copyWith(fontSize: 12, fontWeight: light)),
                 ],
               ),
             )

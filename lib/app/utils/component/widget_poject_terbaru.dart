@@ -27,21 +27,11 @@ class WidgetPojectTerbaru extends StatelessWidget {
               child: Builder(
                 builder: (context) {
                   final Map<String, String> categoryImage = {
-                    "video editing": 
-                      "assets/image/img_project_desain.png",
-                      
-                    "video permainan": 
-                      "assets/image/img_project_web.png",
-                     
-                    "situs web": 
-                      "assets/image/img_project_aplikasi.png",
-                      
-                    "aplikasi seluler":
-                      "assets/image/img_project_game.png",
-                    
-                    "desain grafis": 
-                      "assets/image/img_project_video.png",
-                     
+                    "desain grafis": "assets/image/img_project_desain.png",
+                    "situs web": "assets/image/img_project_web.png",
+                    "aplikasi seluler": "assets/image/img_project_aplikasi.png",
+                    "video permainan": "assets/image/img_project_game.png",
+                    "video editing": "assets/image/img_project_video.png",
                   };
                   String? selectedImage =
                       categoryImage[controller.category.name];
@@ -181,25 +171,15 @@ class WidgetImgProgresPoject extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Builder(
+              borderRadius: BorderRadius.circular(8),
+              child: Builder(
                 builder: (context) {
                   final Map<String, String> categoryImage = {
-                    "video editing": 
-                      "assets/image/img_project_desain.png",
-                      
-                    "video permainan": 
-                      "assets/image/img_project_web.png",
-                     
-                    "situs web": 
-                      "assets/image/img_project_aplikasi.png",
-                      
-                    "aplikasi seluler":
-                      "assets/image/img_project_game.png",
-                    
-                    "desain grafis": 
-                      "assets/image/img_project_video.png",
-                     
+                    "desain grafis": "assets/image/img_project_desain.png",
+                    "situs web": "assets/image/img_project_web.png",
+                    "aplikasi seluler": "assets/image/img_project_aplikasi.png",
+                    "video permainan": "assets/image/img_project_game.png",
+                    "video editing": "assets/image/img_project_video.png",
                   };
                   String? selectedImage =
                       categoryImage[controller.category.name];
@@ -213,8 +193,7 @@ class WidgetImgProgresPoject extends StatelessWidget {
                     return const Center();
                   }
                 },
-              )
-          ),
+              )),
         ),
         Padding(
           padding: const EdgeInsets.all(13.0),
@@ -281,7 +260,7 @@ class WidgetImgProgresPoject extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                 SizedBox(
+                  SizedBox(
                     width: 85,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -322,7 +301,6 @@ class WidgetImgProgresPoject extends StatelessWidget {
   }
 }
 
-
 class WidgetImgProgresPojectKosong extends StatelessWidget {
   const WidgetImgProgresPojectKosong({
     super.key,
@@ -342,7 +320,6 @@ class WidgetImgProgresPojectKosong extends StatelessWidget {
             ),
           ),
         ),
-        
       ],
     );
   }
