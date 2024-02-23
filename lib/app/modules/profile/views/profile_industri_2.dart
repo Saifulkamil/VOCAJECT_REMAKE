@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:vocaject_remake_v1/app/modules/profile/controllers/profile_controller_company_2.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
-import '../controllers/profile_controller_people.dart';
 
-class ProfilePeople extends GetView<ProfileControllerPeople> {
-  const ProfilePeople({Key? key}) : super(key: key);
+class Profileindustri_2 extends GetView<ProfileControllerCompany2> {
+  const Profileindustri_2({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +17,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
           elevation: 0,
           toolbarHeight: 0,
         ),
-        body: GetX<ProfileControllerPeople>(builder: (controller) {
+        body: GetX<ProfileControllerCompany2>(builder: (controller) {
           if (!controller.isProjectLoaded.value) {
             // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
             return const Center(child: CircularProgressIndicator());
@@ -31,7 +31,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                     Stack(
                       children: [
                         SizedBox(
-                          height: 230,
+                          height: 440,
                           width: double.infinity,
                           child: ClipRRect(
                             borderRadius: const BorderRadius.only(
@@ -76,7 +76,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                                             )),
                                       ),
                                       Text(
-                                        Saiful_Kamil,
+                                        Profil_company,
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -92,7 +92,8 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                               height: 20,
                             ),
                              CircleAvatar(
-                              backgroundImage: NetworkImage("${controller.dataProfil!.picture}"),
+                              backgroundImage:
+                                  NetworkImage("${controller.dataProfil!.proposalData!.data.project.company.picture}"),
                               backgroundColor: Colors.grey,
                               radius: 45,
                             ),
@@ -100,7 +101,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                               height: 20,
                             ),
                             Text(
-                              Saiful_Kamil,
+                              "${controller.dataProfil!.proposalData!.data.project.company.name}",
                               style: ColorApp.secondColorTextStyly(context)
                                   .copyWith(fontSize: 20, fontWeight: reguler),
                             ),
@@ -108,7 +109,53 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                               height: 20,
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(10.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15.0),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondaryContainer,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  width: double.infinity,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          deskripsi,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: ColorApp.secondColorTextStyly(
+                                                  context)
+                                              .copyWith(
+                                                  fontSize: 18,
+                                                  fontWeight: semiBold),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "${controller.dataProfil!.proposalData!.data.project.company.description}",
+                                          maxLines: 14,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: ColorApp.secondColorTextStyly(
+                                                  context)
+                                              .copyWith(
+                                                  fontSize: 14,
+                                                  fontWeight: reguler),
+                                        )
+                                      ],
+                                    ),
+                                  )),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -118,7 +165,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                                   Row(
                                     children: [
                                       Text(
-                                        NIM,
+                                        Alamat,
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -132,7 +179,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                                                 fontSize: 14, fontWeight: bold),
                                       ),
                                       Text(
-                                        "${controller.dataProfil!.nim}",
+                                        "${controller.dataProfil!.proposalData!.data.project.company.address}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -169,7 +216,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                                                 fontSize: 14, fontWeight: bold),
                                       ),
                                       Text(
-                                        "${controller.dataProfil!.email}",
+                                        "${controller.dataProfil!.proposalData!.data.project.company.email}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -206,7 +253,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                                                 fontSize: 14, fontWeight: bold),
                                       ),
                                       Text(
-                                        "${controller.dataProfil!.phone}",
+                                        "${controller.dataProfil!.proposalData!.data.project.company.phone}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -236,6 +283,6 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
             );
           }
         }),
-       );
+        );
   }
 }

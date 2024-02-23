@@ -8,8 +8,8 @@ import '../../../utils/component/widget_poject_terbaru.dart';
 import '../../../utils/string.dart';
 import '../controllers/project_history_controller.dart';
 
-class ProjectHistoryCollegeView extends GetView<ProjectHistoryController> {
-  const ProjectHistoryCollegeView({Key? key}) : super(key: key);
+class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
+  const ProjectHistoryDosenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,26 +68,34 @@ class ProjectHistoryCollegeView extends GetView<ProjectHistoryController> {
                     if (!controller.isProjectLoaded.value) {
                       // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
                       return const Center(child: CircularProgressIndicator());
+                    } else if (controller
+                        .proposalListDosenAcceptOnProgres.isEmpty) {
+                      return const Text("kosong");
                     } else {
                       return CustomScrollView(
                         slivers: [
                           SliverPrototypeExtentList(
-                              delegate:
-                                  SliverChildBuilderDelegate((context, index) {
-                      final project = controller.listProject[index];
+                              delegate: SliverChildBuilderDelegate(
+                                  (context, index) {
+                                final project = controller
+                                    .proposalListDosenAcceptOnProgres[index];
 
                                 return Padding(
                                   padding: const EdgeInsets.only(
                                       left: 15.0, right: 15, top: 20),
                                   child: InkWell(
                                       onTap: () {
-                                        Get.toNamed(Routes.PROJECT_PROGRESS);
+                                        Get.toNamed(Routes.PROJECT_PROGRESS,
+                                            arguments: project);
                                       },
-                                      child:  WidgetImgProgresPoject(controller: project,)),
+                                      child: WidgetPojectTerbaru(
+                                        controller: project,
+                                      )),
                                 );
-                              }, childCount: controller.listProject.length),
-                              prototypeItem:
-                                  const WidgetImgProgresPojectKosong())
+                              },
+                                  childCount: controller
+                                      .proposalListDosenAcceptOnProgres.length),
+                              prototypeItem: const WidgetPojectTerbaruKosong())
                         ],
                       );
                     }
@@ -96,23 +104,36 @@ class ProjectHistoryCollegeView extends GetView<ProjectHistoryController> {
                 if (!controller.isProjectLoaded.value) {
                   // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
                   return const Center(child: CircularProgressIndicator());
+                } else if (controller.proposalListDosenPending.isEmpty) {
+                  return const Text("kosong");
                 } else {
                   return Scaffold(
                     backgroundColor: Colors.transparent,
                     body: CustomScrollView(
                       slivers: [
                         SliverPrototypeExtentList(
-                            delegate:
-                                SliverChildBuilderDelegate((context, index) {
-                      final project = controller.listProject[index];
+                            delegate: SliverChildBuilderDelegate(
+                                (context, index) {
+                              final project =
+                                  controller.proposalListDosenPending[index];
 
-                              return  Padding(
+                              return Padding(
                                 padding: const EdgeInsets.only(
                                     left: 15.0, right: 15, top: 20),
-                                child: WidgetImgProgresPoject(controller: project,),
+                                child: InkWell(
+                                    onTap: () {
+                                      Get.toNamed(
+                                          Routes.PROJECT_DETAILS_PENDING,
+                                          arguments: project.id);
+                                    },
+                                    child: WidgetPojectTerbaru(
+                                      controller: project,
+                                    )),
                               );
-                            }, childCount: 3),
-                            prototypeItem: const WidgetImgProgresPojectKosong())
+                            },
+                                childCount:
+                                    controller.proposalListDosenPending.length),
+                            prototypeItem: const WidgetPojectTerbaruKosong())
                       ],
                     ),
                   );
@@ -122,23 +143,36 @@ class ProjectHistoryCollegeView extends GetView<ProjectHistoryController> {
                 if (!controller.isProjectLoaded.value) {
                   // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
                   return const Center(child: CircularProgressIndicator());
+                } else if (controller.proposalListDosenReject.isEmpty) {
+                  return const Text("kosong");
                 } else {
                   return Scaffold(
                     backgroundColor: Colors.transparent,
                     body: CustomScrollView(
                       slivers: [
                         SliverPrototypeExtentList(
-                            delegate:
-                                SliverChildBuilderDelegate((context, index) {
-                      final project = controller.listProject[index];
+                            delegate: SliverChildBuilderDelegate(
+                                (context, index) {
+                              final project =
+                                  controller.proposalListDosenReject[index];
 
-                              return  Padding(
+                              return Padding(
                                 padding: const EdgeInsets.only(
                                     left: 15.0, right: 15, top: 20),
-                                child: WidgetImgProgresPoject(controller: project,),
+                                child: InkWell(
+                                    onTap: () {
+                                      Get.toNamed(
+                                          Routes.PROJECT_DETAILS_PENDING,
+                                          arguments: project.id);
+                                    },
+                                    child: WidgetPojectTerbaru(
+                                      controller: project,
+                                    )),
                               );
-                            }, childCount: controller.listProject.length),
-                            prototypeItem: const WidgetImgProgresPojectKosong())
+                            },
+                                childCount:
+                                    controller.proposalListDosenReject.length),
+                            prototypeItem: const WidgetPojectTerbaruKosong())
                       ],
                     ),
                   );
@@ -148,23 +182,36 @@ class ProjectHistoryCollegeView extends GetView<ProjectHistoryController> {
                 if (!controller.isProjectLoaded.value) {
                   // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
                   return const Center(child: CircularProgressIndicator());
+                } else if (controller.proposalListDosenselesai.isEmpty) {
+                  return const Text("kosong");
                 } else {
                   return Scaffold(
                     backgroundColor: Colors.transparent,
                     body: CustomScrollView(
                       slivers: [
                         SliverPrototypeExtentList(
-                            delegate:
-                                SliverChildBuilderDelegate((context, index) {
-                      final project = controller.listProject[index];
+                            delegate: SliverChildBuilderDelegate(
+                                (context, index) {
+                              final project =
+                                  controller.proposalListDosenselesai[index];
 
-                              return  Padding(
+                              return Padding(
                                 padding: const EdgeInsets.only(
                                     left: 15.0, right: 15, top: 20),
-                                child: WidgetImgProgresPoject(controller: project,),
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.toNamed(Routes.PROJECT_DETAILS_PENDING,
+                                        arguments: project.id);
+                                  },
+                                  child: WidgetPojectTerbaru(
+                                    controller: project,
+                                  ),
+                                ),
                               );
-                            }, childCount: controller.listProject.length),
-                            prototypeItem: const WidgetImgProgresPojectKosong())
+                            },
+                                childCount:
+                                    controller.proposalListDosenselesai.length),
+                            prototypeItem: const WidgetPojectTerbaruKosong())
                       ],
                     ),
                   );

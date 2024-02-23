@@ -14,7 +14,7 @@ class ProjectHistoryMSHView extends GetView<ProjectHistoryController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
-          length: 3,
+          length: 2,
           child: Scaffold(
             backgroundColor: Theme.of(context).colorScheme.background,
             appBar: AppBar(
@@ -38,13 +38,7 @@ class ProjectHistoryMSHView extends GetView<ProjectHistoryController> {
                         style: TextStyle(fontSize: 13),
                       )),
                     ),
-                    Tab(
-                        child: Center(
-                      child: Text(
-                        Menunggu,
-                        style: TextStyle(fontSize: 13),
-                      ),
-                    )),
+                 
                     Tab(
                       child: Center(
                           child: Text(
@@ -59,8 +53,8 @@ class ProjectHistoryMSHView extends GetView<ProjectHistoryController> {
                 if (!controller.isProjectLoaded.value) {
                   // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
                   return const Center(child: CircularProgressIndicator());
-                } else if (controller.listProject.isEmpty) {
-                  return Text("kosong");
+                } else if (controller.proposalListMhsAcceptOnProgres.isEmpty) {
+                  return const Text("kosong");
                 } else {
                 return Scaffold(
                       backgroundColor: Colors.transparent,
@@ -77,7 +71,7 @@ class ProjectHistoryMSHView extends GetView<ProjectHistoryController> {
                                   delegate: SliverChildBuilderDelegate(
                                       (context, index) {
                                     final project =
-                                        controller.listProject[index];
+                                        controller.proposalListMhsAcceptOnProgres[index];
 
                                     return Padding(
                                       padding: const EdgeInsets.only(
@@ -85,13 +79,13 @@ class ProjectHistoryMSHView extends GetView<ProjectHistoryController> {
                                       child: InkWell(
                                           onTap: () {
                                             Get.toNamed(
-                                                Routes.PROJECT_PROGRESS);
+                                                Routes.PROJECT_PROGRESS,arguments: project.id);
                                           },
                                           child: WidgetImgProgresPoject(
                                             controller: project,
                                           )),
                                     );
-                                  }, childCount: controller.listProject.length),
+                                  }, childCount: controller.proposalListMhsAcceptOnProgres.length),
                                   prototypeItem:
                                       const WidgetImgProgresPojectKosong())
                             ],
@@ -99,12 +93,14 @@ class ProjectHistoryMSHView extends GetView<ProjectHistoryController> {
                         }
                       }));}
               }),
+              
+
               GetX<ProjectHistoryController>(builder: (controller) {
                 if (!controller.isProjectLoaded.value) {
                   // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
                   return const Center(child: CircularProgressIndicator());
-                } else if (controller.listProject.isEmpty) {
-                  return Text("kosong");
+                } else if (controller.proposalListMhsselesai.isEmpty) {
+                  return const Text("kosong");
                 } else {
                 return Scaffold(
                       backgroundColor: Colors.transparent,
@@ -121,7 +117,7 @@ class ProjectHistoryMSHView extends GetView<ProjectHistoryController> {
                                   delegate: SliverChildBuilderDelegate(
                                       (context, index) {
                                     final project =
-                                        controller.listProject[index];
+                                        controller.proposalListMhsselesai[index];
 
                                     return Padding(
                                       padding: const EdgeInsets.only(
@@ -135,52 +131,7 @@ class ProjectHistoryMSHView extends GetView<ProjectHistoryController> {
                                             controller: project,
                                           )),
                                     );
-                                  }, childCount: controller.listProject.length),
-                                  prototypeItem:
-                                      const WidgetImgProgresPojectKosong())
-                            ],
-                          );
-                        }
-                      }));}
-              }),
-
-              GetX<ProjectHistoryController>(builder: (controller) {
-                if (!controller.isProjectLoaded.value) {
-                  // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-                  return const Center(child: CircularProgressIndicator());
-                } else if (controller.listProject.isEmpty) {
-                  return Text("kosong");
-                } else {
-                return Scaffold(
-                      backgroundColor: Colors.transparent,
-                      body:
-                          GetX<ProjectHistoryController>(builder: (controller) {
-                        if (!controller.isProjectLoaded.value) {
-                          // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else {
-                          return CustomScrollView(
-                            slivers: [
-                              SliverPrototypeExtentList(
-                                  delegate: SliverChildBuilderDelegate(
-                                      (context, index) {
-                                    final project =
-                                        controller.listProject[index];
-
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15.0, right: 15, top: 20),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Get.toNamed(
-                                                Routes.PROJECT_PROGRESS);
-                                          },
-                                          child: WidgetImgProgresPoject(
-                                            controller: project,
-                                          )),
-                                    );
-                                  }, childCount: controller.listProject.length),
+                                  }, childCount: controller.proposalListMhsselesai.length),
                                   prototypeItem:
                                       const WidgetImgProgresPojectKosong())
                             ],

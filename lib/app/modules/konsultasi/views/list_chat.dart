@@ -34,6 +34,7 @@ class ListChat extends GetView<LogbookController> {
                                 ListTile(
                                   trailing: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text(date,
                                     style:
@@ -49,7 +50,7 @@ class ListChat extends GetView<LogbookController> {
                                         child: Text(
                                           "10",
                                           style:
-                                              whiteTextStyly.copyWith(
+                                              ColorApp.secondColorTextStyly(context).copyWith(
                                                       fontSize: 12,
                                                       fontWeight: medium),
                                         ),

@@ -3,14 +3,13 @@ import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
-import '../../modules/profile/controllers/profile_controller_company.dart';
 import '../../routes/app_pages.dart';
 
 class WidgetListproject extends StatelessWidget {
-  final ProfileControllerCompany dataCompany;
+  final dynamic listproject;
 
   const WidgetListproject({
-   required this.dataCompany,
+   required this.listproject,
     super.key,
   });
 
@@ -233,6 +232,43 @@ class WidgetListproject extends StatelessWidget {
                     const SizedBox(height: 10)
                   ],
                 ))
+          ])),
+        ));
+  }
+}
+
+
+
+class WidgetListprojectkosong extends StatelessWidget {
+
+  const WidgetListprojectkosong({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 702,
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.background,
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+          child: Scaffold(
+              body: CustomScrollView(slivers: [
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                          width: double.infinity,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.asset(
+                              "assets/image/img_home_desain.png",
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                )
           ])),
         ));
   }

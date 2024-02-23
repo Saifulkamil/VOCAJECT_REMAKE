@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:vocaject_remake_v1/app/modules/home/controllers/home_controller.dart';
 
 import '../../modules/project_history/controllers/project_history_controller.dart';
 import '../../routes/app_pages.dart';
@@ -13,17 +12,15 @@ class WidgetSpotlight extends StatelessWidget {
   final ProjectHistoryController controller;
   const WidgetSpotlight({
     required this.controller,
-    // required this.projectModel,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     List<dynamic> latestProjects = controller.listProject.length > 3
-    ? controller.listProject.sublist(controller.listProject.length - 3)
-    : controller.listProject;
+        ? controller.listProject.sublist(controller.listProject.length - 3)
+        : controller.listProject;
 
-    
     return SizedBox(
       width: double.infinity,
       height: 122,
@@ -39,12 +36,11 @@ class WidgetSpotlight extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 15.0),
                   child: InkWell(
                     onTap: () {
-                      Get.toNamed(Routes.PROJECT_PROGRESS);
+                      Get.toNamed(Routes.PROJECT_PROGRESS, arguments: project);
                     },
-                    child: ChildProgress(controller: project, index: index),
+                    child: ChildProgress(controller: project),
                   ),
                 );
-                
               }, childCount: latestProjects.length),
               prototypeItem: const Padding(
                 padding: EdgeInsets.only(right: 16.0),
@@ -60,12 +56,10 @@ class WidgetSpotlight extends StatelessWidget {
 
 // decoration widget progress
 class ChildProgress extends StatelessWidget {
-  final dynamic  controller;
-  final int index;
+  final dynamic controller;
 
   const ChildProgress({
     required this.controller,
-    required this.index,
     super.key,
   });
 
@@ -162,7 +156,6 @@ class ChildProgresskosong extends StatelessWidget {
         SizedBox(
           height: 122,
           width: 157,
-        
         ),
       ],
     );

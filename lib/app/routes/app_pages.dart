@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/anggota/bindings/anggota_binding.dart';
+import '../modules/anggota/views/anggota_view.dart';
 import '../modules/changeTheme/bindings/change_theme_binding.dart';
 import '../modules/changeTheme/views/change_theme_view.dart';
 import '../modules/edit_profile/bindings/edit_profile_binding.dart';
@@ -18,15 +20,18 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_industri.dart';
+import '../modules/profile/views/profile_industri_2.dart';
 import '../modules/profile/views/profile_people.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/projec_kategori/bindings/projec_kategori_binding.dart';
 import '../modules/projec_kategori/views/projec_kategori_view.dart';
 import '../modules/project_details/bindings/project_details_binding.dart';
+import '../modules/project_details/views/project_details_pending_view.dart';
 import '../modules/project_details/views/project_details_view.dart';
 import '../modules/project_history/bindings/project_history_binding.dart';
-import '../modules/project_history/views/project_history_college_view.dart';
-import '../modules/project_history/views/project_history_vmhs_view.dart';
+import '../modules/project_history/views/project_history_company_college_view.dart';
+import '../modules/project_history/views/project_history_dosen_view.dart';
+import '../modules/project_history/views/project_history_mhs_view.dart';
 import '../modules/project_progress/bindings/project_progress_binding.dart';
 import '../modules/project_progress/views/project_progress_view.dart';
 import '../modules/project_terbaru_all/bindings/project_terbaru_all_binding.dart';
@@ -115,14 +120,14 @@ class AppPages {
       binding: ProjectDetailsBinding(),
     ),
     GetPage(
+      name: _Paths.PROJECT_DETAILS_PENDING,
+      page: () => const ProjectDetailsPendingView(),
+      binding: ProjectDetailsBinding(),
+    ),
+    GetPage(
       name: _Paths.PROJEC_KATEGORI,
       page: () => const ProjecKategoriView(),
       binding: ProjecKategoriBinding(),
-    ),
-    GetPage(
-      name: _Paths.PROJECT_HISTORY,
-      page: () => const ProjectHistoryCollegeView(),
-      binding: ProjectHistoryBinding(),
     ),
     GetPage(
       name: _Paths.PROJECT_HISTORY_MHS,
@@ -130,7 +135,17 @@ class AppPages {
       binding: ProjectHistoryBinding(),
     ),
     GetPage(
-      name: _Paths.PROFILE,
+      name: _Paths.PROJECT_HISTORY_DOSEN,
+      page: () => const ProjectHistoryDosenView(),
+      binding: ProjectHistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROJECT_HISTORY_COMPANY_COLLEGE,
+      page: () => const ProjectHistoryCompanyCollegeView(),
+      binding: ProjectHistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_view,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
     ),
@@ -190,9 +205,19 @@ class AppPages {
       binding: ProfileBinding(),
     ),
     GetPage(
+      name: _Paths.PROFILE_INDUSTRI_2,
+      page: () => const Profileindustri_2(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
       name: _Paths.PROJECT_TERBARU_ALL,
       page: () => const ProjectTerbaruAllView(),
       binding: ProjectTerbaruAllBinding(),
+    ),
+    GetPage(
+      name: _Paths.ANGGOTA,
+      page: () => const AnggotaView(),
+      binding: AnggotaBinding(),
     ),
   ];
 }

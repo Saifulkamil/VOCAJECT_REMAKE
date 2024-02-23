@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/modules/profile/controllers/profile_controller_company.dart';
-import 'package:vocaject_remake_v1/app/utils/component/widget_list_project.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
-import '../controllers/profile_controller.dart';
 
 class Profileindustri extends GetView<ProfileControllerCompany> {
   const Profileindustri({Key? key}) : super(key: key);
@@ -95,7 +93,7 @@ class Profileindustri extends GetView<ProfileControllerCompany> {
                             ),
                              CircleAvatar(
                               backgroundImage:
-                                  AssetImage("${controller.dataProfil!.data.company.picture}"),
+                                  NetworkImage("${controller.dataProfil!.data.company.picture}"),
                               backgroundColor: Colors.grey,
                               radius: 45,
                             ),
@@ -103,7 +101,7 @@ class Profileindustri extends GetView<ProfileControllerCompany> {
                               height: 20,
                             ),
                             Text(
-                              Politeknik_Negeri_Lhokseumawe,
+                              "${controller.dataProfil!.data.company.name}",
                               style: ColorApp.secondColorTextStyly(context)
                                   .copyWith(fontSize: 20, fontWeight: reguler),
                             ),
@@ -180,12 +178,15 @@ class Profileindustri extends GetView<ProfileControllerCompany> {
                                             .copyWith(
                                                 fontSize: 14, fontWeight: bold),
                                       ),
-                                      Text(
-                                        "${controller.dataProfil!.data.company.address}",
-                                        style: ColorApp.secondColorTextStyly(
-                                                context)
-                                            .copyWith(
-                                                fontSize: 14, fontWeight: bold),
+                                      Flexible(
+                                        child: Text(
+                                          "${controller.dataProfil!.data.company.address}",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: ColorApp.secondColorTextStyly(
+                                                  context)
+                                              .copyWith(
+                                                  fontSize: 14, fontWeight: bold),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -217,12 +218,16 @@ class Profileindustri extends GetView<ProfileControllerCompany> {
                                             .copyWith(
                                                 fontSize: 14, fontWeight: bold),
                                       ),
-                                      Text(
-                                        "${controller.dataProfil!.data.company.email}",
-                                        style: ColorApp.secondColorTextStyly(
-                                                context)
-                                            .copyWith(
-                                                fontSize: 14, fontWeight: bold),
+                                      Flexible(
+                                        child: Text(
+                                          "${controller.dataProfil!.data.company.email}",
+                                            overflow: TextOverflow.ellipsis,
+                                        
+                                          style: ColorApp.secondColorTextStyly(
+                                                  context)
+                                              .copyWith(
+                                                  fontSize: 14, fontWeight: bold),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -285,49 +290,6 @@ class Profileindustri extends GetView<ProfileControllerCompany> {
             );
           }
         }),
-        bottomNavigationBar: Container(
-            height: 50,
-            color: colorTransparan, // Color of the footer
-            child: Container(
-              width: double.infinity,
-              color: colorTransparan,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        height: 70,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: true,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              builder: (BuildContext context) {
-                                return  WidgetListproject(dataCompany: controller,);
-                              },
-                            );
-                          },
-                          style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8))),
-                              elevation: MaterialStateProperty.all(4),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  greenColor2)),
-                          child: Text(Lihat_project,
-                              style: whiteTextStyly.copyWith(
-                                  fontSize: 18, fontWeight: bold)),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )));
+        );
   }
 }

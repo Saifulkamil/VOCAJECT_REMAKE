@@ -5,12 +5,12 @@ import 'package:intl/intl.dart';
 import 'package:vocaject_remake_v1/app/routes/app_pages.dart';
 
 import '../../../utils/colors.dart';
-import '../../../utils/component/widget_ajukan_project.dart';
 import '../../../utils/string.dart';
+import '../controllers/project_details_controller copy.dart';
 import '../controllers/project_details_controller.dart';
 
-class ProjectDetailsView extends GetView<ProjectDetailsController> {
-  const ProjectDetailsView({Key? key}) : super(key: key);
+class ProjectDetailsPendingView extends GetView<ProjectDetailsPendingController> {
+  const ProjectDetailsPendingView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final formatter =
@@ -230,6 +230,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                     ),
                                   )),
                             ),
+
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: Material(
@@ -345,77 +346,6 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
             );
           }
         }),
-        bottomNavigationBar: SizedBox(
-            height: 60,
-            // color: Colors.blue, // Color of the footer
-            child: Container(
-              width: double.infinity,
-              height: 50,
-              color: Theme.of(context).colorScheme.secondaryContainer,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      height: 60,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Get.toNamed(Routes.KONSULTASI);
-                        },
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              side: const BorderSide(
-                                color: greyColor,
-                                width: 0.5,
-                              ),
-                            )),
-                            elevation: MaterialStateProperty.all(0),
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                              Theme.of(context).colorScheme.secondaryContainer,
-                            )),
-                        child: const Icon(
-                          Icons.chat_outlined,
-                          color: greyColor,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        height: 60,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: true,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              builder: (BuildContext context) {
-                                return const WidgetAjukanProject();
-                              },
-                            );
-                          },
-                          style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8))),
-                              elevation: MaterialStateProperty.all(4),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  greenColor2)),
-                          child: Text(Ajukan_Proposal,
-                              style: whiteTextStyly.copyWith(
-                                  fontSize: 18, fontWeight: bold)),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )));
+        );
   }
 }

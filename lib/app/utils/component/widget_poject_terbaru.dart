@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../colors.dart';
-import '../string.dart';
 
 //widget tampilan project
 class WidgetPojectTerbaru extends StatelessWidget {
@@ -127,7 +126,7 @@ class WidgetPojectTerbaru extends StatelessWidget {
                               padding: const EdgeInsets.only(right: 9.0),
                               child: CircleAvatar(
                                 backgroundImage:
-                                    AssetImage("${controller.company.picture}"),
+                                    NetworkImage("${controller.company.picture}"),
                                 radius: 20,
                               ),
                             ),
@@ -224,37 +223,7 @@ class WidgetImgProgresPoject extends StatelessWidget {
                           fontSize: 15, fontWeight: reguler),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        Tim,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: whiteTextStyly.copyWith(
-                            fontSize: 14, fontWeight: medium),
-                      ),
-                      SizedBox(
-                        height: 20,
-                        width: 100,
-                        child: Scaffold(
-                            backgroundColor: colorTransparan,
-                            body: CustomScrollView(
-                              scrollDirection: Axis.horizontal,
-                              slivers: [
-                                SliverPrototypeExtentList(
-                                  delegate: SliverChildBuilderDelegate(
-                                      (context, index) {
-                                    return const CircleAvatar();
-                                  }, childCount: 10),
-                                  prototypeItem: const CircleAvatar(
-                                    radius: 10,
-                                  ),
-                                )
-                              ],
-                            )),
-                      ),
-                    ],
-                  )
+                  
                 ],
               ),
               Column(
@@ -272,7 +241,7 @@ class WidgetImgProgresPoject extends StatelessWidget {
                               padding: const EdgeInsets.only(right: 9.0),
                               child: CircleAvatar(
                                 backgroundImage:
-                                    AssetImage("${controller.company.picture}"),
+                                    NetworkImage("${controller.company.picture}"),
                                 radius: 20,
                               ),
                             ),

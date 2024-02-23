@@ -16,8 +16,7 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final projectC = Get.find<ProjectHistoryController>();
-
+    final project = Get.find<HomeController>();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.background,
@@ -29,10 +28,13 @@ class HomeView extends GetView<HomeController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  Haii,
-                  style: ColorApp.secondColorTextStyly(context)
-                      .copyWith(fontSize: 15, fontWeight: reguler),
+                Flexible(
+                  child: Text(
+                    "Hai ${project.userdata!.data.user.name}",
+                    overflow: TextOverflow.ellipsis,
+                    style: ColorApp.secondColorTextStyly(context)
+                        .copyWith(fontSize: 15, fontWeight: reguler),
+                  ),
                 ),
                 const SizedBox(
                   height: 3,
@@ -44,6 +46,7 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
           actions: [
+            project.userdata!.data.user.role != "student" ?
             InkWell(
               child: Padding(
                   padding: const EdgeInsets.only(right: 15.0, top: 18),
@@ -69,15 +72,16 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                   )),
-            ),
+            )
+            : const Center(),
             InkWell(
               onTap: () {
-                Get.toNamed(Routes.EDIT_PROFILE);
+                Get.toNamed(Routes.EDIT_PROFILE, arguments: project.userdata);
               },
-              child: const Padding(
-                padding: EdgeInsets.only(right: 15.0, top: 15),
+              child:  Padding(
+                padding: const EdgeInsets.only(right: 15.0, top: 15),
                 child: CircleAvatar(
-                  backgroundImage: AssetImage("assets/image/img_foto.jpg"),
+                  backgroundImage: NetworkImage("${project.userdata!.data.user.picture}"),
                 ),
               ),
             )
@@ -106,19 +110,6 @@ class HomeView extends GetView<HomeController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Builder(builder: (context) {
-                        //   if (projectC.isProjectLoaded.isFalse) {
-                        //     print(projectC.isProjectLoaded.value);
-                        //     // Jika data spotlight kosong, tampilkan pesan atau widget lain
-                        //     return const Center();
-                        //   } else if (projectC.isProjectLoaded.isTrue) {
-                        //     print(projectC.isProjectLoaded.value);
-
-                        //     return
-                        //   } else {
-                        //     return Center();
-                        //   }
-                        // }),
                         GetX<ProjectHistoryController>(
                             builder: (historyController) {
                           if (!historyController.isProjectLoaded.value) {
@@ -151,7 +142,6 @@ class HomeView extends GetView<HomeController> {
                             );
                           }
                         }),
-
                         Text(
                           Kategori,
                           style: ColorApp.secondColorTextStyly(context)
@@ -171,7 +161,9 @@ class HomeView extends GetView<HomeController> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Get.toNamed(Routes.PROJECT_TERBARU_ALL,);
+                                Get.toNamed(
+                                  Routes.PROJECT_TERBARU_ALL,
+                                );
                               },
                               child: Text(
                                 Lihat_semua,
@@ -194,8 +186,14 @@ class HomeView extends GetView<HomeController> {
                             left: 15.0, right: 15, bottom: 20),
                         child: InkWell(
                             onTap: () {
-                              Get.toNamed(Routes.PROJECT_DETAILS,
-                                  arguments: project.id);
+                              if (controller.userdata!.data.user.role ==
+                                  "student") {
+                                Get.toNamed(Routes.PROJECT_DETAILS_PENDING,
+                                    arguments: project.id);
+                              } else {
+                                Get.toNamed(Routes.PROJECT_DETAILS,
+                                    arguments: project.id);
+                              }
                             },
 
                             //widget tampilan project

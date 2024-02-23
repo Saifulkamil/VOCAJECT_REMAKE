@@ -179,7 +179,7 @@ class LoginView extends GetView<LoginController> {
                             WidgetTextButton(
                               text: Lupa_Kata_sandi,
                               onPressed: () {
-                                Get.offAllNamed(Routes.RESET_PASSWORD);
+                                Get.toNamed(Routes.RESET_PASSWORD);
                               },
                             )
                           ],
@@ -199,7 +199,7 @@ class LoginView extends GetView<LoginController> {
                                 loginC.emailC.text, loginC.passC.text);
                             if (userdata != null) {
                               Get.back();
-                              Get.toNamed(Routes.NAVIGATIONBAR);
+                              Get.offAllNamed(Routes.NAVIGATIONBAR);
                             }
                             // Jika login berhasil dan UserModel tidak null, cetak email pengguna di debug console
                           },

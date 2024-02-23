@@ -9,7 +9,7 @@ import '../../../utils/baseUrl.dart';
 class ProjectDetailsController extends GetxController {
 
   // Data proyek tunggal.
-  ProjectModelSingle? dataProject ;
+  ProjectModelSingle? dataCompany ;
 
   // Status untuk menunjukkan apakah proses pengambilan data proyek sudah selesai atau belum.
   var isProjectLoaded = false.obs;
@@ -39,12 +39,12 @@ class ProjectDetailsController extends GetxController {
         // Pengecekan keberadaan kunci 'message' dan 'data'
         if (data.containsKey('message') && data.containsKey('data')) {
           // Deserialisasi JSON menjadi objek UserModel
-          final userdata = ProjectModelSingle.fromJson(data);
+          final dataProjetc = ProjectModelSingle.fromJson(data);
 
-          dataProject = userdata ;
+          dataCompany = dataProjetc ;
 
           isProjectLoaded.value = true;
-          return userdata;
+          return dataProjetc;
         } else {
           // Jika 'data' atau 'support' tidak ada, return null
           return null;

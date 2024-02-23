@@ -1,47 +1,33 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:vocaject_remake_v1/app/Models/ProjectModel.dart';
-import 'package:vocaject_remake_v1/app/Models/UserModel.dart';
+import 'package:vocaject_remake_v1/app/Models/ProjectModelSingle.dart';
 
 import '../../../utils/baseUrl.dart';
 
-class HomeController extends GetxController {
-  List<dynamic> listProject = [].obs;
-  UserModel? userdata;
-  final user = GetStorage();
+class ProjectDetailsPendingController extends GetxController {
 
-  // loading untuk mengGet data dari fungsi GetProject
+  // Data proyek tunggal.
+  ProjectModelSingle? dataCompany ;
+
+  // Status untuk menunjukkan apakah proses pengambilan data proyek sudah selesai atau belum.
   var isProjectLoaded = false.obs;
 
-  // late List<ProjectModel> item ;
+  // ID proyek yang akan ditampilkan.
+  int? idProject;
 
   @override
-  Future<void> onInit() async {
+  void onInit() {
     super.onInit();
-    getProject();
-    getUserFromStorage();
+    idProject = Get.arguments;
+      getProjectDetail();
+  
   }
 
-  UserModel? getUserFromStorage() {
-    // Baca UserModel dari GetStorage dengan kunci yang sesuai, misalnya "user"
-    final userJson = user.read('user');
-
-    // Jika UserModel ditemukan, deserialisasi JSON menjadi UserModel
-    if (userJson != null) {
-      userdata = UserModel.fromJson(userJson);
-      // print(" ini id user ${userdata!.data.user.id}");
-
-      return userdata;
-    }
-    return null; // Return null jika UserModel tidak ditemukan
-  }
-
-  Future<ProjectModel?> getProject() async {
-    Uri url =
-        Uri.parse("${UrlDomain.baseurl}/api/project?status=opened&latest=true");
+  // Mendapatkan detail proyek dari API.
+  Future<ProjectModelSingle?> getProjectDetail() async {
+    Uri url = Uri.parse("${UrlDomain.baseurl}/api/project/$idProject");
 
     try {
       final response = await http.get(url);
@@ -53,12 +39,12 @@ class HomeController extends GetxController {
         // Pengecekan keberadaan kunci 'message' dan 'data'
         if (data.containsKey('message') && data.containsKey('data')) {
           // Deserialisasi JSON menjadi objek UserModel
-          final userdata = ProjectModel.fromJson(data);
+          final dataProjetc = ProjectModelSingle.fromJson(data);
 
-          listProject = userdata.data;
+          dataCompany = dataProjetc ;
 
           isProjectLoaded.value = true;
-          return userdata;
+          return dataProjetc;
         } else {
           // Jika 'data' atau 'support' tidak ada, return null
           return null;

@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
 
+import '../../modules/project_progress/controllers/project_progress_controller.dart';
 import '../../routes/app_pages.dart';
 
 class WidgetTim extends StatelessWidget {
+  final ProjectProgressController controller;
   const WidgetTim({
+    required this.controller,
     super.key,
   });
 
@@ -23,29 +26,35 @@ class WidgetTim extends StatelessWidget {
               body: CustomScrollView(slivers: [
             SliverPrototypeExtentList(
                 delegate: SliverChildBuilderDelegate((context, index) {
+                  final project = controller.proposalData!.data.members[index];
                   return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const SizedBox(
-                              height: 5,
-                            ),
+                            
+                           Container(
+                                    height: 4,
+                                    width: 70,
+                                    color: greyColor,
+                                  ),
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 3.0),
                               child: Column(
                                 children: [
+                                  
                                   ListTile(
                                     onTap: () {
-                                      Get.toNamed(Routes.PROFILE_PEOPLE);
+                                      Get.toNamed(Routes.PROFILE_PEOPLE,
+                                          arguments: project);
                                     },
-                                    leading: const CircleAvatar(
+                                    leading:  CircleAvatar(
                                       backgroundColor: greyColor,
                                       backgroundImage:
-                                          NetworkImage("sdfsdfsdf"),
+                                          NetworkImage("${project.picture}"),
                                     ),
-                                    title: const Text("sdfsdfsdfsdfsdf"),
+                                    title:  Text("${project.name}"),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10.0),
                                     ),
@@ -54,7 +63,7 @@ class WidgetTim extends StatelessWidget {
                               ),
                             ),
                           ]));
-                }, childCount: 5),
+                }, childCount: controller.proposalData!.data.members.length),
                 prototypeItem: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: Column(
@@ -87,3 +96,6 @@ class WidgetTim extends StatelessWidget {
         ));
   }
 }
+
+
+

@@ -15,7 +15,7 @@ class ProjectTerbaruAllView extends GetView<ProjectTerbaruAllController> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-        appBar: AppbarTransparant(title: Proyek_terbaru),
+        appBar: const AppbarTransparant(title: Proyek_terbaru),
         body: GetX<HomeController>(builder: (controller) {
           if (!controller.isProjectLoaded.value) {
             // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya

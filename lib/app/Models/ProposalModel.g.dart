@@ -1,18 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'ProjectModelSingle.dart';
+part of 'ProposalModel.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProjectModelSingle _$ProjectModelSingleFromJson(Map<String, dynamic> json) =>
-    ProjectModelSingle(
+ProposalModel _$ProposalModelFromJson(Map<String, dynamic> json) =>
+    ProposalModel(
       message: json['message'] as String?,
-      data: ProjectData.fromJson(json['data'] as Map<String, dynamic>),
+      data: ProposalData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ProjectModelSingleToJson(ProjectModelSingle instance) =>
+Map<String, dynamic> _$ProposalModelToJson(ProposalModel instance) =>
     <String, dynamic>{
       'message': instance.message,
       'data': instance.data.toJson(),

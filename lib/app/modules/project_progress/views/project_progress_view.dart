@@ -22,138 +22,158 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
           elevation: 0,
           toolbarHeight: 0,
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Stack(
+        body: GetX<ProjectProgressController>(builder: (controller) {
+          
+          if (!controller.isProjectLoaded.value) {
+            // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                    child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 420,
-                      width: double.infinity,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(15),
-                            bottomRight: Radius.circular(15)),
-                        child: Image.asset(
-                          Theme.of(context).brightness == Brightness.dark
-                              ? "assets/image/img_dark.png"
-                              : "assets/image/img_light.png",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    Stack(
                       children: [
-                        Container(
-                          height: 50,
-                          color: colorTransparan,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 15.0, top: 15),
-                              child: Row(
-                                children: [
-                                  Material(
-                                    color: colorTransparan,
-                                    child: InkWell(
-                                        onTap: () {
-                                          Get.back();
-                                        },
-                                        child:  Padding(
-                                          padding: const EdgeInsets.only(right: 10.0),
-                                          child: Icon(
-                                            Icons.arrow_back,
-                                            color: Theme.of(context).colorScheme.secondary,
-                                          ),
-                                        )),
-                                  ),
-                                  Text(
-                                    Aplikasi_Vocaject,
-                                    style: ColorApp.secondColorTextStyly(context).copyWith(
-                                        fontSize: 20, fontWeight: semiBold),
-                                  ),
-                                ],
-                              ),
+                        SizedBox(
+                          height: 420,
+                          width: double.infinity,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(15),
+                                bottomRight: Radius.circular(15)),
+                            child: Image.asset(
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? "assets/image/img_dark.png"
+                                  : "assets/image/img_light.png",
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        const Align(
-                          alignment: Alignment.topCenter,
-                          child: CircularProgres(),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          Progres_project,
-                          style: ColorApp.secondColorTextStyly(context).copyWith(
-                              fontSize: 18, fontWeight: semiBold),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        const WidgetDataProject(),
-                        const SizedBox(
-                          height: 20,
-                        ),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                WidgetCardBtnCustom(
-                                    text: Daftar_kerja,
-                                    image: "assets/image/img_daftar_kerja.png",
-                                    onPressed: () {
-                                      // mengirim argument ke controler register
-                                      Get.toNamed(Routes.TARGET_PROJECT,);
-                                    }),
-                                WidgetCardBtnCustom(
-                                    text: Konsultasi,
-                                    image: "assets/image/img_chat.png",
-                                    onPressed: () {          
-                                       Get.toNamed(Routes.KONSULTASI);
-                                    }),
-                              ],
+                            Container(
+                              height: 50,
+                              color: colorTransparan,
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 15.0, top: 15),
+                                  child: Row(
+                                    children: [
+                                      Material(
+                                        color: colorTransparan,
+                                        child: InkWell(
+                                            onTap: () {
+                                              Get.back();
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10.0),
+                                              child: Icon(
+                                                Icons.arrow_back,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                              ),
+                                            )),
+                                      ),
+                                      Text(
+                                        "${controller.proposalData!.data.project.title}",
+                                        style: ColorApp.secondColorTextStyly(
+                                                context)
+                                            .copyWith(
+                                                fontSize: 20,
+                                                fontWeight: semiBold),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 25,
+                            ),
+                            const Align(
+                              alignment: Alignment.topCenter,
+                              child: CircularProgres(),
                             ),
                             const SizedBox(
                               height: 15,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                WidgetCardBtnCustom(
-                                    text: LogBook,
-                                    image: "assets/image/img_logBook.png",
-                                    onPressed: () {
-                                      Get.toNamed(Routes.LIST_MHS_LOGBOOK,);
-
-                                    }),
-                                // WidgetCardBtnCustom(
-                                //     text: LogBook,
-                                //     image: "assets/image/img_uang.png",
-                                //     onPressed: () {
-                                //     }),
-                              ],
+                            Text(
+                              Progres_project,
+                              style: ColorApp.secondColorTextStyly(context)
+                                  .copyWith(fontSize: 18, fontWeight: semiBold),
                             ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            WidgetDataProject(controller: controller),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    WidgetCardBtnCustom(
+                                        text: Daftar_kerja,
+                                        image:
+                                            "assets/image/img_daftar_kerja.png",
+                                        onPressed: () {
+                                          // mengirim argument ke controler register
+                                          Get.toNamed(
+                                            Routes.TARGET_PROJECT,
+                                          );
+                                        }),
+                                    WidgetCardBtnCustom(
+                                        text: Konsultasi,
+                                        image: "assets/image/img_chat.png",
+                                        onPressed: () {
+                                          Get.toNamed(Routes.KONSULTASI);
+                                        }),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    WidgetCardBtnCustom(
+                                        text: LogBook,
+                                        image: "assets/image/img_logBook.png",
+                                        onPressed: () {
+                                          Get.toNamed(
+                                            Routes.LIST_MHS_LOGBOOK,
+                                          );
+                                        }),
+                                    // WidgetCardBtnCustom(
+                                    //     text: LogBook,
+                                    //     image: "assets/image/img_uang.png",
+                                    //     onPressed: () {
+                                    //     }),
+                                  ],
+                                ),
+                              ],
+                            )
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ],
-                ),
+                ))
               ],
-            ))
-          ],
-        ),
+            );
+          }
+        }),
         bottomNavigationBar: Container(
             height: 50,
             color: colorTransparan, // Color of the footer
@@ -176,7 +196,8 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
                               builder: (BuildContext context) {
-                                return const WidgetDatasProject();
+                                // ProjectModelSingle controller;
+                                return  WidgetDatasProject(controller: controller);
                               },
                             );
                           },
