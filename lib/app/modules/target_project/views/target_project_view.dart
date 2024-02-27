@@ -41,7 +41,9 @@ class TargetProjectView extends GetView<TargetProjectController> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
                       builder: (BuildContext context) {
-                        return WidgetTargetProject(flowC: flowC,);
+                        return WidgetTargetProject(
+                          flowC: flowC,
+                        );
                       },
                     );
                   },
@@ -53,102 +55,58 @@ class TargetProjectView extends GetView<TargetProjectController> {
             )
           ],
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Text(Aplikasi_Vocaject,
-                    textAlign: TextAlign.center,
-                    style: ColorApp.secondColorTextStyly(context)
-                        .copyWith(fontSize: 16, fontWeight: semiBold)),
-              ),
-            ),
-            SliverPrototypeExtentList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Theme(
-                      data: Theme.of(context).copyWith(
-                          colorScheme:
-                              const ColorScheme.light(primary: greenColor)),
-                      child: CheckboxListTile(
-                        enabled: true,
-                        title: Text("sdfsdfsdfsdfsdf",
-                            style: ColorApp.secondColorTextStyly(context)
-                                .copyWith(fontSize: 15, fontWeight: reguler)),
-                        checkColor: Theme.of(context).colorScheme.background,
-                        // fillColor: MaterialStatePropertyAll(greenColor),
-                        value: true,
+        body: GetX<TargetProjectController>(builder: (controller) {
+          if (!controller.isProjectLoaded.value) {
+            // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: Text("${controller.projectData!.title}",
+                        textAlign: TextAlign.center,
+                        style: ColorApp.secondColorTextStyly(context)
+                            .copyWith(fontSize: 16, fontWeight: semiBold)),
+                  ),
+                ),
+                SliverPrototypeExtentList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final project = controller.listProjectTask[index];
 
-                        onChanged: (value) {},
-                      ),
-                    ),
-                  );
-                }, childCount: 5),
-                prototypeItem: CheckboxListTile(
-                  enabled: false,
-                  title: Text("sdfsdfsdfsdfsdf",
-                      style: ColorApp.secondColorTextStyly(context)
-                          .copyWith(fontSize: 15, fontWeight: reguler)),
-                  checkColor: Colors.black,
-                  value: false,
-                  onChanged: (value) {},
-                ))
-          ],
-        )
-        // Padding(
-        //     padding: const EdgeInsets.only(left: 15.0, right: 15),
-        //     child:
-        //         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        //       Container(
-        //           width: double.infinity,
-        //           decoration: BoxDecoration(
-        //               color: Theme.of(context).colorScheme.secondaryContainer,
-        //               border: Border.all(color: blackColor),
-        //               borderRadius: BorderRadius.circular(7)),
-        //           child: Padding(
-        //               padding: const EdgeInsets.symmetric(
-        //                   horizontal: 15.0, vertical: 10),
-        //               child: Column(children: [
-        //                 Text(Aplikasi_Vocaject,
-        //                     textAlign: TextAlign.center,
-        //                     style: ColorApp.secondColorTextStyly(context)
-        //                         .copyWith(fontSize: 16, fontWeight: semiBold)),
-        //                 SizedBox(
-        //                     height: MediaQuery.of(context).size.height / 3.1,
-        //                     width: double.infinity,
-        //                     child: Scaffold(
-        //                         backgroundColor: Colors.transparent,
-        //                         body: Material(
-        //                           color:
-        //                               Theme.of(context).colorScheme.background,
-        //                           child: InkWell(
-        //                             onLongPress: () {
-        //                               // Get.to(()=>todoc.editdialog());
-        //                             },
-        //                             child: Padding(
-        //                               padding:
-        //                                   const EdgeInsets.only(bottom: 15.0),
-        //                               child: CheckboxListTile(
-        //                                 enabled: false,
-        //                                 title: Text("sdfsdfsdfsdfsdf",
-        //                                     style:
-        //                                         ColorApp.secondColorTextStyly(
-        //                                                 context)
-        //                                             .copyWith(
-        //                                                 fontSize: 15,
-        //                                                 fontWeight: reguler)),
-        //                                 checkColor: Colors.black,
-        //                                 value: false,
-        //                                 onChanged: (value) {},
-        //                               ),
-        //                             ),
-        //                           ),
-        //                         )))
-        //               ])))
-        //     ])
-        //     )
-        );
+
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Theme(
+                          data: Theme.of(context).copyWith(
+                              colorScheme:
+                                  const ColorScheme.light(primary: greenColor)),
+                          child: CheckboxListTile(
+                            enabled: true,
+                            title: Text("${project.title }",
+                                style: ColorApp.secondColorTextStyly(context)
+                                    .copyWith(
+                                        fontSize: 15, fontWeight: reguler)),
+                            checkColor:
+                                Theme.of(context).colorScheme.background,
+                            // fillColor: MaterialStatePropertyAll(greenColor),
+                            value: project.checked,
+
+                            onChanged: (value) {},
+                          ),
+                        ),
+                      );
+                    }, childCount: controller.ProjectTaskData!.data.length),
+                    prototypeItem: CheckboxListTile(
+                      enabled: false,
+                      title: Text("",),
+                      value: false,
+                      onChanged: (value) {},
+                    ))
+              ],
+            );
+          }
+        }));
   }
 }

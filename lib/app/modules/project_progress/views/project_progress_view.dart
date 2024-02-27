@@ -23,7 +23,6 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
           toolbarHeight: 0,
         ),
         body: GetX<ProjectProgressController>(builder: (controller) {
-          
           if (!controller.isProjectLoaded.value) {
             // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
             return const Center(child: CircularProgressIndicator());
@@ -128,9 +127,9 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                             "assets/image/img_daftar_kerja.png",
                                         onPressed: () {
                                           // mengirim argument ke controler register
-                                          Get.toNamed(
-                                            Routes.TARGET_PROJECT,
-                                          );
+                                          Get.toNamed(Routes.TARGET_PROJECT,
+                                              arguments:
+                                                  controller.projectData);
                                         }),
                                     WidgetCardBtnCustom(
                                         text: Konsultasi,
@@ -151,9 +150,19 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                         text: LogBook,
                                         image: "assets/image/img_logBook.png",
                                         onPressed: () {
-                                          Get.toNamed(
-                                            Routes.LIST_MHS_LOGBOOK,
-                                          );
+                                          controller.userdata!.data.user.role !=
+                                                  "student"
+                                              ? Get.toNamed(
+                                                  Routes.LIST_MHS_LOGBOOK, arguments: {  
+                                                    "members": controller.proposalData!.data.members,
+                                                    "projectId": controller.projectData!.id}
+                                                )
+                                              : Get.toNamed(
+                                                  Routes.LOGBOOK, arguments: {  
+                                                    "members": controller.proposalData!.data.members,
+                                                    "memberId":controller.userdata!.data.user.id,
+                                                    "projectId": controller.projectData!.id}
+                                                );
                                         }),
                                     // WidgetCardBtnCustom(
                                     //     text: LogBook,
@@ -197,7 +206,8 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                   borderRadius: BorderRadius.circular(15)),
                               builder: (BuildContext context) {
                                 // ProjectModelSingle controller;
-                                return  WidgetDatasProject(controller: controller);
+                                return WidgetDatasProject(
+                                    controller: controller);
                               },
                             );
                           },

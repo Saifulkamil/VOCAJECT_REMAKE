@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
 import 'package:vocaject_remake_v1/app/Models/ProposalModel.dart';
 
 import '../../../Models/UserModel.dart';
 import '../../../utils/baseUrl.dart';
 
 class ProjectProgressController extends GetxController {
-  dynamic projectData;
+  ProjectData? projectData;
   ProposalModel? proposalData;
   List<dynamic> listpicture = [].obs;
 
@@ -44,7 +45,7 @@ class ProjectProgressController extends GetxController {
 
   Future<ProposalModel?> getProposalByIdAndProposalId() async {
     Uri url = Uri.parse(
-        "${UrlDomain.baseurl}/api/project/${projectData.id}/proposal/by_lecture/${userdata!.data.user.id}&proposal_status=accepted");
+        "${UrlDomain.baseurl}/api/project/${projectData!.id}/proposal/by_lecture/${userdata!.data.user.id}&proposal_status=accepted");
 
     try {
       final response = await http.get(url);

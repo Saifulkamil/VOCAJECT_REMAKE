@@ -179,6 +179,12 @@ class AppPages {
       page: () => const LogbookView(),
       binding: LogbookBinding(),
     ),
+
+    GetPage(
+      name: _Paths.LIST_MHS_LOGBOOK,
+      page: () => const ListMhsLogbook(),
+      binding: LogbookBinding(),
+    ),
     GetPage(
       name: _Paths.RESET_PASSWORD,
       page: () => const ResetPasswordView(),

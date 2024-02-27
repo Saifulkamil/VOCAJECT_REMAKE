@@ -15,10 +15,9 @@ ProposalData _$ProposalDataFromJson(Map<String, dynamic> json) => ProposalData(
       members: (json['members'] as List<dynamic>)
           .map((e) => MahasiswaDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
-       attachments: (json['attachments'] as List<dynamic>)
+      attachments: (json['attachments'] as List<dynamic>)
           .map((e) => AttachmentsDetails.fromJson(e as Map<String, dynamic>))
           .toList(),
-    
     );
 
 Map<String, dynamic> _$ProposalDataToJson(ProposalData instance) =>
