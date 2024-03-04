@@ -1,4 +1,3 @@
-
 // ignore_for_file: constant_identifier_names
 
 const selamat_datang_kembali = "Selamat datang kembali";
@@ -13,9 +12,9 @@ const Perusahaan = "Perusahaan : ";
 const Progres_project = "Progres project";
 const informatika = "informatika@gmail.com";
 const kota_Lhokseumawe_aceh = "kota Lhokseumawe, aceh";
-const Pilih = "Pilih";  
-const Politeknik_Negeri_Lhokseumawe = "Politeknik Negeri Lhokseumawe";  
-const gimans_kabarnya = "gimans kabarnya";  
+const Pilih = "Pilih";
+const Politeknik_Negeri_Lhokseumawe = "Politeknik Negeri Lhokseumawe";
+const gimans_kabarnya = "gimans kabarnya";
 const permisi_pak_ = "Permisi pak. Selamat siang";
 const Kata_sandi = "Kata sandi";
 const Lupa_Kata_sandi = "Lupa Kata sandi";
@@ -24,7 +23,8 @@ const Belum_punya_akun_gan = "Belum punya akun gan?";
 const Kuy_daftar = "Kuy daftar";
 const Tunggu_sebentar_ya = "Tunggu sebentar ya";
 const Daftar = "Daftar";
-const Silahkan_pilih_peran_yang_akan_didaftarkan = "Silahkan pilih peran yang\nakan didaftarkan";
+const Silahkan_pilih_peran_yang_akan_didaftarkan =
+    "Silahkan pilih peran yang\nakan didaftarkan";
 const Dosen = "Dosen";
 const Daftar_sebagai_mahasiswa = "Daftar sebagai mahasiswa";
 const Identitas = "Identitas";
@@ -32,8 +32,9 @@ const Nama = "Nama";
 const cari_mahasiswa = "Cari mahasiswa";
 const pilih_mahasiswa = "Pilih mahasiswa";
 const NIM = "NIM";
-const isiLogbok = "Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...";   
-const pnl = "PNL";   
+const isiLogbok =
+    "Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...Melanjutkan proses pembuatan aplikasi vocaject agar dapat digunakan dengan baik. Menambahkan fitur baru dan mulai membuat rancangan...";
+const pnl = "PNL";
 const Alamat = "Alamat";
 const Lanjutkan = "Lanjutkan";
 const Kampus = "Kampus";
@@ -94,13 +95,18 @@ const Catatan_untuk_perusahaan = "Catatan untuk perusahaan";
 const Ketikan = "Ketikan...";
 const Tambahkan_mahasiswa = "Tambahkan mahasiswa";
 const Yeii_berhasil_Mengajukan_Proposal = "Yeii berhasil Mengajukan Proposal";
-const Semangat_Membuat_LogBook_Selanjutnya = "Semangat Membuat LogBook Selanjutnya";
+const Semangat_Membuat_LogBook_Selanjutnya =
+    "Semangat Membuat LogBook Selanjutnya";
 const Kamu_Berhasil_Membuat_Mimpi_baru = "Kamu Berhasil Membuat Mimpi Baru";
+const Kamu_Berhasil_Merubah_Mimpi_ = "Kamu Berhasil Merubah Mimpi Mu";
+const Kamu_Berhasil_Hapus_Mimpi_ = "Kamu Berhasil Hapus Anganan Mu";
+
+const Kamu_Berhasil_unlock_skill = "Kamu Berhasil Unlock Skill Mu";
 const Ketikkan_pesan = "Ketikkan pesan...";
 const Progress = "Progress";
 const Daftar_kerja = "Daftar Kerja";
-const Tambahkan_target = "Tambahkan target"; 
-const LogBook = "LogBook";   
+const Tambahkan_target = "Tambahkan target";
+const LogBook = "LogBook";
 const Konsultasi = "Konsultasi";
 const Target_Proyek = "Target Proyek";
 const Kelola_anggaran = "Kelola anggaran";
@@ -119,15 +125,16 @@ const Daftar_Project = "Daftar Proyek";
 const Saiful_Kamil = "Saiful Kamil";
 const no_nim = "2020903430045";
 const no_phone = "0895600518662";
-const Aplikasi_Vocaject = "Aplikasi Vocaject";  
-const Profil = "Profil";  
-const Profil_company = "Profil Perusahaan";  
+const Aplikasi_Vocaject = "Aplikasi Vocaject";
+const Profil = "Profil";
+const Profil_company = "Profil Perusahaan";
 const Lihat_semua = "Lihat semua >> ";
 const simpan = "Simpan";
 const deskripsi = "Deskripsi";
 const Deadline = "Deadline";
 const Harga = "Harga";
-const Isideskripsi = "proyek desain grafis yang mengeksplorasi keindahan bentuk-bentuk abstrak. Menggunakan palet warna yang kontras dan seimbang, proyek ini menciptakan karya seni visual yang menyenangkan mata dan merangsang imajinasi.";
+const Isideskripsi =
+    "proyek desain grafis yang mengeksplorasi keindahan bentuk-bentuk abstrak. Menggunakan palet warna yang kontras dan seimbang, proyek ini menciptakan karya seni visual yang menyenangkan mata dan merangsang imajinasi.";
 const Pilih_Role = "Pilih Role";
 const Industri = "Industri";
 const lanjutkan = "Lanjutkan";
@@ -135,23 +142,28 @@ const Universitas = "Universitas";
 const Riwayat = "Riwayat";
 const cari_Kampus = "Cari Kampus";
 const Pilih_Kampus_Kamu = "Pilih Kampus Kamu";
-const descripsi_light = "Tampilan yang cerah ini sangat sesuai untuk digunakan pada siang hari atau di tempat yang terang.";
-const descripsi_dark = "Tampilan yang gelap ini sangat sesuai untuk digunakan pada malam hari atau di tempat yang gelap.";
+const descripsi_light =
+    "Tampilan yang cerah ini sangat sesuai untuk digunakan pada siang hari atau di tempat yang terang.";
+const descripsi_dark =
+    "Tampilan yang gelap ini sangat sesuai untuk digunakan pada malam hari atau di tempat yang gelap.";
 const Dark_Mode = "Dark Mode";
 const Light_Mode = "Light Mode";
 const Verifikasi_kode_OTP = "Verifikasi Kode OTP";
 const Verifikasi = "Verifikasi";
 const Kode_OTP = "Kode Verifikasi";
 const Masuk_Kode_OTP = "Masukan Kode Verifikasi";
-const Silahkan_Cek_Email_Anda_Untuk_Kode_Verifikasi = "Silahkan Cek Email Anda Untuk Kode OTP";
+const Silahkan_Cek_Email_Anda_Untuk_Kode_Verifikasi =
+    "Silahkan Cek Email Anda Untuk Kode OTP";
 const Atur_Ulang_Kata_Sandi = "Atur Ulang Kata Sandi";
 
 const Masukkan_email_yang_terdaftar = "Masukkan e-mail yang terdaftar.";
 const atur_ulang_kata_sandi_Baru = "atur ulang kata sandi Baru";
 const Untuk_atur_ulang_kata_sandi = "Untuk atur ulang kata sandi";
 const kata_sandi_Baru = "kata Sandi Baru";
-const Setelah_Kata_Sandi_Di_Ubah = "Setelah Kata Sandi Di Ubah, Silahkan Masuk Kembali Dengan Kata Sandi Baru.";
-const Buat_kata_Sandi_Yang_Baru_Untuk_Akun_Dengan_email = "Buat kata Sandi Yang Baru Untuk Akun Dengan e-mail";
+const Setelah_Kata_Sandi_Di_Ubah =
+    "Setelah Kata Sandi Di Ubah, Silahkan Masuk Kembali Dengan Kata Sandi Baru.";
+const Buat_kata_Sandi_Yang_Baru_Untuk_Akun_Dengan_email =
+    "Buat kata Sandi Yang Baru Untuk Akun Dengan e-mail";
 
 const Pilih_Email_untuk_ubah_Kata_Sandi = "Pilih Email untuk ubah Kata Sandi";
 const Pilih_Email = "Pilih Email";
@@ -163,8 +175,11 @@ const Gambar = "Gambar";
 const File = "File";
 const Mantul = "Mantul";
 const daftar_mahasiswa = "Daftar Mahasiswa";
-const Yok_cari_project_lain_yang_sesuai_dengan_mu = "Yok cari project lain yang sesuai dengan mu";
-const Kamu_sudah_mengajukan_untuk_project_ini_sebelumnya = "Kamu sudah mengajukan untuk project ini sebelumnya";
-const Kamu_sudah_yakin_untuk_project_ini = "Kamu sudah yakin untuk project ini?";
-const Kalau_sudah_Dikonfirmasi = "Kalau sudah Dikonfirmasi, Project Yang Kamu Ajukan Tidak Bisa Di bateli lhooo";
-
+const Yok_cari_project_lain_yang_sesuai_dengan_mu =
+    "Yok cari project lain yang sesuai dengan mu";
+const Kamu_sudah_mengajukan_untuk_project_ini_sebelumnya =
+    "Kamu sudah mengajukan untuk project ini sebelumnya";
+const Kamu_sudah_yakin_untuk_project_ini =
+    "Kamu sudah yakin untuk project ini?";
+const Kalau_sudah_Dikonfirmasi =
+    "Kalau sudah Dikonfirmasi, Project Yang Kamu Ajukan Tidak Bisa Di bateli lhooo";

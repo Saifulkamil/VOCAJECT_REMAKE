@@ -9,9 +9,9 @@ part 'ProjectTaskDetail.g.dart';
 @JsonSerializable(explicitToJson: true)
 class ProjectTaskDetail {
   final int? id;
-  final String? title;
+ String? title;
   final String? description;
-  final bool? checked;
+   bool? checked;
   final ProjectData project;
 
   ProjectTaskDetail({

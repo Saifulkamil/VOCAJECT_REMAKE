@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/controllers/fungsi_widget_random.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
-import 'package:vocaject_remake_v1/app/utils/component/widget_success.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
-import '../../routes/app_pages.dart';
+import '../../modules/target_project/controllers/target_project_controller.dart';
 
 class WidgetTargetProject extends StatelessWidget {
   const WidgetTargetProject({
     super.key,
     required this.flowC,
+    required this.task,
+    required this.teks,
+    required this.teksEditing,
+    required this.teskButom,
+    required this.onPressed,
   });
+  final VoidCallback onPressed;
 
   final WidgetController flowC;
+  final String teks;
+  final String teksEditing;
+  final String teskButom;
+  final TargetProjectController task;
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController titleTaskupdate =
+        TextEditingController(text: teksEditing);
+
     return Container(
       height: 502,
       decoration: BoxDecoration(
@@ -48,31 +59,19 @@ class WidgetTargetProject extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    Tambahkan_target,
+                    teks,
                     style: ColorApp.secondColorTextStyly(context)
                         .copyWith(fontSize: 20, fontWeight: medium),
                   ),
                   TextButton(
-                      onPressed: () {
-                        flowC.Loading();
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          builder: (BuildContext context) {
-                            return WidgetSuccess(
-                                text: Kamu_Berhasil_Membuat_Mimpi_baru,
-                                onPressed: () {
-                                  Get.toNamed(Routes.PROJECT_PROGRESS);
-                                });
-                          },
-                        );
-                      },
+                      onPressed: () => onPressed(),
                       child: Text(
-                        simpan,
-                        style: ColorApp.greenTextStyly(context)
-                            .copyWith(fontSize: 18, fontWeight: reguler),
+                        teskButom,
+                        style: teskButom == "Hapus"
+                            ? redTextStyly.copyWith(
+                                fontSize: 18, fontWeight: reguler)
+                            : ColorApp.secondColorTextStyly(context)
+                                .copyWith(fontSize: 18, fontWeight: reguler),
                       ))
                 ],
               ),
@@ -88,6 +87,10 @@ class WidgetTargetProject extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(),
                   child: TextFormField(
+                    enabled: teskButom == "Hapus" ? false : true,
+                    controller: teskButom == "Simpan"
+                        ? task.titleTask
+                        : titleTaskupdate,
                     minLines: 1,
                     maxLines: 5,
                     cursorColor: blackColor10,
