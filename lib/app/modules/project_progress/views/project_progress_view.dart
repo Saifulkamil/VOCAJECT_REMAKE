@@ -159,8 +159,10 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                                 )
                                               : Get.toNamed(
                                                   Routes.LOGBOOK, arguments: {  
-                                                    "members": controller.proposalData!.data.members,
-                                                    "memberId":controller.userdata!.data.user.id,
+                                                    "idUser":controller.userdata!.data.user.id,
+                                                    // "roleUser":controller.userdata!.data.user.role,
+                                                    "roleUser": "student",
+
                                                     "projectId": controller.projectData!.id}
                                                 );
                                         }),

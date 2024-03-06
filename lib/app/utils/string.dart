@@ -97,6 +97,7 @@ const Tambahkan_mahasiswa = "Tambahkan mahasiswa";
 const Yeii_berhasil_Mengajukan_Proposal = "Yeii berhasil Mengajukan Proposal";
 const Semangat_Membuat_LogBook_Selanjutnya =
     "Semangat Membuat LogBook Selanjutnya";
+const Kamu_Berhasil_Membuat_Catatan_baru = "Kamu Berhasil Membuat Catatan Progres baru";
 const Kamu_Berhasil_Membuat_Mimpi_baru = "Kamu Berhasil Membuat Mimpi Baru";
 const Kamu_Berhasil_Merubah_Mimpi_ = "Kamu Berhasil Merubah Mimpi Mu";
 const Kamu_Berhasil_Hapus_Mimpi_ = "Kamu Berhasil Hapus Anganan Mu";
@@ -110,7 +111,7 @@ const LogBook = "LogBook";
 const Konsultasi = "Konsultasi";
 const Target_Proyek = "Target Proyek";
 const Kelola_anggaran = "Kelola anggaran";
-const Tanggal_Penyerahan_Logbook = "Tanggal Penyerahan Logbook";
+const Tanggal_Penyerahan_Logbook = "Tanggal Pembuatan Logbook";
 const Isi_logbook = "Isi Logbook";
 const dd_mm_yyyy = "dd/mm/yyyy";
 const Ketikkan_Logbook_anda = "Ketikkan logbook anda";

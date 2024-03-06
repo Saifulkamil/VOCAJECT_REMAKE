@@ -12,8 +12,9 @@ class LogbookView extends GetView<LogbookController> {
   const LogbookView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final flowC = Get.put(WidgetController());
-
+    // final flowC = Get.put(WidgetController());
+    final projectC = Get.find<LogbookController>();
+    print(projectC.idMember);
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
@@ -25,35 +26,39 @@ class LogbookView extends GetView<LogbookController> {
                 .copyWith(fontSize: 20, fontWeight: semiBold),
           ),
           actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: IconButton(
-                  onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      builder: (BuildContext context) {
-                        return WidgetBuatLogbook(flowC: flowC);
-                      },
-                    );
-                  },
-                  icon: Icon(
-                    Icons.add,
-                    color: Theme.of(context).colorScheme.secondary,
-                    size: 35,
-                  )),
-            )
+            projectC.roleUser == "student"
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 15.0),
+                    child: IconButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            builder: (BuildContext context) {
+                              return WidgetBuatLogbook(
+                                projectC: projectC,
+                              );
+                            },
+                          );
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Theme.of(context).colorScheme.secondary,
+                          size: 35,
+                        )),
+                  )
+                : const Center()
           ],
           leading: IconButton(
               onPressed: () {
                 Get.back();
               },
               icon: Icon(
-                Icons.arrow_back,
-                color: Theme.of(context).colorScheme.secondary,
-              )),
+                    Icons.arrow_back,
+                    color: Theme.of(context).colorScheme.secondary,
+                  )),
         ),
         body: GetX<LogbookController>(builder: (controller) {
           if (!controller.isProjectLoaded.value) {
@@ -63,9 +68,10 @@ class LogbookView extends GetView<LogbookController> {
             return CustomScrollView(
               slivers: [
                 SliverList(
+                  
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      final project = controller.listDatalogbook[index];
+                      final project = controller.listDatalogbook[controller.listDatalogbook.length - index -1];
                       return Padding(
                         padding: const EdgeInsets.only(left: 15.0, right: 15),
                         child: Column(

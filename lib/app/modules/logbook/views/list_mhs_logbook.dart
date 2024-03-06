@@ -22,68 +22,48 @@ class ListMhsLogbook extends GetView<ListMhsLogbookController> {
             return const Center(child: CircularProgressIndicator());
           } else {
             return CustomScrollView(slivers: [
-              SliverPrototypeExtentList(
-                  delegate: SliverChildBuilderDelegate((context, index) {
-                    final project = controller.members![index];
-                    print(controller.projectId);
-
-                    return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 3.0),
-                                child: Column(
-                                  children: [
-                                    ListTile(
-                                      onTap: () {
-                                        Get.toNamed(Routes.LOGBOOK, arguments: {
-                                          "idMember": project.id,
-                                          "projectId`": controller.projectId
-                                        });
-                                      },
-                                      leading: CircleAvatar(
-                                        backgroundColor: greyColor,
-                                        backgroundImage:
-                                            NetworkImage("${project.picture}"),
-                                      ),
-                                      title: Text("${project.name}"),
-                                      subtitle: Text("${project.nim}"),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ]));
-                  }, childCount: controller.members!.length),
-                  prototypeItem: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final project = controller.members![index];
+                  // print("ini id project ${controller.projectId}");
+                  return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 3.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3.0),
                               child: Column(
                                 children: [
                                   ListTile(
-                                    leading: CircleAvatar(),
+                                    onTap: () {
+                                    
+                                      Get.toNamed(Routes.LOGBOOK, arguments: {
+                                        "idMember": project.id,
+                                        "projectId": "${controller.projectId}"
+                                      });
+                                    },
+                                    leading: CircleAvatar(
+                                      backgroundColor: greyColor,
+                                      backgroundImage:
+                                          NetworkImage("${project.picture}"),
+                                    ),
+                                    title: Text("${project.name}"),
+                                    subtitle: Text("${project.nim}"),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
-                            Divider()
-                          ])))
+                          ]));
+                }, childCount: controller.members!.length),
+              )
             ]);
           }
         }));

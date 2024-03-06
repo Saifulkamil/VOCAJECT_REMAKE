@@ -13,6 +13,8 @@ import '../../../Models/UserModel.dart';
 import '../../../utils/baseUrl.dart';
 
 class TargetProjectController extends GetxController {
+  final formkey = GlobalKey<FormState>();
+
   ProjectData? projectData;
   ProjectTaskModel? ProjectTaskDatas;
   ProjectTaskDetail? ProjectTaskData;

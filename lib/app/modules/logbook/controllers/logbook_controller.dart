@@ -1,21 +1,25 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:vocaject_remake_v1/app/Models/ProjectLogbookDetail.dart';
 import 'package:vocaject_remake_v1/app/Models/ProjectLogbookModel.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../utils/baseUrl.dart';
 
 class LogbookController extends GetxController {
+  final TextEditingController logbookC = TextEditingController();
+  final formkey = GlobalKey<FormState>();
+
   ProjectLogbookModel? projectLogbookModel;
   List<dynamic> listDatalogbook = [].obs;
-
+  final selectedDate = DateTime.now().obs;
   dynamic projectId;
   dynamic idMember;
-  // ProjectModelSingle ProjectSil
-  // UserModel? userdata;
-  // final user = GetStorage();
-
+  dynamic roleUser;
   var isProjectLoaded = false.obs;
 
   @override
@@ -23,17 +27,19 @@ class LogbookController extends GetxController {
     super.onInit();
 
     Map<String, dynamic>? args = Get.arguments;
-
     projectId = args!['projectId'];
-    print(projectId);
     idMember = args['idMember'];
+    idMember ??= args['idUser'];
+    print(idMember);
+    roleUser = args['roleUser'];
+    print(roleUser);
+
     getProjectLogbook();
   }
 
   Future<ProjectLogbookModel?> getProjectLogbook() async {
-    print("${UrlDomain.baseurl}/api/project/$projectId/logbook/$idMember");
-    Uri url = Uri.parse(
-        "${UrlDomain.baseurl}/api/project/$projectId/logbook/$idMember");
+    Uri url =
+        Uri.parse("${UrlDomain.baseurl}/api/project/$projectId/logbook/$idMember");
 
     try {
       final response = await http.get(url);
@@ -63,5 +69,47 @@ class LogbookController extends GetxController {
     return null;
 
     // Memeriksa status code response dari server
+  }
+
+  void selectDate(BuildContext context) {
+    showDatePicker(
+      context: context,
+      initialDate: selectedDate.value,
+      firstDate: DateTime(1945),
+      lastDate: DateTime(2101),
+    ).then((picked) {
+      if (picked != null && picked != selectedDate.value) {
+        selectedDate(picked);
+      }
+    });
+  }
+
+  void createProjectLogbook(DateTime date, String descripsi) async {
+    String formattedDate = DateFormat('MM-dd-yyyy').format(selectedDate.value);
+    Uri url =
+        Uri.parse("${UrlDomain.baseurl}/api/project/$projectId/logbook/$idMember");
+    try {
+      final response = await http.post(
+        url,
+        body: {
+          "submited_at": formattedDate,
+          "description": descripsi,
+        },
+      );
+      Map<String, dynamic> data = json.decode(response.body);
+      if (response.statusCode == 200) {
+        ProjectLogbookDetail newlogBook =
+            ProjectLogbookDetail.fromJson(data["data"]);
+        listDatalogbook.add(newlogBook);
+        Timer(const Duration(milliseconds: 2000), () {
+          isProjectLoaded.value = true;
+        });
+      } else {
+        // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
+        print("Error: ${response.reasonPhrase}");
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }

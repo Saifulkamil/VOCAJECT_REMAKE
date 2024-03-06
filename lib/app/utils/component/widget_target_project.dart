@@ -37,79 +37,89 @@ class WidgetTargetProject extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Center(
-                  child: Container(
-                    height: 5,
-                    width: 90,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: greyColor),
+          child: Form(
+            key: task.formkey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Center(
+                    child: Container(
+                      height: 5,
+                      width: 90,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: greyColor),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    teks,
-                    style: ColorApp.secondColorTextStyly(context)
-                        .copyWith(fontSize: 20, fontWeight: medium),
-                  ),
-                  TextButton(
-                      onPressed: () => onPressed(),
-                      child: Text(
-                        teskButom,
-                        style: teskButom == "Hapus"
-                            ? redTextStyly.copyWith(
-                                fontSize: 18, fontWeight: reguler)
-                            : ColorApp.secondColorTextStyly(context)
-                                .copyWith(fontSize: 18, fontWeight: reguler),
-                      ))
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Container(
-                // height: 500,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.secondaryContainer,
-                    borderRadius: BorderRadius.circular(8)),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(),
-                  child: TextFormField(
-                    enabled: teskButom == "Hapus" ? false : true,
-                    controller: teskButom == "Simpan"
-                        ? task.titleTask
-                        : titleTaskupdate,
-                    minLines: 1,
-                    maxLines: 5,
-                    cursorColor: blackColor10,
-                    textAlign: TextAlign.justify,
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: colorTransparan,
-                        hintText: Target_Proyek,
-                        hintStyle: const TextStyle(color: greyColor),
-                        labelStyle: const TextStyle(color: blackColor),
-                        border: InputBorder.none,
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: colorTransparan),
-                          borderRadius: BorderRadius.circular(8),
-                        )),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      teks,
+                      style: ColorApp.secondColorTextStyly(context)
+                          .copyWith(fontSize: 20, fontWeight: medium),
+                    ),
+                    TextButton(
+                        onPressed: () => onPressed(),
+                        child: Text(
+                          teskButom,
+                          style: teskButom == "Hapus"
+                              ? redTextStyly.copyWith(
+                                  fontSize: 18, fontWeight: reguler)
+                              : ColorApp.greenTextStyly(context)
+                                  .copyWith(fontSize: 18, fontWeight: reguler),
+                        ))
+                  ],
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  // height: 500,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondaryContainer,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(),
+                    child: TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "* Target Harus Di Masukan";
+                        }
+                        return null;
+                      },
+                      enabled: teskButom == "Hapus" ? false : true,
+                      controller: teskButom == "Simpan"
+                          ? task.titleTask
+                          : titleTaskupdate,
+                      minLines: 1,
+                      maxLines: 5,
+                      cursorColor: blackColor10,
+                      textAlign: TextAlign.justify,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: colorTransparan,
+                          hintText: Target_Proyek,
+                          hintStyle: const TextStyle(color: greyColor),
+                          labelStyle: const TextStyle(color: blackColor),
+                          border: InputBorder.none,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: colorTransparan),
+                            borderRadius: BorderRadius.circular(8),
+                          )),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

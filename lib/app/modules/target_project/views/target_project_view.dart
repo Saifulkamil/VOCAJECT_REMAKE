@@ -49,31 +49,36 @@ class TargetProjectView extends GetView<TargetProjectController> {
                             builder: (BuildContext context) {
                               return WidgetTargetProject(
                                 onPressed: () {
-                                  controller.createTargetProject(
-                                      controller.titleTask.text);
-                                  flowC.Loading();
+                                  if (controller.formkey.currentState!
+                                      .validate()) {
+                                    controller.createTargetProject(
+                                        controller.titleTask.text);
+                                    flowC.Loading();
 
-                                  Timer(const Duration(milliseconds: 1500), () {
-                                    showModalBottomSheet(
-                                      context: context,
-                                      isScrollControlled: true,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      builder: (BuildContext context) {
-                                        return WidgetSuccess(
-                                          text:
-                                              Kamu_Berhasil_Membuat_Mimpi_baru,
-                                          onPressed: () {
-                                            Get.back();
-                                            Get.back();
-                                            Get.back();
-                                          },
-                                        );
-                                      },
-                                    );
-                                  });
-                                  controller.isProjectLoaded.value = false;
+                                    Timer(const Duration(milliseconds: 1500),
+                                        () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        isScrollControlled: true,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        builder: (BuildContext context) {
+                                          return WidgetSuccess(
+                                            text:
+                                                Kamu_Berhasil_Membuat_Mimpi_baru,
+                                            onPressed: () {
+                                              Get.back();
+                                              Get.back();
+                                              Get.back();
+                                            },
+                                          );
+                                        },
+                                      );
+                                    });
+                                    controller.isProjectLoaded.value = false;
+                                  }
                                 },
                                 teks: Target_Proyek,
                                 teksEditing: "",
@@ -124,141 +129,158 @@ class TargetProjectView extends GetView<TargetProjectController> {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Theme(
-                        data: Theme.of(context).copyWith(
-                            colorScheme:
-                                const ColorScheme.light(primary: greenColor)),
-                        child: GestureDetector(
-                          onHorizontalDragStart: (test) {
-                            showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: true,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              builder: (BuildContext context) {
-                                return WidgetTargetProject(
-                                  onPressed: () {
-                                    controller.deleteTargetProject(
-                                      controller.titleTask.text,
-                                      project.id,
-                                    );
-
-                                    if (controller.isProjectLoaded.value) {
-                                      showModalBottomSheet(
-                                        context: context,
-                                        isScrollControlled: true,
-                                        shape: RoundedRectangleBorder(
+                          data: Theme.of(context).copyWith(
+                              colorScheme:
+                                  const ColorScheme.light(primary: greenColor)),
+                          child: GestureDetector(
+                            onHorizontalDragStart: (test) {
+                              controller.userdata != "student"
+                                  ? showModalBottomSheet(
+                                      context: context,
+                                      isScrollControlled: true,
+                                      shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        builder: (BuildContext context) {
-                                          return WidgetSuccess(
-                                            text: Kamu_Berhasil_Hapus_Mimpi_,
-                                            onPressed: () {
-                                              Get.back();
-                                              Get.back();
-                                            },
-                                          );
-                                        },
-                                      );
-                                    } else {
-                                      CircularProgressIndicator();
-                                    }
-                                    controller.isProjectLoaded.value = false;
-                                  },
-                                  teks: "Hapus Target",
-                                  teksEditing: project.title,
-                                  teskButom: "Hapus",
-                                  task: projectC,
-                                  flowC: flowC,
-                                );
-                              },
-                            );
-                          },
-                          onLongPress: () {
-                            showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: true,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              builder: (BuildContext context) {
-                                return WidgetTargetProject(
-                                  onPressed: () {
-                                    controller.updateTargetProject(
-                                      controller.titleTask.text,
-                                      project.id,
-                                    );
+                                              BorderRadius.circular(15)),
+                                      builder: (BuildContext context) {
+                                        return WidgetTargetProject(
+                                          onPressed: () {
+                                            controller.deleteTargetProject(
+                                              controller.titleTask.text,
+                                              project.id,
+                                            );
 
-                                    if (controller.isProjectLoaded.value) {
-                                      showModalBottomSheet(
-                                        context: context,
-                                        isScrollControlled: true,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        builder: (BuildContext context) {
-                                          return WidgetSuccess(
-                                            text: Kamu_Berhasil_Merubah_Mimpi_,
-                                            onPressed: () {
-                                              Get.back();
-                                              Get.back();
-                                            },
-                                          );
-                                        },
-                                      );
-                                    } else {
-                                      CircularProgressIndicator();
-                                    }
-                                    controller.isProjectLoaded.value = false;
-                                  },
-                                  teks: "Update Target",
-                                  teksEditing: project.title,
-                                  teskButom: "Ubah",
-                                  task: projectC,
-                                  flowC: flowC,
-                                );
-                              },
-                            );
-                          },
-                          child: CheckboxListTile(
-                            enabled: role,
-                            title: Text("${project.title}",
-                                style: ColorApp.secondColorTextStyly(context)
-                                    .copyWith(
-                                        fontSize: 16, fontWeight: reguler)),
-                            checkColor:
-                                Theme.of(context).colorScheme.background,
-                            // fillColor: MaterialStatePropertyAll(greenColor),
-                            value: project.checked,
-
-                            onChanged: (value) async {
-                              controller.updateTodoStatus(project.id, value!);
-
-                              if (controller.isProjectLoaded.value &&
-                                  !project.checked) {
-                                showModalBottomSheet(
-                                  context: context,
-                                  isScrollControlled: true,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  builder: (BuildContext context) {
-                                    return WidgetSuccess(
-                                      text: Kamu_Berhasil_unlock_skill,
-                                      onPressed: () {
-                                        Get.back();
+                                            if (controller
+                                                .isProjectLoaded.value) {
+                                              showModalBottomSheet(
+                                                context: context,
+                                                isScrollControlled: true,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return WidgetSuccess(
+                                                    text:
+                                                        Kamu_Berhasil_Hapus_Mimpi_,
+                                                    onPressed: () {
+                                                      Get.back();
+                                                      Get.back();
+                                                    },
+                                                  );
+                                                },
+                                              );
+                                            } else {
+                                              const CircularProgressIndicator();
+                                            }
+                                            controller.isProjectLoaded.value =
+                                                false;
+                                          },
+                                          teks: "Hapus Target",
+                                          teksEditing: project.title,
+                                          teskButom: "Hapus",
+                                          task: projectC,
+                                          flowC: flowC,
+                                        );
                                       },
-                                    );
-                                  },
-                                );
-                              } else {
-                                CircularProgressIndicator();
-                              }
-                              controller.isProjectLoaded.value = false;
+                                    )
+                                  : const Center();
                             },
-                          ),
-                        ),
-                      ),
+                            onLongPress: () {
+                              controller.userdata != "student"
+                                  ? showModalBottomSheet(
+                                      context: context,
+                                      isScrollControlled: true,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      builder: (BuildContext context) {
+                                        return WidgetTargetProject(
+                                          onPressed: () {
+                                            if (controller.formkey.currentState!
+                                                .validate()) {
+                                              controller.updateTargetProject(
+                                                controller.titleTask.text,
+                                                project.id,
+                                              );
+
+                                              if (controller
+                                                  .isProjectLoaded.value) {
+                                                showModalBottomSheet(
+                                                  context: context,
+                                                  isScrollControlled: true,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                  ),
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return WidgetSuccess(
+                                                      text:
+                                                          Kamu_Berhasil_Merubah_Mimpi_,
+                                                      onPressed: () {
+                                                        Get.back();
+                                                        Get.back();
+                                                      },
+                                                    );
+                                                  },
+                                                );
+                                              } else {
+                                                const CircularProgressIndicator();
+                                              }
+                                              controller.isProjectLoaded.value =
+                                                  false;
+                                            }
+                                          },
+                                          teks: "Update Target",
+                                          teksEditing: project.title,
+                                          teskButom: "Ubah",
+                                          task: projectC,
+                                          flowC: flowC,
+                                        );
+                                      },
+                                    )
+                                  : const Center();
+                            },
+                            child: CheckboxListTile(
+                              enabled: role,
+                              title: Text("${project.title}",
+                                  style: ColorApp.secondColorTextStyly(context)
+                                      .copyWith(
+                                          fontSize: 16, fontWeight: reguler)),
+                              checkColor:
+                                  Theme.of(context).colorScheme.background,
+                              // fillColor: MaterialStatePropertyAll(greenColor),
+                              value: project.checked,
+
+                              onChanged: (value) async {
+                                controller.updateTodoStatus(project.id, value!);
+
+                                if (controller.isProjectLoaded.value &&
+                                    !project.checked) {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    builder: (BuildContext context) {
+                                      return WidgetSuccess(
+                                        text: Kamu_Berhasil_unlock_skill,
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  const CircularProgressIndicator();
+                                }
+                                controller.isProjectLoaded.value = false;
+                              },
+                            ),
+                          )),
                     );
                   }, childCount: controller.listProjectTask.length),
                 )

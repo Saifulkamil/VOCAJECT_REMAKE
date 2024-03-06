@@ -59,7 +59,9 @@ class WidgetSuccess extends GetView<ProjectDetailsController> {
               ),
               Text(
                 text,
+                maxLines: 2,
                 textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
                 style:
                    ColorApp.secondColorTextStyly(context).copyWith(
                                 fontSize: 15, fontWeight: reguler)
