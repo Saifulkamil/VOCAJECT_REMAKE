@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:vocaject_remake_v1/app/utils/component/widget_failed.dart';
 
 import '../../../controllers/fungsi_widget_random.dart';
 import '../../../utils/colors.dart';
@@ -48,35 +49,51 @@ class TargetProjectView extends GetView<TargetProjectController> {
                                 borderRadius: BorderRadius.circular(15)),
                             builder: (BuildContext context) {
                               return WidgetTargetProject(
-                                onPressed: () {
+                                onPressed: () async {
                                   if (controller.formkey.currentState!
                                       .validate()) {
-                                    controller.createTargetProject(
+                                    await controller.createTargetProject(
                                         controller.titleTask.text);
-                                    flowC.Loading();
+                                    if (controller.responseStatusCode == 200) {
+                                      Timer(const Duration(milliseconds: 1500),
+                                          () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          isScrollControlled: true,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          builder: (BuildContext context) {
+                                            return WidgetSuccess(
+                                              text:
+                                                  Kamu_Berhasil_Membuat_Mimpi_baru,
+                                              onPressed: () {
+                                                Get.back();
+                                                Get.back();
+                                                Get.back();
+                                              },
+                                            );
+                                          },
+                                        );
+                                      });
+                                    } else {
+                                      Timer(const Duration(milliseconds: 1500),
+                                          () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          isScrollControlled: true,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          builder: (BuildContext context) {
+                                            return const WidgetFailedField1(text: "Gagal Membuat Target project baru",);
+                                          },
+                                        );
+                                      });
+                                    }
 
-                                    Timer(const Duration(milliseconds: 1500),
-                                        () {
-                                      showModalBottomSheet(
-                                        context: context,
-                                        isScrollControlled: true,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        builder: (BuildContext context) {
-                                          return WidgetSuccess(
-                                            text:
-                                                Kamu_Berhasil_Membuat_Mimpi_baru,
-                                            onPressed: () {
-                                              Get.back();
-                                              Get.back();
-                                              Get.back();
-                                            },
-                                          );
-                                        },
-                                      );
-                                    });
                                     controller.isProjectLoaded.value = false;
                                   }
                                 },
@@ -121,11 +138,9 @@ class TargetProjectView extends GetView<TargetProjectController> {
                     bool role =
                         true; // Menggunakan tipe data bool, karena sudah dicek apakah null atau tidak
 
-                    if (projectC.userdata == "student") {
-                      print(controller.userdata);
+                    if (projectC.userdata?.data.user.role == "student") {
                       role = !role;
                     }
-                    controller.userdata != "studeny";
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Theme(
@@ -134,7 +149,7 @@ class TargetProjectView extends GetView<TargetProjectController> {
                                   const ColorScheme.light(primary: greenColor)),
                           child: GestureDetector(
                             onHorizontalDragStart: (test) {
-                              controller.userdata != "student"
+                              controller.userdata?.data.user.role != "student"
                                   ? showModalBottomSheet(
                                       context: context,
                                       isScrollControlled: true,
@@ -187,7 +202,7 @@ class TargetProjectView extends GetView<TargetProjectController> {
                                   : const Center();
                             },
                             onLongPress: () {
-                              controller.userdata != "student"
+                              controller.userdata?.data.user.role != "student"
                                   ? showModalBottomSheet(
                                       context: context,
                                       isScrollControlled: true,

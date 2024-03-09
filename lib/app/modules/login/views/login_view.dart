@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // Import Model dan Controller yang digunakan
-import '../../../controllers/authController.dart';
+import '../../../controllers/authentikasi_controller.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_btn_custom.dart';
@@ -194,8 +194,9 @@ class LoginView extends GetView<LoginController> {
                             // UserModel? user = await
                             final authC = Get.put(AuthController());
 
-                            authC.getUserFromStorage();
-                            final userdata = await authC.login(
+                            // authC.getUserFromStorage();
+                            final userdata = await
+                             authC.login(
                                 loginC.emailC.text, loginC.passC.text);
                             if (userdata != null) {
                               Get.back();

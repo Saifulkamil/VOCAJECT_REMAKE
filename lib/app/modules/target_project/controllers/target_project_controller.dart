@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,19 +11,22 @@ import 'package:http/http.dart' as http;
 
 import '../../../Models/ProjectData.dart';
 import '../../../Models/UserModel.dart';
+import '../../../controllers/fungsi_widget_random.dart';
 import '../../../utils/baseUrl.dart';
 
 class TargetProjectController extends GetxController {
   final formkey = GlobalKey<FormState>();
+  final widgetController = WidgetController();
 
   ProjectData? projectData;
-  ProjectTaskModel? ProjectTaskDatas;
-  ProjectTaskDetail? ProjectTaskData;
+  ProjectTaskModel? projectTaskDatas;
+  ProjectTaskDetail? projectTaskData;
   List<dynamic> listProjectTask = [].obs;
   final TextEditingController titleTask = TextEditingController();
 
   // ProjectModelSingle ProjectSil
   UserModel? userdata;
+  int? responseStatusCode;
 
   // final user = GetStorage();
   final user = GetStorage();
@@ -39,6 +43,7 @@ class TargetProjectController extends GetxController {
 
   UserModel? getUserFromStorage() {
     // Baca UserModel dari GetStorage dengan kunci yang sesuai, misalnya "user"
+
     final userJson = user.read('user');
 
     // Jika UserModel ditemukan, deserialisasi JSON menjadi UserModel
@@ -63,21 +68,25 @@ class TargetProjectController extends GetxController {
         // Pengecekan keberadaan kunci 'message' dan 'data'
         if (data.containsKey('message') && data.containsKey('data')) {
           // Deserialisasi JSON menjadi objek UserModel
-          ProjectTaskDatas = ProjectTaskModel.fromJson(data);
-          listProjectTask = ProjectTaskDatas!.data;
+          projectTaskDatas = ProjectTaskModel.fromJson(data);
+          listProjectTask = projectTaskDatas!.data;
           isProjectLoaded.value = true;
-          return ProjectTaskDatas;
+          return projectTaskDatas;
         } else {
           // Jika 'data' atau 'support' tidak ada, return null
           return null;
         }
       } else {
         // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
-        print("Error: ${response.reasonPhrase}");
+        if (kDebugMode) {
+          print("Error: ${response.reasonPhrase}");
+        }
         return null; // Return null jika terjadi kesalahan
       }
     } catch (err) {
-      print(" ini error ngak muncul project  ${err}");
+      if (kDebugMode) {
+        print(" ini error ngak muncul project  $err");
+      }
       // return List<Project>.empty();
     }
     return null;
@@ -85,7 +94,9 @@ class TargetProjectController extends GetxController {
     // Memeriksa status code response dari server
   }
 
-  void createTargetProject(String toDo) async {
+  Future<void> createTargetProject(String toDo) async {
+    widgetController.loading(Get.overlayContext!);
+
     Uri url =
         Uri.parse("${UrlDomain.baseurl}/api/project/${projectData!.id}/task");
     try {
@@ -98,15 +109,26 @@ class TargetProjectController extends GetxController {
       if (response.statusCode == 200) {
         ProjectTaskDetail newTask = ProjectTaskDetail.fromJson(data['data']);
         listProjectTask.add(newTask);
+
+        responseStatusCode = null;
+        responseStatusCode = response.statusCode;
+
         Timer(const Duration(milliseconds: 2000), () {
           isProjectLoaded.value = true;
         });
       } else {
         // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
-        print("Error: ${response.reasonPhrase}");
+        responseStatusCode = null;
+
+        responseStatusCode = response.statusCode;
+        if (kDebugMode) {
+          print("Error: ${response.reasonPhrase}");
+        }
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -120,21 +142,20 @@ class TargetProjectController extends GetxController {
         url,
         body: {"checked": newStatus.toString()},
       );
-      Map<String, dynamic> data = json.decode(response.body);
       if (response.statusCode == 200) {
         listProjectTask.map((todo) {
           if (todo.id == todoId) {
             todo.checked = newStatus;
-            // Timer(const Duration(milliseconds: 2000), () {
             isProjectLoaded.value = true;
-            // });
           }
           return todo;
         }).toList();
         update();
       }
     } catch (e) {
-      print("Gagal memperbarui status tugas di API: $e");
+      if (kDebugMode) {
+        print("Gagal memperbarui status tugas di API: $e");
+      }
     }
   }
 
@@ -148,12 +169,9 @@ class TargetProjectController extends GetxController {
         url,
         body: {"title": title},
       );
-      Map<String, dynamic> data = json.decode(response.body);
-      print(response.statusCode);
       if (response.statusCode == 200) {
         listProjectTask.map((todo) {
           if (todo.id == todoId) {
-            print(todo.title);
             todo.title = title;
             // Timer(const Duration(milliseconds: 2000), () {
             isProjectLoaded.value = true;
@@ -164,10 +182,14 @@ class TargetProjectController extends GetxController {
         update();
       } else {
         // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
-        print("Error: ${response.reasonPhrase}");
+        if (kDebugMode) {
+          print("Error: ${response.reasonPhrase}");
+        }
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -180,13 +202,10 @@ class TargetProjectController extends GetxController {
       final response = await http.delete(
         url,
       );
-      Map<String, dynamic> data = json.decode(response.body);
-      print(response.statusCode);
       if (response.statusCode == 200) {
         for (int i = 0; i < listProjectTask.length; i++) {
           var todo = listProjectTask[i];
           if (todo.id == todoId) {
-            print(todo.title);
             listProjectTask.removeAt(i); // Hapus todo jika id cocok
             break; // Keluar dari perulangan setelah menghapus todo
           }
@@ -195,10 +214,14 @@ class TargetProjectController extends GetxController {
         update();
       } else {
         // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
-        print("Error: ${response.reasonPhrase}");
+        if (kDebugMode) {
+          print("Error: ${response.reasonPhrase}");
+        }
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 }

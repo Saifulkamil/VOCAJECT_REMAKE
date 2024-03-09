@@ -2,12 +2,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:vocaject_remake_v1/app/routes/app_pages.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
+import 'package:vocaject_remake_v1/app/utils/component/widget_failed.dart';
 import 'package:vocaject_remake_v1/app/utils/component/widget_success.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
-import '../../controllers/fungsi_widget_random.dart';
 import '../../modules/logbook/controllers/logbook_controller.dart';
 
 class WidgetBuatLogbook extends StatelessWidget {
@@ -20,8 +19,6 @@ class WidgetBuatLogbook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final flowC = Get.put(WidgetController());
-
     return Container(
       height: 702,
       decoration: BoxDecoration(
@@ -57,35 +54,48 @@ class WidgetBuatLogbook extends StatelessWidget {
                           .copyWith(fontSize: 20, fontWeight: medium),
                     ),
                     TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (projectC.formkey.currentState!.validate()) {
-                            projectC.createProjectLogbook(
+                            await projectC.createProjectLogbook(
                                 projectC.selectedDate.value,
                                 projectC.logbookC.text);
-                                    flowC.Loading();
+                            if (projectC.responseStatusCode == 200) {
+                              Timer(const Duration(milliseconds: 1500), () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  isScrollControlled: true,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  builder: (BuildContext context) {
+                                    return WidgetSuccess(
+                                      text: Kamu_Berhasil_Membuat_Catatan_baru,
+                                      onPressed: () {
+                                        Get.back();
+                                        Get.back();
+                                        Get.back();
+                                      },
+                                    );
+                                  },
+                                );
+                              });
+                            } else {
+                              Timer(const Duration(milliseconds: 1500), () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  isScrollControlled: true,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  builder: (BuildContext context) {
+                                    return const WidgetFailedField1(text: "Gagal membuat LogBook",);
+                                  },
+                                );
+                              });
+                            }
 
-                            Timer(const Duration(milliseconds: 1500), () {
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                builder: (BuildContext context) {
-                                  return WidgetSuccess(
-                                    text: Kamu_Berhasil_Membuat_Catatan_baru,
-                                    onPressed: () {
-                                      Get.back();
-                                      Get.back();
-                                      Get.back();
-                                    },
-                                  );
-                                },
-                              );
-                            });
                             projectC.isProjectLoaded.value = false;
                           }
-                          ;
                         },
                         child: Text(
                           simpan,

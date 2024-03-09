@@ -1,6 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vocaject_remake_v1/app/Models/CategoryDetail.dart';
-import 'package:vocaject_remake_v1/app/Models/CompanyDetail.dart';
 
 import 'ProjectData.dart';
 

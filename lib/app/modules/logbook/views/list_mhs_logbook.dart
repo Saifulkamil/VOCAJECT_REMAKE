@@ -6,7 +6,7 @@ import 'package:vocaject_remake_v1/app/utils/string.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
-import '../controllers/List_mhs_logbook_controller_.dart';
+import '../controllers/list_mhs_logbook_controller_.dart';
 
 class ListMhsLogbook extends GetView<ListMhsLogbookController> {
   const ListMhsLogbook({Key? key}) : super(key: key);

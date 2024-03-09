@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
-import '../../../utils/component/Widget_data_project.dart';
+import '../../../utils/component/widget_data_project_.dart';
 import '../../../utils/component/widget_card_btn_custom.dart';
 import '../../../utils/component/widget_circular_progres.dart';
 import '../../../utils/component/widget_datas_project.dart';
@@ -150,7 +150,7 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                         text: LogBook,
                                         image: "assets/image/img_logBook.png",
                                         onPressed: () {
-                                          controller.userdata!.data.user.role !=
+                                          controller.userdata!.data.user.role ==
                                                   "student"
                                               ? Get.toNamed(
                                                   Routes.LIST_MHS_LOGBOOK, arguments: {  

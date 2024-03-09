@@ -6,8 +6,8 @@ import 'package:vocaject_remake_v1/app/modules/profile/controllers/profile_contr
 import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
 
-class Profileindustri_2 extends GetView<ProfileControllerCompany2> {
-  const Profileindustri_2({Key? key}) : super(key: key);
+class Profileindustri2 extends GetView<ProfileControllerCompany2> {
+  const Profileindustri2({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

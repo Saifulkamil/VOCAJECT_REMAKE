@@ -6,7 +6,7 @@ import 'package:vocaject_remake_v1/app/utils/colors.dart';
 import '../../../utils/component/widget_appbar.dart';
 import '../../../utils/string.dart';
 import '../controllers/reset_password_controller.dart';
-import 'atur_ulang_password_OTP.dart';
+import 'atur_ulang_password_otp.dart';
 
 class AturUlangPasswordklikEmail extends GetView<ResetPasswordController> {
   const AturUlangPasswordklikEmail({Key? key}) : super(key: key);

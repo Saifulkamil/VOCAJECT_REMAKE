@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../controllers/fungsi_widget_random.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_buat_logbook.dart';
 import '../../../utils/string.dart';
@@ -14,7 +13,6 @@ class LogbookView extends GetView<LogbookController> {
   Widget build(BuildContext context) {
     // final flowC = Get.put(WidgetController());
     final projectC = Get.find<LogbookController>();
-    print(projectC.idMember);
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -70,11 +71,15 @@ class ProjectProgressController extends GetxController {
         }
       } else {
         // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
-        print("Error: ${response.reasonPhrase}");
+        if (kDebugMode) {
+          print("Error: ${response.reasonPhrase}");
+        }
         return null; // Return null jika terjadi kesalahan
       }
     } catch (err) {
-      print(" ini error ngak muncul project  ${err}");
+      if (kDebugMode) {
+        print(" ini error ngak muncul project  $err");
+      }
       // return List<Project>.empty();
     }
     return null;

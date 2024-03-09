@@ -212,7 +212,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PROFILE_INDUSTRI_2,
-      page: () => const Profileindustri_2(),
+      page: () => const Profileindustri2(),
       binding: ProfileBinding(),
     ),
     GetPage(

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:vocaject_remake_v1/app/Models/AttachmentsDetails.dart';
 import 'package:vocaject_remake_v1/app/Models/LectureDetails.dart';

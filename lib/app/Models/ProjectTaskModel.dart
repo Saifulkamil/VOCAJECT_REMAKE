@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
 import 'package:vocaject_remake_v1/app/Models/ProjectTaskDetail.dart';
 
 part 'ProjectTaskModel.g.dart';

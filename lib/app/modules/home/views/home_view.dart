@@ -192,7 +192,10 @@ class HomeView extends GetView<HomeController> {
                                     arguments: project.id);
                               } else {
                                 Get.toNamed(Routes.PROJECT_DETAILS,
-                                    arguments: project.id);
+                                    arguments: {
+                                    "idProject":project.id,
+                                    "idUser":controller.userdata!.data.user.id,
+                                    "idCollege":controller.userdata!.data.user.college.id});
                               }
                             },
 

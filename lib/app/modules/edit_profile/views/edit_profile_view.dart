@@ -172,7 +172,7 @@ class EditProfileView extends GetView<EditProfileController> {
                                               "${controller.dataProfil!.data.user.picture}"),
                                       backgroundColor: greyColor,
                                       radius: 50,
-                                      child: CircleAvatar(
+                                      child: const CircleAvatar(
                                           radius: 50,
                                           backgroundColor: blackColor30,
                                           child: Icon(

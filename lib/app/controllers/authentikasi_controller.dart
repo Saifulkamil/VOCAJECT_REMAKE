@@ -1,16 +1,17 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:vocaject_remake_v1/app/Models/UserModel.dart';
 // import 'package:vocaject_remake_v1/app/Models/UserDataResponse.dart';
-import 'package:vocaject_remake_v1/app/utils/colors.dart';
 import 'package:http/http.dart' as http;
 
 import '../utils/baseUrl.dart';
+import 'fungsi_widget_random.dart';
 
 class AuthController extends GetxController {
+  final widgetController = WidgetController();
   final user = GetStorage();
 
 // Fungsi untuk menyimpan UserModel ke GetStorage
@@ -31,20 +32,10 @@ class AuthController extends GetxController {
   }
 
   // ignore: non_constant_identifier_names
-  void Loading() {
-    Get.defaultDialog(
-      title: "Proses...",
-      radius: 7,
-      content: const Center(
-          child: CircularProgressIndicator(
-        color: greenColor,
-      )),
-    );
-  }
 
   // Fungsi untuk melakukan proses login dan mendapatkan UserModel
   Future<UserModel?> login(String email, String pass) async {
-    Loading();
+    widgetController.loading(Get.overlayContext!);
     // URL endpoint untuk proses login
     Uri url = Uri.parse("${UrlDomain.baseurl}/api/auth/login");
     try {
@@ -58,15 +49,18 @@ class AuthController extends GetxController {
       );
       // Decode JSON string menjadi Map
       Map<String, dynamic> data = json.decode(response.body);
-
+      // print(data["data"]["user"]["college"]);
       // Memeriksa status code response dari server
       if (response.statusCode == 200) {
         // Pengecekan keberadaan kunci 'message' dan 'data'
         if (data.containsKey('message') && data.containsKey('data')) {
           // Deserialisasi JSON menjadi objek UserModel
           final userdata = UserModel.fromJson(data);
-
-          // Simpan UserModel ke GetStorage
+          // print(userdata.data.user.college.id);
+          if (kDebugMode) {
+            print("Error: $userdata");
+          }
+          // Simpan UserModel ke GetStorage-=0
           saveUserToStorage(userdata);
 
           return userdata;
@@ -76,12 +70,16 @@ class AuthController extends GetxController {
         }
       } else {
         // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
-        print("Error: ${response.reasonPhrase}");
+        if (kDebugMode) {
+          print("Error: ${response.reasonPhrase}");
+        }
         return null; // Return null jika terjadi kesalahan
       }
     } catch (e) {
       // Tangkap dan print error jika ada kesalahan dalam proses request
-      print("Error catch $e");
+      if (kDebugMode) {
+        print("Error catch $e");
+      }
       return null; // Return null jika terjadi kesalahan
     }
   }

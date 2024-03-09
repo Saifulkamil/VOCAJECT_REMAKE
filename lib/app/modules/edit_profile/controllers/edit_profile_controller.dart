@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vocaject_remake_v1/app/Models/UserModel.dart';
@@ -25,7 +26,9 @@ class EditProfileController extends GetxController {
       phoneC = TextEditingController(text: phone);
       alamatC = TextEditingController(text: alamat);
     } else {
-      print("kosong");
+      if (kDebugMode) {
+        print("kosong");
+      }
     }
   }
 }

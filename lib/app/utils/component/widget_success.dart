@@ -52,7 +52,7 @@ class WidgetSuccess extends GetView<ProjectDetailsController> {
                 textAlign: TextAlign.center,
                 style:
                     ColorApp.secondColorTextStyly(context).copyWith(
-                                fontSize: 15, fontWeight: medium)
+                                fontSize: 25, fontWeight: medium)
               ),
               const SizedBox(
                 height: 100,
@@ -64,7 +64,7 @@ class WidgetSuccess extends GetView<ProjectDetailsController> {
                 overflow: TextOverflow.ellipsis,
                 style:
                    ColorApp.secondColorTextStyly(context).copyWith(
-                                fontSize: 15, fontWeight: reguler)
+                                fontSize: 18, fontWeight: reguler)
               ),
               const SizedBox(
                 height: 100,

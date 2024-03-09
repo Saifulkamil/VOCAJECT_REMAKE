@@ -1,10 +1,12 @@
+// ignore_for_file: file_names
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'CompanyDetail.g.dart';
 
 @JsonSerializable()
 class CompanyDetail {
-   final int? id;
+  final int? id;
   final String? name;
   final String? email;
   final String? picture;

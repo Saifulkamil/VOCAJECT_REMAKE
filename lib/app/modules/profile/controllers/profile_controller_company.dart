@@ -14,10 +14,9 @@ class ProfileControllerCompany extends GetxController {
     super.onInit();
     dataProfil = Get.arguments;
     if (dataProfil != null) {
-      print(dataProfil);
       isProjectLoaded.value = true;
     } else {
-      return print("kosong");
+      return ;
     }
   }
 }

@@ -6,7 +6,7 @@ import 'package:vocaject_remake_v1/app/routes/app_pages.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/string.dart';
-import '../controllers/project_details_controller copy.dart';
+import '../controllers/project_details_pending_controller.dart';
 import '../controllers/project_details_controller.dart';
 
 class ProjectDetailsPendingView extends GetView<ProjectDetailsPendingController> {

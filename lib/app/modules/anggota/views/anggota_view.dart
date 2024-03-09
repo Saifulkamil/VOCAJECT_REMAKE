@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/colors.dart';
-import '../../../utils/component/widget_poject_terbaru.dart';
 import '../../../utils/string.dart';
 import '../controllers/anggota_controller.dart';
 
@@ -59,7 +58,7 @@ class AnggotaView extends GetView<AnggotaController> {
                         toolbarHeight: 5,
                         elevation: 0,
                         bottom: TabBar(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 2.5, horizontal: 15),
                             indicatorColor: colorTransparan,
                             indicator: BoxDecoration(
@@ -73,7 +72,7 @@ class AnggotaView extends GetView<AnggotaController> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(35),
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                       child: Text(
                                     "Aktif",
                                     style: TextStyle(fontSize: 15),
@@ -85,7 +84,7 @@ class AnggotaView extends GetView<AnggotaController> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(35),
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                       child: Text(
                                     "Belum Terkonfirmasi",
                                     textAlign: TextAlign.center,
@@ -99,7 +98,7 @@ class AnggotaView extends GetView<AnggotaController> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(35),
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                       child: Text(
                                     "Di Tolak",
                                     style: TextStyle(fontSize: 15),
@@ -108,7 +107,7 @@ class AnggotaView extends GetView<AnggotaController> {
                               ),
                             ]),
                       ),
-                      body: TabBarView(children: [
+                      body: const TabBarView(children: [
                         Scaffold(
                             backgroundColor: Colors.transparent,
                             body: Center()),
@@ -131,7 +130,7 @@ class AnggotaView extends GetView<AnggotaController> {
                         toolbarHeight: 5,
                         elevation: 0,
                         bottom: TabBar(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 2.5, horizontal: 15),
                             indicatorColor: colorTransparan,
                             indicator: BoxDecoration(
@@ -145,7 +144,7 @@ class AnggotaView extends GetView<AnggotaController> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(35),
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                       child: Text(
                                     "Aktif",
                                     style: TextStyle(fontSize: 15),
@@ -157,7 +156,7 @@ class AnggotaView extends GetView<AnggotaController> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(35),
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                       child: Text(
                                     "Belum Terkonfirmasi",
                                     textAlign: TextAlign.center,
@@ -171,7 +170,7 @@ class AnggotaView extends GetView<AnggotaController> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(35),
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                       child: Text(
                                     "Di Tolak",
                                     style: TextStyle(fontSize: 15),
@@ -180,7 +179,7 @@ class AnggotaView extends GetView<AnggotaController> {
                               ),
                             ]),
                       ),
-                      body: TabBarView(children: [
+                      body: const TabBarView(children: [
                         Scaffold(
                             backgroundColor: Colors.transparent,
                             body: Center()),

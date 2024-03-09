@@ -6,7 +6,7 @@ import 'package:vocaject_remake_v1/app/utils/component/widget_appbar.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
 import '../controllers/reset_password_controller.dart';
-import 'atur_ulang_password_OTP.dart';
+import 'atur_ulang_password_otp.dart';
 
 class ResetPasswordView extends GetView<ResetPasswordController> {
   const ResetPasswordView({Key? key}) : super(key: key);
