@@ -76,7 +76,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                                             )),
                                       ),
                                       Text(
-                                        Saiful_Kamil,
+                                        "${controller.mahasiswaDetails!.name}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -92,7 +92,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                               height: 20,
                             ),
                              CircleAvatar(
-                              backgroundImage: NetworkImage("${controller.dataProfil!.picture}"),
+                              backgroundImage: NetworkImage("${controller.mahasiswaDetails!.picture}"),
                               backgroundColor: Colors.grey,
                               radius: 45,
                             ),
@@ -100,7 +100,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                               height: 20,
                             ),
                             Text(
-                              Saiful_Kamil,
+                              "${controller.mahasiswaDetails!.name}",
                               style: ColorApp.secondColorTextStyly(context)
                                   .copyWith(fontSize: 20, fontWeight: reguler),
                             ),
@@ -132,7 +132,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                                                 fontSize: 14, fontWeight: bold),
                                       ),
                                       Text(
-                                        "${controller.dataProfil!.nim}",
+                                        "${controller.mahasiswaDetails!.nim}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -169,7 +169,7 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                                                 fontSize: 14, fontWeight: bold),
                                       ),
                                       Text(
-                                        "${controller.dataProfil!.email}",
+                                        "${controller.mahasiswaDetails!.email}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -206,7 +206,44 @@ class ProfilePeople extends GetView<ProfileControllerPeople> {
                                                 fontSize: 14, fontWeight: bold),
                                       ),
                                       Text(
-                                        "${controller.dataProfil!.phone}",
+                                        "${controller.mahasiswaDetails!.phone}",
+                                        style: ColorApp.secondColorTextStyly(
+                                                context)
+                                            .copyWith(
+                                                fontSize: 14, fontWeight: bold),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Container(
+                                    height: 1,
+                                    width: double.infinity,
+                                    decoration:
+                                        const BoxDecoration(color: greyColor),
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        Alamat,
+                                        style: ColorApp.secondColorTextStyly(
+                                                context)
+                                            .copyWith(
+                                                fontSize: 14, fontWeight: bold),
+                                      ),
+                                      Text(
+                                        " : ",
+                                        style: ColorApp.secondColorTextStyly(
+                                                context)
+                                            .copyWith(
+                                                fontSize: 14, fontWeight: bold),
+                                      ),
+                                      Text(
+                                        "${controller.mahasiswaDetails!.address}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(

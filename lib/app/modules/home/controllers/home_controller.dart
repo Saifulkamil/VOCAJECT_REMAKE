@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:vocaject_remake_v1/app/Models/ProjectModel.dart';
 import 'package:vocaject_remake_v1/app/Models/UserModel.dart';
 
+import '../../../Models/ProjectsModel.dart';
 import '../../../utils/baseUrl.dart';
 
 class HomeController extends GetxController {
@@ -40,7 +40,7 @@ class HomeController extends GetxController {
     return null; // Return null jika UserModel tidak ditemukan
   }
 
-  Future<ProjectModel?> getProject() async {
+  Future<ProjectsModel?> getProject() async {
     Uri url =
         Uri.parse("${UrlDomain.baseurl}/api/project?status=opened&latest=true");
 
@@ -54,7 +54,7 @@ class HomeController extends GetxController {
         // Pengecekan keberadaan kunci 'message' dan 'data'
         if (data.containsKey('message') && data.containsKey('data')) {
           // Deserialisasi JSON menjadi objek UserModel
-          final userdata = ProjectModel.fromJson(data);
+          final userdata = ProjectsModel.fromJson(data);
 
           listProject = userdata.data;
 

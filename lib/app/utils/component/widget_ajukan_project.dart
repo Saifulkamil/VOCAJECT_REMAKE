@@ -143,8 +143,8 @@ class WidgetAjukanProject extends GetView<ProjectDetailsController> {
                   height: 15,
                 ),
                 InkWell(
-                  onTap: () {
-                    projectDetailsController.pilihFile1();
+                  onTap: () async {
+                     projectDetailsController.pilihFile1();
                   },
                   child: Container(
                     height: 52,
@@ -191,8 +191,8 @@ class WidgetAjukanProject extends GetView<ProjectDetailsController> {
                   height: 15,
                 ),
                 InkWell(
-                  onTap: () {
-                    projectDetailsController.pilihFile2();
+                  onTap: () async {
+                    await projectDetailsController.pilihFile2();
                   },
                   child: Container(
                     height: 52,

@@ -9,7 +9,7 @@ part of 'ProjectModelSingle.dart';
 ProjectModelSingle _$ProjectModelSingleFromJson(Map<String, dynamic> json) =>
     ProjectModelSingle(
       message: json['message'] as String?,
-      data: ProjectData.fromJson(json['data'] as Map<String, dynamic>),
+      data: ProjectsData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ProjectModelSingleToJson(ProjectModelSingle instance) =>

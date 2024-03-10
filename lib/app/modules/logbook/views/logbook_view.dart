@@ -12,7 +12,7 @@ class LogbookView extends GetView<LogbookController> {
   @override
   Widget build(BuildContext context) {
     // final flowC = Get.put(WidgetController());
-    final projectC = Get.find<LogbookController>();
+    final logboookController = Get.find<LogbookController>();
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
@@ -24,7 +24,7 @@ class LogbookView extends GetView<LogbookController> {
                 .copyWith(fontSize: 20, fontWeight: semiBold),
           ),
           actions: [
-            projectC.roleUser == "student"
+            logboookController.userdata!.data.user.role == "student"
                 ? Padding(
                     padding: const EdgeInsets.only(right: 15.0),
                     child: IconButton(
@@ -36,7 +36,7 @@ class LogbookView extends GetView<LogbookController> {
                                 borderRadius: BorderRadius.circular(15)),
                             builder: (BuildContext context) {
                               return WidgetBuatLogbook(
-                                projectC: projectC,
+                                projectC: logboookController,
                               );
                             },
                           );

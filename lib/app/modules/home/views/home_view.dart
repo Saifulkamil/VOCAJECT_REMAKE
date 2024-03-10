@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../Models/ProjectsData.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_cari_text_from_field.dart';
@@ -46,42 +47,43 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
           actions: [
-            project.userdata!.data.user.role != "student" ?
-            InkWell(
-              child: Padding(
-                  padding: const EdgeInsets.only(right: 15.0, top: 18),
-                  child: InkWell(
-                    onTap: () {
-                      Get.toNamed(Routes.LIST_CHAT);
-                      // projectC.getProject();
-                    },
-                    child: const Stack(
-                      children: [
-                        Icon(
-                          Icons.email_rounded,
-                          size: 30,
-                          color: greyColor,
-                        ),
-                        Positioned(
-                            top: 0,
-                            left: 0,
-                            child: CircleAvatar(
-                              radius: 6,
-                              backgroundColor: redcolor,
-                            )),
-                      ],
-                    ),
-                  )),
-            )
-            : const Center(),
+            project.userdata!.data.user.role != "student"
+                ? InkWell(
+                    child: Padding(
+                        padding: const EdgeInsets.only(right: 15.0, top: 18),
+                        child: InkWell(
+                          onTap: () {
+                            Get.toNamed(Routes.LIST_CHAT);
+                            // projectC.getProject();
+                          },
+                          child: const Stack(
+                            children: [
+                              Icon(
+                                Icons.email_rounded,
+                                size: 30,
+                                color: greyColor,
+                              ),
+                              Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  child: CircleAvatar(
+                                    radius: 6,
+                                    backgroundColor: redcolor,
+                                  )),
+                            ],
+                          ),
+                        )),
+                  )
+                : const Center(),
             InkWell(
               onTap: () {
                 Get.toNamed(Routes.EDIT_PROFILE, arguments: project.userdata);
               },
-              child:  Padding(
+              child: Padding(
                 padding: const EdgeInsets.only(right: 15.0, top: 15),
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage("${project.userdata!.data.user.picture}"),
+                  backgroundImage:
+                      NetworkImage("${project.userdata!.data.user.picture}"),
                 ),
               ),
             )
@@ -179,26 +181,16 @@ class HomeView extends GetView<HomeController> {
                 ),
                 SliverPrototypeExtentList(
                     delegate: SliverChildBuilderDelegate((context, index) {
-                      final project = controller.listProject[index];
+                      ProjectsData project = controller.listProject[index];
 
                       return Padding(
                         padding: const EdgeInsets.only(
                             left: 15.0, right: 15, bottom: 20),
                         child: InkWell(
                             onTap: () {
-                              if (controller.userdata!.data.user.role ==
-                                  "student") {
-                                Get.toNamed(Routes.PROJECT_DETAILS_PENDING,
-                                    arguments: project.id);
-                              } else {
-                                Get.toNamed(Routes.PROJECT_DETAILS,
-                                    arguments: {
-                                    "idProject":project.id,
-                                    "idUser":controller.userdata!.data.user.id,
-                                    "idCollege":controller.userdata!.data.user.college.id});
-                              }
+                              Get.toNamed(Routes.PROJECT_DETAILS,
+                                  arguments: project);
                             },
-
                             //widget tampilan project
                             child: WidgetPojectTerbaru(controller: project)),
                       );

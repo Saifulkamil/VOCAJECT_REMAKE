@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 
-import '../../../Models/ProjectModelSingle.dart';
+import '../../../Models/ProjectsData.dart';
+
 
 
 class ProfileControllerCompany extends GetxController {
-  ProjectModelSingle? dataProfil;
+  ProjectsData? projectData;
  
 
   var isProjectLoaded = false.obs;
@@ -12,8 +13,8 @@ class ProfileControllerCompany extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    dataProfil = Get.arguments;
-    if (dataProfil != null) {
+    projectData = Get.arguments;
+    if (projectData != null) {
       isProjectLoaded.value = true;
     } else {
       return ;

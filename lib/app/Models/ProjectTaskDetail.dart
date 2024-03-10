@@ -2,17 +2,17 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'ProjectData.dart';
+import 'ProjectsData.dart';
 
 part 'ProjectTaskDetail.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class ProjectTaskDetail {
   final int? id;
- String? title;
+  String? title;
   final String? description;
-   bool? checked;
-  final ProjectData project;
+  bool? checked;
+  final ProjectsData project;
 
   ProjectTaskDetail({
     required this.id,

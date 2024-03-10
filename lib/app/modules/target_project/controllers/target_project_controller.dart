@@ -63,7 +63,6 @@ class TargetProjectController extends GetxController {
     try {
       final response = await http.get(url);
       Map<String, dynamic> data = json.decode(response.body);
-
       if (response.statusCode == 200) {
         // Pengecekan keberadaan kunci 'message' dan 'data'
         if (data.containsKey('message') && data.containsKey('data')) {

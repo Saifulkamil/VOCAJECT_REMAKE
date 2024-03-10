@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_data_project_.dart';
 import '../../../utils/component/widget_card_btn_custom.dart';
-import '../../../utils/component/widget_circular_progres.dart';
 import '../../../utils/component/widget_datas_project.dart';
 import '../../../utils/string.dart';
 import '../controllers/project_progress_controller.dart';
@@ -81,7 +81,7 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                             )),
                                       ),
                                       Text(
-                                        "${controller.proposalData!.data.project.title}",
+                                        "${controller.projectData!.title}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -96,9 +96,23 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                             const SizedBox(
                               height: 25,
                             ),
-                            const Align(
-                              alignment: Alignment.topCenter,
-                              child: CircularProgres(),
+                            CircularPercentIndicator(
+                              radius: 100.0,
+                              lineWidth: 20,
+                              backgroundColor: greyColor,
+                              percent: controller.projectData!.progress
+                                          ?.toDouble() !=
+                                      null
+                                  ? controller.projectData!.progress! /
+                                      100.0 // Mengonversi nilai persentase ke rentang 0.0 - 1.0
+                                  : 0.0, // Nilai default jika nilai persentase null
+
+                              center: Text(
+                                "${controller.projectData!.progress}%",
+                                style: ColorApp.secondColorTextStyly(context)
+                                    .copyWith(fontSize: 50),
+                              ),
+                              progressColor: greenColor,
                             ),
                             const SizedBox(
                               height: 15,
@@ -111,7 +125,7 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                             const SizedBox(
                               height: 15,
                             ),
-                            WidgetDataProject(controller: controller),
+                            WidgetDataProject(controller: controller.projectData),
                             const SizedBox(
                               height: 20,
                             ),
@@ -150,21 +164,11 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                         text: LogBook,
                                         image: "assets/image/img_logBook.png",
                                         onPressed: () {
-                                          controller.userdata!.data.user.role ==
+                                          controller.userdata!.data.user.role !=
                                                   "student"
-                                              ? Get.toNamed(
-                                                  Routes.LIST_MHS_LOGBOOK, arguments: {  
-                                                    "members": controller.proposalData!.data.members,
-                                                    "projectId": controller.projectData!.id}
-                                                )
-                                              : Get.toNamed(
-                                                  Routes.LOGBOOK, arguments: {  
-                                                    "idUser":controller.userdata!.data.user.id,
-                                                    // "roleUser":controller.userdata!.data.user.role,
-                                                    "roleUser": "student",
-
-                                                    "projectId": controller.projectData!.id}
-                                                );
+                                              ? Get.toNamed(Routes.LIST_MHS_LOGBOOK, arguments: controller.projectData)
+                                              : Get.toNamed(Routes.LOGBOOK, arguments: {"idMhs": controller.userdata!.data.user.id,
+                                              "idProject": controller.projectData!.id ,});
                                         }),
                                     // WidgetCardBtnCustom(
                                     //     text: LogBook,

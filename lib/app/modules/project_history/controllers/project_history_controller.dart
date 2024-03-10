@@ -29,6 +29,7 @@ class ProjectHistoryController extends GetxController {
 
   UserModel? userdata;
   String? urlApi;
+  ProjectModel? projectdata;
 
   var isProjectLoaded = false.obs;
 
@@ -129,25 +130,21 @@ class ProjectHistoryController extends GetxController {
 
         if (data.containsKey('message') && data.containsKey('data')) {
           // Deserialisasi JSON menjadi objek UserModel
-          final projectdata = ProjectModel.fromJson(data);
+           projectdata = ProjectModel.fromJson(data);
 
           listProposal.clear(); // Menghapus data sebelum menyalin
-          listProposal.addAll(projectdata.data);
+          listProposal.addAll(projectdata!.data);
 
           if (userdata!.data.user.role == "lecture") {
-      
             listProject.clear();
             listProject.addAll(proposalListDosenAcceptOnProgres);
           } else if (userdata!.data.user.role == "student") {
-
             listProject.clear();
             listProject.addAll(proposalListMhsAcceptOnProgres);
           } else if (userdata!.data.user.role == "company") {
-
             listProject.clear();
             listProject.addAll(proposalListindustriDankampusAcceptOnProgres);
           } else {
-
             listProject.clear();
             listProject.addAll(proposalListindustriDankampusAcceptOnProgres);
           }
@@ -168,7 +165,7 @@ class ProjectHistoryController extends GetxController {
       }
     } catch (err) {
       if (kDebugMode) {
-        print(" ini error ngak muncul porject  $err");
+        print(" ini error ngak muncul porject history  $err");
       }
       // return List<Project>.empty();
     }

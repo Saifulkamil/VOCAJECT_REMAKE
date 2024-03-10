@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
@@ -16,6 +17,8 @@ class WidgetDatasProject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formatter =
+        NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0);
     return Container(
       height: 502,
       decoration: BoxDecoration(
@@ -47,12 +50,12 @@ class WidgetDatasProject extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "${controller.proposalData!.data.project.title}",
+                    "${controller.projectData!.title}",
                     style: ColorApp.secondColorTextStyly(context)
                         .copyWith(fontSize: 15, fontWeight: medium),
                   ),
                   Text(
-                    "${controller.proposalData!.data.project.budget}",
+                    formatter.format(controller.projectData!.budget),
                     style: ColorApp.secondColorTextStyly(context)
                         .copyWith(fontSize: 15, fontWeight: medium),
                   ),
@@ -62,7 +65,7 @@ class WidgetDatasProject extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                "${controller.proposalData!.data.project.deadline_at}",
+                "${controller.projectData!.deadline_at}",
                 style: ColorApp.secondColorTextStyly(context)
                     .copyWith(fontSize: 12, fontWeight: light),
               ),
@@ -85,7 +88,7 @@ class WidgetDatasProject extends StatelessWidget {
                         .copyWith(fontSize: 14, fontWeight: bold),
                   ),
                   Text(
-                    "${controller.proposalData!.data.project.category.name}",
+                    "${controller.projectData!.category.name}",
                     style: ColorApp.secondColorTextStyly(context)
                         .copyWith(fontSize: 14, fontWeight: bold),
                   ),
@@ -111,7 +114,7 @@ class WidgetDatasProject extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                "${controller.proposalData!.data.project.description}",
+                "${controller.projectData!.description}",
                 style: ColorApp.secondColorTextStyly(context)
                     .copyWith(fontSize: 14, height: 1.7, fontWeight: reguler),
               ),

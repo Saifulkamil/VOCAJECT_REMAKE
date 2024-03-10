@@ -1,14 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
+import 'package:vocaject_remake_v1/app/Models/ProjectsData.dart';
 
 part 'ProjectModelSingle.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class ProjectModelSingle {
   final String? message;
-  final ProjectData data;
+  final ProjectsData data;
 
   ProjectModelSingle({
     required this.message,

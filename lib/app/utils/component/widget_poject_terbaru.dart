@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:vocaject_remake_v1/app/Models/MahasiswaDetails.dart';
+import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
 
+import '../../Models/ProjectsData.dart';
 import '../colors.dart';
+import '../string.dart';
 
 //widget tampilan project
 class WidgetPojectTerbaru extends StatelessWidget {
-  final dynamic controller;
+  final ProjectsData controller;
 
   const WidgetPojectTerbaru({
     required this.controller,
@@ -83,7 +87,7 @@ class WidgetPojectTerbaru extends StatelessWidget {
                         width: 10,
                       ),
                       Text(
-                        controller.category.name,
+                        "${controller.category.name}",
                         style: whiteTextStyly.copyWith(
                             fontSize: 12, fontWeight: reguler),
                       ),
@@ -95,7 +99,7 @@ class WidgetPojectTerbaru extends StatelessWidget {
                       SizedBox(
                         width: 150,
                         child: Text(
-                          controller.title,
+                          "${controller.title}",
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: whiteTextStyly.copyWith(
@@ -125,8 +129,8 @@ class WidgetPojectTerbaru extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(right: 9.0),
                               child: CircleAvatar(
-                                backgroundImage:
-                                    NetworkImage("${controller.company.picture}"),
+                                backgroundImage: NetworkImage(
+                                    "${controller.company.picture}"),
                                 radius: 20,
                               ),
                             ),
@@ -136,7 +140,7 @@ class WidgetPojectTerbaru extends StatelessWidget {
                           height: 5,
                         ),
                         Text(
-                          controller.company.name,
+                          "${controller.company.name}",
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: whiteTextStyly.copyWith(
@@ -156,7 +160,7 @@ class WidgetPojectTerbaru extends StatelessWidget {
 }
 
 class WidgetImgProgresPoject extends StatelessWidget {
-  final dynamic controller;
+  final ProjectData controller;
 
   const WidgetImgProgresPoject({
     required this.controller,
@@ -206,9 +210,12 @@ class WidgetImgProgresPoject extends StatelessWidget {
                   CircularPercentIndicator(
                     radius: 17,
                     lineWidth: 4,
-                    percent: 0.6,
+                    percent: controller.progress?.toDouble() != null
+                        ? controller.progress! /
+                            100.0 // Mengonversi nilai persentase ke rentang 0.0 - 1.0
+                        : 0.0, // Nilai default jika nilai persentase null
                     center: Text(
-                      "60%",
+                      "${controller.progress?.toInt()}%",
                       style: whiteTextStyly.copyWith(fontSize: 10),
                     ),
                     progressColor: whiteColor,
@@ -216,42 +223,69 @@ class WidgetImgProgresPoject extends StatelessWidget {
                   SizedBox(
                     width: 150,
                     child: Text(
-                      controller.title,
+                      "${controller.title}",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: whiteTextStyly.copyWith(
                           fontSize: 15, fontWeight: reguler),
                     ),
                   ),
-                  
+                  Row(
+                    children: [
+                      Text(
+                        Tim,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: whiteTextStyly.copyWith(
+                            fontSize: 14, fontWeight: medium),
+                      ),
+                      SizedBox(
+                        height: 20,
+                        width: 100,
+                        child: Scaffold(
+                            backgroundColor: colorTransparan,
+                            body: CustomScrollView(
+                              scrollDirection: Axis.horizontal,
+                              slivers: [
+                                SliverPrototypeExtentList(
+                                  delegate: SliverChildBuilderDelegate(
+                                      (context, index) {
+                                    MahasiswaDetails picMember =
+                                        controller.members[index];
+                                    return CircleAvatar(
+                                      backgroundImage:
+                                          NetworkImage("${picMember.picture}"),
+                                    );
+                                  }, childCount: controller.members.length),
+                                  prototypeItem: const CircleAvatar(
+                                    radius: 10,
+                                  ),
+                                )
+                              ],
+                            )),
+                      ),
+                    ],
+                  )
                 ],
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   SizedBox(
-                    width: 85,
+                    width: 75,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 9.0),
-                              child: CircleAvatar(
-                                backgroundImage:
-                                    NetworkImage("${controller.company.picture}"),
-                                radius: 20,
-                              ),
-                            ),
-                          ],
+                        CircleAvatar(
+                          backgroundImage:
+                              NetworkImage("${controller.company.picture}"),
+                          radius: 20,
                         ),
                         const SizedBox(
                           height: 5,
                         ),
                         Text(
-                          controller.company.name,
+                          "${controller.company.name}",
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: whiteTextStyly.copyWith(

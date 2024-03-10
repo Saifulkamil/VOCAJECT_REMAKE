@@ -6,19 +6,21 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:vocaject_remake_v1/app/Models/ProjectModelSingle.dart';
 
 import '../../../Models/ListMahasiswaModel.dart';
+import '../../../Models/ProjectsData.dart';
+import '../../../Models/UserModel.dart';
 import '../../../controllers/fungsi_widget_random.dart';
 import '../../../utils/baseUrl.dart';
 
 class ProjectDetailsController extends GetxController {
   final widgetController = WidgetController();
-
-  // Data proyek tunggal.
-  ProjectModelSingle? dataCompany;
-  // Status untuk menunjukkan apakah proses pengambilan data proyek sudah selesai atau belum.
+  UserModel? userdata;
+  final user = GetStorage();
+  ProjectsData? projectData;
+  // Status untuk menunjukkan apakah zproses pengambilan data proyek sudah selesai atau belum.
   var isProjectLoaded = false.obs;
 
   List<int> selectedMahasiswa = [];
@@ -57,58 +59,31 @@ class ProjectDetailsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Map<String, dynamic>? args = Get.arguments;
-    idProject = args!['idProject'];
-    idCollege = args['idCollege'];
-    idUser = args['idUser'];
-    getProjectDetail();
+    projectData = Get.arguments;
+    if (projectData != null) {
+      isProjectLoaded.value = true;
+    }
+    // getProjectDetail();
+    getUserFromStorage();
   }
 
-  // Mendapatkan detail proyek dari API.
-  Future<ProjectModelSingle?> getProjectDetail() async {
-    Uri url = Uri.parse("${UrlDomain.baseurl}/api/project/$idProject");
+  UserModel? getUserFromStorage() {
+    // Baca UserModel dari GetStorage dengan kunci yang sesuai, misalnya "user"
+    final userJson = user.read('user');
 
-    try {
-      final response = await http.get(url);
-      Map<String, dynamic> data = json.decode(response.body);
-      // listProject = data["data"] as List<dynamic>;
+    // Jika UserModel ditemukan, deserialisasi JSON menjadi UserModel
+    if (userJson != null) {
+      userdata = UserModel.fromJson(userJson);
+      // print(" ini id user ${userdata!.data.user.id}");
 
-      // print(ListProject);
-      if (response.statusCode == 200) {
-        // Pengecekan keberadaan kunci 'message' dan 'data'
-        if (data.containsKey('message') && data.containsKey('data')) {
-          // Deserialisasi JSON menjadi objek UserModel
-          final dataProjetc = ProjectModelSingle.fromJson(data);
-
-          dataCompany = dataProjetc;
-
-          isProjectLoaded.value = true;
-          return dataProjetc;
-        } else {
-          // Jika 'data' atau 'support' tidak ada, return null
-          return null;
-        }
-      } else {
-        // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
-        if (kDebugMode) {
-          print("Error: ${response.reasonPhrase}");
-        }
-        return null; // Return null jika terjadi kesalahan
-      }
-    } catch (err) {
-      if (kDebugMode) {
-        print(" ini error ngak muncul porject  $err");
-      }
-      // return List<Project>.empty();
+      return userdata;
     }
-    return null;
-
-    // Memeriksa status code response dari server
+    return null; // Return null jika UserModel tidak ditemukan
   }
 
   Future<ListMahasiswaModel?> getUserMhsAccepted() async {
     Uri url = Uri.parse(
-        "${UrlDomain.baseurl}/api/user/student/$idCollege?status=accepted");
+        "${UrlDomain.baseurl}/api/user/student/${userdata!.data.user.college.id}?status=accepted");
 
     try {
       final response = await http.get(url);
@@ -130,7 +105,7 @@ class ProjectDetailsController extends GetxController {
     // Memeriksa status code response dari server
   }
 
-  void pilihFile1() async {
+  Future<void> pilihFile1() async {
     FilePickerResult? filePick1 = await FilePicker.platform.pickFiles(
         type: FileType.custom, allowedExtensions: ['jpg', 'pdf', 'doc']);
 
@@ -145,7 +120,6 @@ class ProjectDetailsController extends GetxController {
         type: FileType.custom, allowedExtensions: ['jpg', 'pdf', 'doc']);
 
     if (filePick2 != null) {
-
       file2 = File(filePick2.files.first.path!);
       setFile2(file2!.path);
     }
@@ -154,7 +128,8 @@ class ProjectDetailsController extends GetxController {
   Future<void> createProject(String note, List<int> idMahasiswa) async {
     widgetController.loading(Get.overlayContext!);
 
-    Uri url = Uri.parse("${UrlDomain.baseurl}/api/project/$idProject/proposal");
+    Uri url = Uri.parse(
+        "${UrlDomain.baseurl}/api/project/${projectData!.id}/proposal");
     var request = http.MultipartRequest('POST', url);
     try {
       request.headers.addAll({
@@ -162,7 +137,7 @@ class ProjectDetailsController extends GetxController {
         // 'Authorization': 'Bearer $token',
       });
       request.fields['note'] = note;
-      request.fields['lecture_id'] = "$idUser";
+      request.fields['lecture_id'] = "${userdata!.data.user.id}";
       for (int i = 0; i < idMahasiswa.length; i++) {
         String fieldName = "student_ids[$i]";
         String fieldValue = idMahasiswa[i].toString();
@@ -184,7 +159,6 @@ class ProjectDetailsController extends GetxController {
         request.files.add(fileoptional);
       }
       var response = await request.send();
-      responseStatusCode = null;
       responseStatusCode = response.statusCode;
       var responseData = await response.stream.bytesToString();
       Map<String, dynamic>? data = json.decode(responseData);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
@@ -61,6 +62,8 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                     ))
                   ]),
             ),
+
+            // tab onProgress
             body: TabBarView(children: [
               Scaffold(
                   backgroundColor: Colors.transparent,
@@ -77,9 +80,8 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                           SliverPrototypeExtentList(
                               delegate: SliverChildBuilderDelegate(
                                   (context, index) {
-                                final project = controller
+                                ProjectData project = controller
                                     .proposalListDosenAcceptOnProgres[index];
-
                                 return Padding(
                                   padding: const EdgeInsets.only(
                                       left: 15.0, right: 15, top: 20),
@@ -88,7 +90,7 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                                         Get.toNamed(Routes.PROJECT_PROGRESS,
                                             arguments: project);
                                       },
-                                      child: WidgetPojectTerbaru(
+                                      child: WidgetImgProgresPoject(
                                         controller: project,
                                       )),
                                 );
@@ -100,6 +102,8 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                       );
                     }
                   })),
+              
+              // tab pending
               GetX<ProjectHistoryController>(builder: (controller) {
                 if (!controller.isProjectLoaded.value) {
                   // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
@@ -114,7 +118,7 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                         SliverPrototypeExtentList(
                             delegate: SliverChildBuilderDelegate(
                                 (context, index) {
-                              final project =
+                              ProjectData project =
                                   controller.proposalListDosenPending[index];
 
                               return Padding(
@@ -124,9 +128,9 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                                     onTap: () {
                                       Get.toNamed(
                                           Routes.PROJECT_DETAILS_PENDING,
-                                          arguments: project.id);
+                                          arguments: project);
                                     },
-                                    child: WidgetPojectTerbaru(
+                                    child: WidgetImgProgresPoject(
                                       controller: project,
                                     )),
                               );
@@ -139,6 +143,7 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                   );
                 }
               }),
+             
               GetX<ProjectHistoryController>(builder: (controller) {
                 if (!controller.isProjectLoaded.value) {
                   // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya

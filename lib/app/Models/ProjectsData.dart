@@ -3,12 +3,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:vocaject_remake_v1/app/Models/CategoryDetail.dart';
 import 'package:vocaject_remake_v1/app/Models/CompanyDetail.dart';
-import 'package:vocaject_remake_v1/app/Models/MahasiswaDetails.dart';
 
-part 'ProjectData.g.dart';
+part 'ProjectsData.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class ProjectData {
+class ProjectsData {
   final int? id;
   final int? progress;
   final int? budget;
@@ -19,9 +18,8 @@ class ProjectData {
   final CompanyDetail company;
   final CategoryDetail category;
   final String? status;
-  final List<MahasiswaDetails> members;
 
-  ProjectData({
+  ProjectsData({
     required this.id,
     required this.progress,
     required this.budget,
@@ -32,10 +30,9 @@ class ProjectData {
     required this.company,
     required this.category,
     required this.status,
-    required this.members,
   });
-  factory ProjectData.fromJson(Map<String, dynamic> json) =>
-      _$ProjectDataFromJson(json);
+  factory ProjectsData.fromJson(Map<String, dynamic> json) =>
+      _$ProjectsDataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ProjectDataToJson(this);
+  Map<String, dynamic> toJson() => _$ProjectsDataToJson(this);
 }

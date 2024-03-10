@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:vocaject_remake_v1/app/Models/MahasiswaDetails.dart';
+import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
-import '../../modules/project_progress/controllers/project_progress_controller.dart';
 import 'widget_tim.dart';
 
 class WidgetDataProject extends StatelessWidget {
-  final ProjectProgressController controller;
+  final ProjectData? controller;
   const WidgetDataProject({
     required this.controller,
     super.key,
@@ -37,7 +38,7 @@ class WidgetDataProject extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                        "${controller.proposalData!.data.project.title}",
+                        "${controller!.title}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: ColorApp.secondColorTextStyly(context)
@@ -81,15 +82,13 @@ class WidgetDataProject extends StatelessWidget {
                                 SliverPrototypeExtentList(
                                   delegate: SliverChildBuilderDelegate(
                                       (context, index) {
-                                    final project =
-                                        controller.listpicture[index];
+                                    MahasiswaDetails mahasiswaDetails =
+                                        controller!.members[index];
                                     return CircleAvatar(
                                       backgroundImage: NetworkImage(
-                                          "${project.picture}"),
+                                          "${mahasiswaDetails.picture}"),
                                     );
-                                  },
-                                      childCount: controller
-                                          .proposalData!.data.members.length),
+                                  }, childCount: controller!.members.length),
                                   prototypeItem: const CircleAvatar(
                                     radius: 13,
                                   ),
@@ -113,7 +112,7 @@ class WidgetDataProject extends StatelessWidget {
                           .copyWith(fontSize: 15, fontWeight: medium),
                     ),
                     Text(
-                      "${controller.proposalData!.data.project.deadline_at}",
+                      "${controller!.deadline_at}",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: ColorApp.secondColorTextStyly(context)
@@ -129,7 +128,7 @@ class WidgetDataProject extends StatelessWidget {
 }
 
 class WidgetDataProjecthistory extends StatelessWidget {
-  final ProjectProgressController controller;
+  final ProjectData controller;
   const WidgetDataProjecthistory({
     required this.controller,
     super.key,
@@ -160,7 +159,7 @@ class WidgetDataProjecthistory extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                        "${controller.proposalData!.data.project.title}",
+                        "${controller.title}",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: ColorApp.secondColorTextStyly(context)
@@ -204,15 +203,13 @@ class WidgetDataProjecthistory extends StatelessWidget {
                                 SliverPrototypeExtentList(
                                   delegate: SliverChildBuilderDelegate(
                                       (context, index) {
-                                    final project =
-                                        controller.listpicture[index];
+                                    MahasiswaDetails mahasiswaDetails = controller.members[index];
+
                                     return CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                          "${project.picture}"),
+                                      backgroundImage:
+                                          NetworkImage("${mahasiswaDetails.picture}"),
                                     );
-                                  },
-                                      childCount: controller
-                                          .proposalData!.data.members.length),
+                                  }, childCount: controller.members.length),
                                   prototypeItem: const CircleAvatar(
                                     radius: 13,
                                   ),
@@ -236,7 +233,7 @@ class WidgetDataProjecthistory extends StatelessWidget {
                           .copyWith(fontSize: 15, fontWeight: medium),
                     ),
                     Text(
-                      "${controller.proposalData!.data.project.deadline_at}",
+                      "${controller.deadline_at}",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: ColorApp.secondColorTextStyly(context)

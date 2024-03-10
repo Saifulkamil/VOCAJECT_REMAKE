@@ -110,8 +110,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                             "assets/image/ic_editor.png",
                                       };
                                       String? selectedImage = categoryImage[
-                                          controller
-                                              .dataCompany!.data.category.name];
+                                          controller.projectData!.category.name];
 
                                       if (selectedImage != null) {
                                         return SizedBox(
@@ -131,7 +130,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                   ),
                                   Flexible(
                                     child: Text(
-                                      "${controller.dataCompany!.data.title}",
+                                      "${controller.projectData!.title}",
                                       maxLines: 3,
                                       textAlign: TextAlign.center,
                                       overflow: TextOverflow.ellipsis,
@@ -156,7 +155,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                           fontSize: 12, fontWeight: reguler),
                                     ),
                                     Text(
-                                        "${controller.dataCompany!.data.deadline_at}",
+                                        "${controller.projectData!.deadline_at}",
                                         style: whiteTextStyly.copyWith(
                                             fontSize: 15, fontWeight: reguler)),
                                   ],
@@ -176,8 +175,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                           fontSize: 12, fontWeight: reguler),
                                     ),
                                     Text(
-                                        formatter.format(controller
-                                            .dataCompany!.data.budget),
+                                        formatter.format(controller.projectData!.budget),
                                         style: whiteTextStyly.copyWith(
                                             fontSize: 15, fontWeight: reguler)),
                                   ],
@@ -217,7 +215,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                           height: 10,
                                         ),
                                         Text(
-                                          "${controller.dataCompany!.data.description}",
+                                          "${controller.projectData!.description}",
                                           maxLines: 14,
                                           overflow: TextOverflow.ellipsis,
                                           style: ColorApp.secondColorTextStyly(
@@ -240,7 +238,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                 child: InkWell(
                                   onTap: () {
                                     
-                                    Get.toNamed(Routes.PROFILE_INDUSTRI, arguments: controller.dataCompany);
+                                    Get.toNamed(Routes.PROFILE_INDUSTRI, arguments: controller.projectData);
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(15.0),
@@ -262,7 +260,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                               children: [
                                                 CircleAvatar(
                                                   backgroundImage: NetworkImage(
-                                                    "${controller.dataCompany!.data.company.picture}",
+                                                    "${controller.projectData!.company.picture}",
                                                   ),
                                                   backgroundColor:
                                                       const Color.fromARGB(
@@ -284,7 +282,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "${controller.dataCompany!.data.company.name}",
+                                                          "${controller.projectData!.company.name}",
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           style: ColorApp
@@ -298,7 +296,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                                         const SizedBox(
                                                             height: 5),
                                                         Text(
-                                                          "${controller.dataCompany!.data.company.address}",
+                                                          "${controller.projectData!.company.address}",
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           style: ColorApp
@@ -312,7 +310,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                                                         const SizedBox(
                                                             height: 5),
                                                         Text(
-                                                          "${controller.dataCompany!.data.company.email}",
+                                                          "${controller.projectData!.company.email}",
                                                           style: ColorApp
                                                                   .secondColorTextStyly(
                                                                       context)
@@ -347,8 +345,10 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
         }),
         bottomNavigationBar: SizedBox(
             height: 60,
-            // color: Colors.blue, // Color of the footer
-            child: Container(
+            child:
+            controller.userdata!.data.user.role != "student"?
+            
+             Container(
               width: double.infinity,
               height: 50,
               color: Theme.of(context).colorScheme.secondaryContainer,
@@ -416,6 +416,7 @@ class ProjectDetailsView extends GetView<ProjectDetailsController> {
                   ],
                 ),
               ),
-            )));
+            ): const Center()
+            ));
   }
 }

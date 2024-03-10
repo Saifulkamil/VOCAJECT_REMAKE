@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:vocaject_remake_v1/app/Models/MahasiswaDetails.dart';
 import 'package:vocaject_remake_v1/app/utils/component/widget_appbar.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
@@ -24,7 +25,8 @@ class ListMhsLogbook extends GetView<ListMhsLogbookController> {
             return CustomScrollView(slivers: [
               SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
-                  final project = controller.members![index];
+                  MahasiswaDetails listmahasiswa =
+                      controller.projectData!.members[index];
                   // print("ini id project ${controller.projectId}");
                   return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -41,19 +43,18 @@ class ListMhsLogbook extends GetView<ListMhsLogbookController> {
                                 children: [
                                   ListTile(
                                     onTap: () {
-                                    
                                       Get.toNamed(Routes.LOGBOOK, arguments: {
-                                        "idMember": project.id,
-                                        "projectId": "${controller.projectId}"
+                                        "idMhs": listmahasiswa.id,
+                                        "idProject": controller.projectData!.id
                                       });
                                     },
                                     leading: CircleAvatar(
                                       backgroundColor: greyColor,
-                                      backgroundImage:
-                                          NetworkImage("${project.picture}"),
+                                      backgroundImage: NetworkImage(
+                                          "${listmahasiswa.picture}"),
                                     ),
-                                    title: Text("${project.name}"),
-                                    subtitle: Text("${project.nim}"),
+                                    title: Text("${listmahasiswa.name}"),
+                                    subtitle: Text("${listmahasiswa.nim}"),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10.0),
                                     ),
@@ -62,7 +63,7 @@ class ListMhsLogbook extends GetView<ListMhsLogbookController> {
                               ),
                             ),
                           ]));
-                }, childCount: controller.members!.length),
+                }, childCount: controller.projectData!.members.length),
               )
             ]);
           }

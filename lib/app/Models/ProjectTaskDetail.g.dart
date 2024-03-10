@@ -11,7 +11,7 @@ ProjectTaskDetail _$ProjectTaskDetailFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int?,
       checked: json['checked'] as bool?,
       title: json['title'] as String?,
-      project: ProjectData.fromJson(json['project'] as Map<String, dynamic>),
+      project: ProjectsData.fromJson(json['project'] as Map<String, dynamic>),
       description: json['description'] as String?,
     );
 

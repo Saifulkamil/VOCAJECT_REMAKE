@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
 
 import '../../modules/project_history/controllers/project_history_controller.dart';
 import '../../routes/app_pages.dart';
@@ -30,7 +31,7 @@ class WidgetSpotlight extends StatelessWidget {
           slivers: [
             SliverPrototypeExtentList(
               delegate: SliverChildBuilderDelegate((context, index) {
-                final project = controller.listProject[index];
+                ProjectData project = controller.listProject[index];
 
                 return Padding(
                   padding: const EdgeInsets.only(right: 15.0),
@@ -56,7 +57,7 @@ class WidgetSpotlight extends StatelessWidget {
 
 // decoration widget progress
 class ChildProgress extends StatelessWidget {
-  final dynamic controller;
+  final ProjectData controller;
 
   const ChildProgress({
     required this.controller,
@@ -94,9 +95,12 @@ class ChildProgress extends StatelessWidget {
                               CircularPercentIndicator(
                                 radius: 14.0,
                                 lineWidth: 2.5,
-                                percent: 1.0,
+                                percent: controller.progress?.toDouble() != null
+                                    ? controller.progress! /
+                                        100.0 // Mengonversi nilai persentase ke rentang 0.0 - 1.0
+                                    : 0.0, // Nilai default jika nilai persentase null
                                 center: Text(
-                                  "100%",
+                                  "${controller.progress}%",
                                   style: whiteTextStyly.copyWith(fontSize: 8),
                                 ),
                                 progressColor: whiteColor,
@@ -104,7 +108,7 @@ class ChildProgress extends StatelessWidget {
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  controller.deadline_at,
+                                  "${controller.deadline_at}",
                                   style: whiteTextStyly.copyWith(
                                       fontSize: 12, fontWeight: reguler),
                                 ),
@@ -118,13 +122,13 @@ class ChildProgress extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            controller.title,
+                            "${controller.title}",
                             overflow: TextOverflow.ellipsis,
                             style: whiteTextStyly.copyWith(
                                 fontSize: 13, fontWeight: semiBold),
                           ),
                           Text(
-                            controller.category.name,
+                            "${controller.category.name}",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: whiteTextStyly.copyWith(

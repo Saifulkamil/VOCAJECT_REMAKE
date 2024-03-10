@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'ProjectData.dart';
+part of 'ProjectsData.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProjectData _$ProjectDataFromJson(Map<String, dynamic> json) => ProjectData(
+ProjectsData _$ProjectsDataFromJson(Map<String, dynamic> json) => ProjectsData(
       id: json['id'] as int?,
       progress: json['progress'] as int?,
       budget: json['budget'] as int?,
@@ -18,12 +18,9 @@ ProjectData _$ProjectDataFromJson(Map<String, dynamic> json) => ProjectData(
       category:
           CategoryDetail.fromJson(json['category'] as Map<String, dynamic>),
       status: json['status'] as String?,
-      members: (json['members'] as List<dynamic>)
-          .map((e) => MahasiswaDetails.fromJson(e as Map<String, dynamic>))
-          .toList(),
     );
 
-Map<String, dynamic> _$ProjectDataToJson(ProjectData instance) =>
+Map<String, dynamic> _$ProjectsDataToJson(ProjectsData instance) =>
     <String, dynamic>{
       'id': instance.id,
       'progress': instance.progress,
@@ -35,5 +32,4 @@ Map<String, dynamic> _$ProjectDataToJson(ProjectData instance) =>
       'company': instance.company.toJson(),
       'category': instance.category.toJson(),
       'status': instance.status,
-      'members': instance.members.map((e) => e.toJson()).toList(),
     };

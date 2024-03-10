@@ -57,9 +57,7 @@ class AuthController extends GetxController {
           // Deserialisasi JSON menjadi objek UserModel
           final userdata = UserModel.fromJson(data);
           // print(userdata.data.user.college.id);
-          if (kDebugMode) {
-            print("Error: $userdata");
-          }
+      
           // Simpan UserModel ke GetStorage-=0
           saveUserToStorage(userdata);
 

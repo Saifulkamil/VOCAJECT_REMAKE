@@ -4,17 +4,18 @@ import 'package:vocaject_remake_v1/app/utils/colors.dart';
 
 class CircularProgres extends StatelessWidget {
   const CircularProgres({
+    required this.progres,
     super.key,
   });
-
+  final double progres;
   @override
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
       radius: 80.0,
       lineWidth: 20.5,
-      percent: 0.60,
+      percent: progres,
       center: Text(
-        "60%",
+        "${progres.toInt()}%",
         style: ColorApp.secondColorTextStyly(context).copyWith(fontSize: 35),
       ),
       progressColor: greenColor,

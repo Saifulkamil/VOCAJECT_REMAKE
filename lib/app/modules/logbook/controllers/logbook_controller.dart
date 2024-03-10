@@ -4,11 +4,13 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:vocaject_remake_v1/app/Models/ProjectLogbookDetail.dart';
 import 'package:vocaject_remake_v1/app/Models/ProjectLogbookModel.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../Models/UserModel.dart';
 import '../../../controllers/fungsi_widget_random.dart';
 import '../../../utils/baseUrl.dart';
 
@@ -16,15 +18,16 @@ class LogbookController extends GetxController {
   final widgetController = WidgetController();
   int? responseStatusCode;
 
+  final user = GetStorage();
+  UserModel? userdata;
   final TextEditingController logbookC = TextEditingController();
   final formkey = GlobalKey<FormState>();
-
+  int? idMhs;
+  int? idProject;
   ProjectLogbookModel? projectLogbookModel;
   List<dynamic> listDatalogbook = [].obs;
   final selectedDate = DateTime.now().obs;
-  dynamic projectId;
-  dynamic idMember;
-  dynamic roleUser;
+
   var isProjectLoaded = false.obs;
 
   @override
@@ -32,17 +35,30 @@ class LogbookController extends GetxController {
     super.onInit();
 
     Map<String, dynamic>? args = Get.arguments;
-    projectId = args!['projectId'];
-    idMember = args['idMember'];
-    idMember ??= args['idUser'];
-    roleUser = args['roleUser'];
-
+    idMhs = args!['idMhs'];
+    idProject = args['idProject'];
+    getUserFromStorage();
     getProjectLogbook();
   }
 
+  // fungsi untuk baca userModel dari GetStorage
+  UserModel? getUserFromStorage() {
+    // Baca UserModel dari GetStorage dengan kunci yang sesuai, misalnya "user"
+    final userJson = user.read('user');
+
+    // Jika UserModel ditemukan, deserialisasi JSON menjadi UserModel
+    if (userJson != null) {
+      userdata = UserModel.fromJson(userJson);
+      // print(" ini id user ${userdata!.data.user.id}");
+
+      return userdata;
+    }
+    return null; // Return null jika UserModel tidak ditemukan
+  }
+
   Future<ProjectLogbookModel?> getProjectLogbook() async {
-    Uri url =
-        Uri.parse("${UrlDomain.baseurl}/api/project/$projectId/logbook/24");
+    Uri url = Uri.parse(
+        "${UrlDomain.baseurl}/api/project/$idProject/logbook/$idMhs");
 
     try {
       final response = await http.get(url);
@@ -96,7 +112,7 @@ class LogbookController extends GetxController {
 
     String formattedDate = DateFormat('MM-dd-yyyy').format(selectedDate.value);
     Uri url =
-        Uri.parse("${UrlDomain.baseurl}/api/project/$projectId/logbook/24");
+        Uri.parse("${UrlDomain.baseurl}/api/project/$idProject/logbook/$idMhs");
     try {
       final response = await http.post(
         url,
@@ -117,7 +133,7 @@ class LogbookController extends GetxController {
           isProjectLoaded.value = true;
         });
       } else {
-         responseStatusCode = null;
+        responseStatusCode = null;
         responseStatusCode = response.statusCode;
         // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
         if (kDebugMode) {
