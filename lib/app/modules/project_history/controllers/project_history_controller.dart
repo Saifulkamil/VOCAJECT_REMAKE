@@ -42,7 +42,7 @@ class ProjectHistoryController extends GetxController {
     getFungsi();
   }
 
-  void getFungsi() {
+  Future<void> getFungsi() async {
     if (userdata!.data.user.role == "lecture") {
       getProposal("${link["role"][0]}", "${link["status"][0]}",
           proposalListDosenAcceptOnProgres);
@@ -173,4 +173,8 @@ class ProjectHistoryController extends GetxController {
 
     // Memeriksa status code response dari server
   }
+    Future<void> refreshData() async {
+  isProjectLoaded.value = false; // Set nilai isProjectLoaded kembali ke false
+  await getFungsi(); // Panggil kembali metode untuk mendapatkan data proyek
+}
 }

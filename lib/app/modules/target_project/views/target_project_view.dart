@@ -36,8 +36,7 @@ class TargetProjectView extends GetView<TargetProjectController> {
                 color: Theme.of(context).colorScheme.secondary,
               )),
           actions: [
-            // ignore: unrelated_type_equality_checks
-            projectC.userdata != "student"
+            projectC.userdata!.data.user.role != "student"
                 ? Padding(
                     padding: const EdgeInsets.only(right: 15.0),
                     child: IconButton(
@@ -77,6 +76,7 @@ class TargetProjectView extends GetView<TargetProjectController> {
                                           },
                                         );
                                       });
+                                      controller.isProjectLoaded.value = false;
                                     } else {
                                       Timer(const Duration(milliseconds: 1500),
                                           () {
@@ -88,7 +88,10 @@ class TargetProjectView extends GetView<TargetProjectController> {
                                                 BorderRadius.circular(15),
                                           ),
                                           builder: (BuildContext context) {
-                                            return const WidgetFailedField1(text: "Gagal Membuat Target project baru",);
+                                            return const WidgetFailedField1(
+                                              text:
+                                                  "Gagal Membuat Target project baru",
+                                            );
                                           },
                                         );
                                       });

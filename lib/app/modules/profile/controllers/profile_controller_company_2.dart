@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
+import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
 
-import '../../project_progress/controllers/project_progress_controller.dart';
 
 class ProfileControllerCompany2 extends GetxController {
-  ProjectProgressController? dataProfil;
+  ProjectData? dataProfil;
 
   var isProjectLoaded = false.obs;
 

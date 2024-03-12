@@ -81,4 +81,8 @@ class HomeController extends GetxController {
 
     // Memeriksa status code response dari server
   }
+  Future<void> refreshData() async {
+  isProjectLoaded.value = false; // Set nilai isProjectLoaded kembali ke false
+  await getProject(); // Panggil kembali metode untuk mendapatkan data proyek
+}
 }

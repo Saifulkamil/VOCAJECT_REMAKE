@@ -18,6 +18,8 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final project = Get.find<HomeController>();
+    final progressC = Get.find<ProjectHistoryController>();
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.background,
@@ -89,7 +91,11 @@ class HomeView extends GetView<HomeController> {
             )
           ],
         ),
-        body: GetX<HomeController>(builder: (controller) {
+        body: RefreshIndicator(onRefresh: () {
+          project.refreshData();
+          progressC.refreshData();
+           return Future.value(); 
+        }, child: GetX<HomeController>(builder: (controller) {
           if (!controller.isProjectLoaded.value) {
             // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
             return const Center(child: CircularProgressIndicator());
@@ -199,6 +205,6 @@ class HomeView extends GetView<HomeController> {
               ],
             );
           }
-        }));
+        })));
   }
 }

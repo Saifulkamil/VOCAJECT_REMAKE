@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vocaject_remake_v1/app/Models/MahasiswaDetails.dart';
 import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
+import 'package:vocaject_remake_v1/app/Models/UserModel.dart';
 import 'package:vocaject_remake_v1/app/utils/colors.dart';
 import 'package:vocaject_remake_v1/app/utils/string.dart';
 
@@ -8,8 +9,10 @@ import 'widget_tim.dart';
 
 class WidgetDataProject extends StatelessWidget {
   final ProjectData? controller;
+  final UserModel? userData;
   const WidgetDataProject({
     required this.controller,
+    required this.userData,
     super.key,
   });
 
@@ -50,55 +53,59 @@ class WidgetDataProject extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                InkWell(
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      builder: (BuildContext context) {
-                        return WidgetTim(controller: controller);
-                      },
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Text(
-                        Tim,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: ColorApp.secondColorTextStyly(context)
-                            .copyWith(fontSize: 15, fontWeight: medium),
-                      ),
-                      SizedBox(
-                        height: 25,
-                        width: 150,
-                        child: Scaffold(
-                            backgroundColor: colorTransparan,
-                            body: CustomScrollView(
-                              scrollDirection: Axis.horizontal,
-                              slivers: [
-                                SliverPrototypeExtentList(
-                                  delegate: SliverChildBuilderDelegate(
-                                      (context, index) {
-                                    MahasiswaDetails mahasiswaDetails =
-                                        controller!.members[index];
-                                    return CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                          "${mahasiswaDetails.picture}"),
-                                    );
-                                  }, childCount: controller!.members.length),
-                                  prototypeItem: const CircleAvatar(
-                                    radius: 13,
-                                  ),
-                                )
-                              ],
-                            )),
+                userData!.data.user.role != "student"
+                    ? InkWell(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            builder: (BuildContext context) {
+                              return WidgetTim(controller: controller);
+                            },
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              Tim,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: ColorApp.secondColorTextStyly(context)
+                                  .copyWith(fontSize: 15, fontWeight: medium),
+                            ),
+                            SizedBox(
+                              height: 25,
+                              width: 150,
+                              child: Scaffold(
+                                  backgroundColor: colorTransparan,
+                                  body: CustomScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    slivers: [
+                                      SliverPrototypeExtentList(
+                                        delegate: SliverChildBuilderDelegate(
+                                            (context, index) {
+                                          MahasiswaDetails mahasiswaDetails =
+                                              controller!.members[index];
+                                          return CircleAvatar(
+                                            backgroundImage: NetworkImage(
+                                                "${mahasiswaDetails.picture}"),
+                                          );
+                                        },
+                                            childCount:
+                                                controller!.members.length),
+                                        prototypeItem: const CircleAvatar(
+                                          radius: 13,
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                            )
+                          ],
+                        ),
                       )
-                    ],
-                  ),
-                ),
+                    : const Center(),
                 const SizedBox(
                   height: 10,
                 ),
@@ -203,11 +210,12 @@ class WidgetDataProjecthistory extends StatelessWidget {
                                 SliverPrototypeExtentList(
                                   delegate: SliverChildBuilderDelegate(
                                       (context, index) {
-                                    MahasiswaDetails mahasiswaDetails = controller.members[index];
+                                    MahasiswaDetails mahasiswaDetails =
+                                        controller.members[index];
 
                                     return CircleAvatar(
-                                      backgroundImage:
-                                          NetworkImage("${mahasiswaDetails.picture}"),
+                                      backgroundImage: NetworkImage(
+                                          "${mahasiswaDetails.picture}"),
                                     );
                                   }, childCount: controller.members.length),
                                   prototypeItem: const CircleAvatar(

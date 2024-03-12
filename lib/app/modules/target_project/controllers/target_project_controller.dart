@@ -39,6 +39,7 @@ class TargetProjectController extends GetxController {
     super.onInit();
     projectData = Get.arguments;
     getProjectTask();
+    getUserFromStorage();
   }
 
   UserModel? getUserFromStorage() {
@@ -172,9 +173,9 @@ class TargetProjectController extends GetxController {
         listProjectTask.map((todo) {
           if (todo.id == todoId) {
             todo.title = title;
-            // Timer(const Duration(milliseconds: 2000), () {
-            isProjectLoaded.value = true;
-            // });
+            Timer(const Duration(milliseconds: 2000), () {
+              isProjectLoaded.value = true;
+            });
           }
           return todo;
         }).toList();

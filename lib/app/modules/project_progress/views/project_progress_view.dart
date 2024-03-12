@@ -21,8 +21,12 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
           backgroundColor: colorTransparan,
           elevation: 0,
           toolbarHeight: 0,
+         
         ),
-        body: GetX<ProjectProgressController>(builder: (controller) {
+        body: RefreshIndicator(onRefresh: () async {
+          // Panggil fungsi untuk refresh data
+          await controller.refreshData();
+        }, child: GetX<ProjectProgressController>(builder: (controller) {
           if (!controller.isProjectLoaded.value) {
             // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
             return const Center(child: CircularProgressIndicator());
@@ -62,32 +66,38 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                   padding: const EdgeInsets.only(
                                       left: 15.0, top: 15),
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Material(
-                                        color: colorTransparan,
-                                        child: InkWell(
-                                            onTap: () {
-                                              Get.back();
-                                            },
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 10.0),
-                                              child: Icon(
-                                                Icons.arrow_back,
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .secondary,
-                                              ),
-                                            )),
+                                      Row(
+                                        children: [
+                                          Material(
+                                            color: colorTransparan,
+                                            child: InkWell(
+                                                onTap: () {
+                                                  Get.back();
+                                                },
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      right: 10.0),
+                                                  child: Icon(
+                                                    Icons.arrow_back,
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary,
+                                                  ),
+                                                )),
+                                          ),
+                                          Text(
+                                            "${controller.projectData!.title}",
+                                            style: ColorApp.secondColorTextStyly(
+                                                    context)
+                                                .copyWith(
+                                                    fontSize: 20,
+                                                    fontWeight: semiBold),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        "${controller.projectData!.title}",
-                                        style: ColorApp.secondColorTextStyly(
-                                                context)
-                                            .copyWith(
-                                                fontSize: 20,
-                                                fontWeight: semiBold),
-                                      ),
+                                      IconButton(onPressed: () => controller.refreshData(), icon: const Icon(Icons.refresh_sharp))
                                     ],
                                   ),
                                 ),
@@ -100,17 +110,17 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                               radius: 100.0,
                               lineWidth: 20,
                               backgroundColor: greyColor,
-                              percent: controller.projectData!.progress
-                                          ?.toDouble() !=
-                                      null
-                                  ? controller.projectData!.progress! /
-                                      100.0 // Mengonversi nilai persentase ke rentang 0.0 - 1.0
-                                  : 0.0, // Nilai default jika nilai persentase null
-
+                              percent: controller.projectsData != null
+                                  ? controller.projectsData!.progress != null
+                                      ? controller.projectsData!.progress!
+                                              .toDouble() /
+                                          100.0
+                                      : 0.0
+                                  : 0.0,
                               center: Text(
-                                "${controller.projectData!.progress}%",
+                                "${controller.projectsData!.progress}%",
                                 style: ColorApp.secondColorTextStyly(context)
-                                    .copyWith(fontSize: 50),
+                                    .copyWith(fontSize: 40),
                               ),
                               progressColor: greenColor,
                             ),
@@ -125,7 +135,8 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                             const SizedBox(
                               height: 15,
                             ),
-                            WidgetDataProject(controller: controller.projectData),
+                            WidgetDataProject(
+                                controller: controller.projectData, userData: controller.userdata),
                             const SizedBox(
                               height: 20,
                             ),
@@ -166,9 +177,20 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                         onPressed: () {
                                           controller.userdata!.data.user.role !=
                                                   "student"
-                                              ? Get.toNamed(Routes.LIST_MHS_LOGBOOK, arguments: controller.projectData)
-                                              : Get.toNamed(Routes.LOGBOOK, arguments: {"idMhs": controller.userdata!.data.user.id,
-                                              "idProject": controller.projectData!.id ,});
+                                              ? Get.toNamed(
+                                                  Routes.LIST_MHS_LOGBOOK,
+                                                  arguments:
+                                                      controller.projectData)
+                                              : Get.toNamed(Routes.LOGBOOK,
+                                                  arguments: {
+                                                      "idMhs": controller
+                                                          .userdata!
+                                                          .data
+                                                          .user
+                                                          .id,
+                                                      "idProject": controller
+                                                          .projectData!.id,
+                                                    });
                                         }),
                                     // WidgetCardBtnCustom(
                                     //     text: LogBook,
@@ -188,52 +210,53 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
               ],
             );
           }
-        }),
+        })),
         bottomNavigationBar: Container(
             height: 50,
             color: colorTransparan, // Color of the footer
             child: Container(
-              width: double.infinity,
-              color: colorTransparan,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        height: 70,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: true,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              builder: (BuildContext context) {
-                                // ProjectModelSingle controller;
-                                return WidgetDatasProject(
-                                    controller: controller);
-                              },
-                            );
-                          },
-                          style: ButtonStyle(
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8))),
-                              elevation: MaterialStateProperty.all(4),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  greenColor2)),
-                          child: Text(Lihat_project,
-                              style: whiteTextStyly.copyWith(
-                                  fontSize: 18, fontWeight: bold)),
+                width: double.infinity,
+                color: colorTransparan,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 70,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                builder: (BuildContext context) {
+                                  // ProjectModelSingle controller;
+                                  return WidgetDatasProject(
+                                      controller: controller);
+                                },
+                              );
+                            },
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8))),
+                                elevation: MaterialStateProperty.all(4),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        greenColor2)),
+                            child: Text(Lihat_project,
+                                style: whiteTextStyly.copyWith(
+                                    fontSize: 18, fontWeight: bold)),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )));
+                      )
+                    ],
+                  ),
+                ))));
   }
 }

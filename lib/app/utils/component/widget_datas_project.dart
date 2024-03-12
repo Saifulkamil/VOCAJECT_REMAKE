@@ -127,7 +127,7 @@ class WidgetDatasProject extends StatelessWidget {
                   onTap: () {
                     // Get.to(() =>
                     //     ProfilindustribyProject(list: list, index: index));
-                    Get.toNamed(Routes.PROFILE_INDUSTRI_2, arguments: controller);
+                    Get.toNamed(Routes.PROFILE_INDUSTRI_2, arguments: controller.projectData);
                   },
                   child: Container(
                     decoration: BoxDecoration(

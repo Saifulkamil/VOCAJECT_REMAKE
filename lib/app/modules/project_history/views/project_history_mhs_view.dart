@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../Models/ProjectData.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_poject_terbaru.dart';
@@ -49,50 +50,53 @@ class ProjectHistoryMSHView extends GetView<ProjectHistoryController> {
                   ]),
             ),
             body: TabBarView(children: [
-              GetX<ProjectHistoryController>(builder: (controller) {
-                if (!controller.isProjectLoaded.value) {
-                  // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-                  return const Center(child: CircularProgressIndicator());
-                } else if (controller.proposalListMhsAcceptOnProgres.isEmpty) {
-                  return const Text("kosong");
-                } else {
-                return Scaffold(
-                      backgroundColor: Colors.transparent,
-                      body:
-                          GetX<ProjectHistoryController>(builder: (controller) {
-                        if (!controller.isProjectLoaded.value) {
-                          // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else {
-                          return CustomScrollView(
-                            slivers: [
-                              SliverPrototypeExtentList(
-                                  delegate: SliverChildBuilderDelegate(
-                                      (context, index) {
-                                    final project =
-                                        controller.proposalListMhsAcceptOnProgres[index];
-
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15.0, right: 15, top: 20),
-                                      child: InkWell(
-                                          onTap: () {
-                                            Get.toNamed(
-                                                Routes.PROJECT_PROGRESS,arguments: project.id);
-                                          },
-                                          child: WidgetImgProgresPoject(
-                                            controller: project,
-                                          )),
-                                    );
-                                  }, childCount: controller.proposalListMhsAcceptOnProgres.length),
-                                  prototypeItem:
-                                      const WidgetImgProgresPojectKosong())
-                            ],
-                          );
-                        }
-                      }));}
-              }),
+              RefreshIndicator(
+                    onRefresh: controller.refreshData,
+                child: GetX<ProjectHistoryController>(builder: (controller) {
+                  if (!controller.isProjectLoaded.value) {
+                    // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (controller.proposalListMhsAcceptOnProgres.isEmpty) {
+                    return const Text("kosong");
+                  } else {
+                  return Scaffold(
+                        backgroundColor: Colors.transparent,
+                        body:
+                            GetX<ProjectHistoryController>(builder: (controller) {
+                          if (!controller.isProjectLoaded.value) {
+                            // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else {
+                            return CustomScrollView(
+                              slivers: [
+                                SliverPrototypeExtentList(
+                                    delegate: SliverChildBuilderDelegate(
+                                        (context, index) {
+                                      ProjectData project =
+                                          controller.proposalListMhsAcceptOnProgres[index];
+                
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 15.0, right: 15, top: 20),
+                                        child: InkWell(
+                                            onTap: () {
+                                              Get.toNamed(
+                                                  Routes.PROJECT_PROGRESS,arguments: project);
+                                            },
+                                            child: WidgetImgProgresPoject(
+                                              controller: project,
+                                            )),
+                                      );
+                                    }, childCount: controller.proposalListMhsAcceptOnProgres.length),
+                                    prototypeItem:
+                                        const WidgetImgProgresPojectKosong())
+                              ],
+                            );
+                          }
+                        }));}
+                }),
+              ),
               
 
               GetX<ProjectHistoryController>(builder: (controller) {

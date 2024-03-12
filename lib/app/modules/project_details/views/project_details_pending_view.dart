@@ -227,7 +227,7 @@ class ProjectDetailsPendingView
                                   ),
                                 )),
                           ),
-                          WidgetDataProject(controller: controller.projectData),
+                          WidgetDataProject(controller: controller.projectData , userData: controller.userdata),
                           
                           Padding(
                             padding: const EdgeInsets.all(15.0),
@@ -238,8 +238,8 @@ class ProjectDetailsPendingView
                               borderRadius: BorderRadius.circular(8),
                               child: InkWell(
                                 onTap: () {
-                                  Get.toNamed(Routes.PROFILE_INDUSTRI,
-                                      arguments: controller);
+                                  Get.toNamed(Routes.PROFILE_INDUSTRI_2,
+                                      arguments: controller.projectData);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),

@@ -93,7 +93,7 @@ class Profileindustri2 extends GetView<ProfileControllerCompany2> {
                             ),
                              CircleAvatar(
                               backgroundImage:
-                                  NetworkImage("${controller.dataProfil!.projectData!.company.picture}"),
+                                  NetworkImage("${controller.dataProfil!.company.picture}"),
                               backgroundColor: Colors.grey,
                               radius: 45,
                             ),
@@ -101,7 +101,7 @@ class Profileindustri2 extends GetView<ProfileControllerCompany2> {
                               height: 20,
                             ),
                             Text(
-                              "${controller.dataProfil!.projectData!.company.name}",
+                              "${controller.dataProfil!.company.name}",
                               style: ColorApp.secondColorTextStyly(context)
                                   .copyWith(fontSize: 20, fontWeight: reguler),
                             ),
@@ -138,7 +138,7 @@ class Profileindustri2 extends GetView<ProfileControllerCompany2> {
                                           height: 10,
                                         ),
                                         Text(
-                                          "${controller.dataProfil!.projectData!.company.description}",
+                                          "${controller.dataProfil!.company.description}",
                                           maxLines: 14,
                                           overflow: TextOverflow.ellipsis,
                                           style: ColorApp.secondColorTextStyly(
@@ -179,7 +179,7 @@ class Profileindustri2 extends GetView<ProfileControllerCompany2> {
                                                 fontSize: 14, fontWeight: bold),
                                       ),
                                       Text(
-                                        "${controller.dataProfil!.projectData!.company.address}",
+                                        "${controller.dataProfil!.company.address}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -216,7 +216,7 @@ class Profileindustri2 extends GetView<ProfileControllerCompany2> {
                                                 fontSize: 14, fontWeight: bold),
                                       ),
                                       Text(
-                                        "${controller.dataProfil!.projectData!.company.email}",
+                                        "${controller.dataProfil!.company.email}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
@@ -253,7 +253,7 @@ class Profileindustri2 extends GetView<ProfileControllerCompany2> {
                                                 fontSize: 14, fontWeight: bold),
                                       ),
                                       Text(
-                                        "${controller.dataProfil!.projectData!.company.phone}",
+                                        "${controller.dataProfil!.company.phone}",
                                         style: ColorApp.secondColorTextStyly(
                                                 context)
                                             .copyWith(
