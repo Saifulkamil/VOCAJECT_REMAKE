@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../Models/ProjectsData.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_cari_text_from_field.dart';
+import '../../../utils/component/widget_loading.dart';
 import '../../../utils/component/widget_spotlight.dart';
 import '../../../utils/component/widget_poject_terbaru.dart';
 import '../../../utils/component/widget_kategori_poject.dart';
@@ -94,11 +96,11 @@ class HomeView extends GetView<HomeController> {
         body: RefreshIndicator(onRefresh: () {
           project.refreshData();
           progressC.refreshData();
-           return Future.value(); 
+          return Future.value();
         }, child: GetX<HomeController>(builder: (controller) {
           if (!controller.isProjectLoaded.value) {
             // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: WidgetLoadingHome());
           } else {
             return CustomScrollView(
               slivers: [
@@ -122,8 +124,7 @@ class HomeView extends GetView<HomeController> {
                             builder: (historyController) {
                           if (!historyController.isProjectLoaded.value) {
                             // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-                            return const Center(
-                                child: CircularProgressIndicator());
+                            return const WidgetLoadingSpotligh();
                           } else if (historyController.listProject.isEmpty) {
                             return const Center();
                           } else {
@@ -190,16 +191,16 @@ class HomeView extends GetView<HomeController> {
                       ProjectsData project = controller.listProject[index];
 
                       return Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15.0, right: 15, bottom: 20),
-                        child: InkWell(
-                            onTap: () {
-                              Get.toNamed(Routes.PROJECT_DETAILS,
-                                  arguments: project);
-                            },
-                            //widget tampilan project
-                            child: WidgetPojectTerbaru(controller: project)),
-                      );
+                          padding: const EdgeInsets.only(
+                              left: 15.0, right: 15, bottom: 20),
+                          child: InkWell(
+                              onTap: () {
+                                Get.toNamed(Routes.PROJECT_DETAILS,
+                                    arguments: project);
+                              },
+                              //widget tampilan project
+                              child: WidgetPojectTerbaru(controller: project)));
+                      // child: WidgetLoading()));
                     }, childCount: controller.listProject.length),
                     prototypeItem: const WidgetPojectTerbaruKosong())
               ],
@@ -208,3 +209,4 @@ class HomeView extends GetView<HomeController> {
         })));
   }
 }
+

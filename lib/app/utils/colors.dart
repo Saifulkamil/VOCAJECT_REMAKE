@@ -19,6 +19,7 @@ const whiteColor = Color(0xFFFFFFFF);
 const whiteColor50 = Color(0x4DFFFFFF);
 const greenColor2 = Color(0xFF79C7C6);
 const greyColor = Colors.grey;
+const greyColor2 = Color(0xFFD3D3D3);
 const redcolor = Color(0xFFD11818);
 const greenchecklistColor = Color(0xFF18D136);
 

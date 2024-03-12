@@ -5,6 +5,7 @@ import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
+import '../../../utils/component/widget_loading.dart';
 import '../../../utils/component/widget_poject_terbaru.dart';
 import '../../../utils/string.dart';
 import '../controllers/project_history_controller.dart';
@@ -74,7 +75,7 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                         GetX<ProjectHistoryController>(builder: (controller) {
                       if (!controller.isProjectLoaded.value) {
                         // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(child: WidgetLoadingproject());
                       } else if (controller
                           .proposalListDosenAcceptOnProgres.isEmpty) {
                         return const Text("kosong");
