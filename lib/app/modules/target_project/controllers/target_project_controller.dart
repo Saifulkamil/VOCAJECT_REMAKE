@@ -132,7 +132,7 @@ class TargetProjectController extends GetxController {
     }
   }
 
-  void updateTodoStatus(int todoId, bool newStatus) async {
+  void updateTodoStatus(int? todoId, bool newStatus) async {
     Uri url = Uri.parse(
       "${UrlDomain.baseurl}/api/project/${projectData!.id}/task/$todoId/switch",
     );
@@ -167,7 +167,7 @@ class TargetProjectController extends GetxController {
     try {
       final response = await http.post(
         url,
-        body: {"title": title},
+        body: {"title": " $title"},
       );
       if (response.statusCode == 200) {
         listProjectTask.map((todo) {
@@ -193,7 +193,7 @@ class TargetProjectController extends GetxController {
     }
   }
 
-  void deleteTargetProject(String title, int todoId) async {
+  void deleteTargetProject(String title, int? todoId) async {
     Uri url = Uri.parse(
       "${UrlDomain.baseurl}/api/project/${projectData!.id}/task/$todoId",
     );
@@ -223,5 +223,10 @@ class TargetProjectController extends GetxController {
         print(e);
       }
     }
+  }
+
+  Future<void> refreshData() async {
+    isProjectLoaded.value = false; // Set nilai isProjectLoaded kembali ke false
+    await getProjectTask(); // Panggil kembali metode untuk mendapatkan data
   }
 }

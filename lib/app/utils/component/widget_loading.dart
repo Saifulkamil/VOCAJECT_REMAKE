@@ -27,7 +27,7 @@ class WidgetLoadingHome extends StatelessWidget {
                     color: greyColor, borderRadius: BorderRadius.circular(10)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -39,7 +39,7 @@ class WidgetLoadingHome extends StatelessWidget {
                     color: greyColor, borderRadius: BorderRadius.circular(7)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             SingleChildScrollView(
@@ -79,7 +79,7 @@ class WidgetLoadingHome extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -91,7 +91,7 @@ class WidgetLoadingHome extends StatelessWidget {
                     color: greyColor, borderRadius: BorderRadius.circular(7)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -103,7 +103,7 @@ class WidgetLoadingHome extends StatelessWidget {
                     color: greyColor, borderRadius: BorderRadius.circular(10)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Row(
@@ -131,7 +131,7 @@ class WidgetLoadingHome extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -143,7 +143,7 @@ class WidgetLoadingHome extends StatelessWidget {
                     color: greyColor, borderRadius: BorderRadius.circular(10)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -185,7 +185,7 @@ class WidgetLoadingSpotligh extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: greyColor, borderRadius: BorderRadius.circular(10)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -197,7 +197,7 @@ class WidgetLoadingSpotligh extends StatelessWidget {
                         color: greyColor,
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Container(
@@ -207,7 +207,7 @@ class WidgetLoadingSpotligh extends StatelessWidget {
                         color: greyColor,
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Container(
@@ -217,7 +217,7 @@ class WidgetLoadingSpotligh extends StatelessWidget {
                         color: greyColor,
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Container(
@@ -253,7 +253,7 @@ class WidgetLoadingproject extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             SizedBox(
+             const SizedBox(
               height: 15,
             ),
             Padding(
@@ -265,7 +265,7 @@ class WidgetLoadingproject extends StatelessWidget {
                     color: greyColor, borderRadius: BorderRadius.circular(10)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -277,7 +277,7 @@ class WidgetLoadingproject extends StatelessWidget {
                     color: greyColor, borderRadius: BorderRadius.circular(10)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -289,7 +289,7 @@ class WidgetLoadingproject extends StatelessWidget {
                     color: greyColor, borderRadius: BorderRadius.circular(10)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -301,7 +301,7 @@ class WidgetLoadingproject extends StatelessWidget {
                     color: greyColor, borderRadius: BorderRadius.circular(10)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -313,7 +313,7 @@ class WidgetLoadingproject extends StatelessWidget {
                     color: greyColor, borderRadius: BorderRadius.circular(10)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -321,6 +321,203 @@ class WidgetLoadingproject extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: 100,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class WidgetTargetProjectLoading extends StatelessWidget {
+  const WidgetTargetProjectLoading({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: greenColor30,
+      highlightColor: greyColor,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: 150,
+                height: 40,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+          ),
+          
+        ],
+      ),
+    );
+  }
+}
+
+
+class WidgetLogBookProjectLoading extends StatelessWidget {
+  const WidgetLogBookProjectLoading({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: greenColor30,
+      highlightColor: greyColor,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
+                decoration: BoxDecoration(
+                    color: greyColor, borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 60,
                 decoration: BoxDecoration(
                     color: greyColor, borderRadius: BorderRadius.circular(10)),
               ),

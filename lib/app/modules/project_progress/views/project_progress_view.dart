@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
@@ -21,7 +22,6 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
           backgroundColor: colorTransparan,
           elevation: 0,
           toolbarHeight: 0,
-         
         ),
         body: RefreshIndicator(onRefresh: () async {
           // Panggil fungsi untuk refresh data
@@ -29,7 +29,7 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
         }, child: GetX<ProjectProgressController>(builder: (controller) {
           if (!controller.isProjectLoaded.value) {
             // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-            return const Center(child: CircularProgressIndicator());
+            return const WidgetloadingProjectProgres();
           } else {
             return CustomScrollView(
               slivers: [
@@ -66,7 +66,8 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                   padding: const EdgeInsets.only(
                                       left: 15.0, top: 15),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(
                                         children: [
@@ -77,8 +78,9 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                                   Get.back();
                                                 },
                                                 child: Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      right: 10.0),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10.0),
                                                   child: Icon(
                                                     Icons.arrow_back,
                                                     color: Theme.of(context)
@@ -89,15 +91,19 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                                           ),
                                           Text(
                                             "${controller.projectData!.title}",
-                                            style: ColorApp.secondColorTextStyly(
-                                                    context)
-                                                .copyWith(
-                                                    fontSize: 20,
-                                                    fontWeight: semiBold),
+                                            style:
+                                                ColorApp.secondColorTextStyly(
+                                                        context)
+                                                    .copyWith(
+                                                        fontSize: 20,
+                                                        fontWeight: semiBold),
                                           ),
                                         ],
                                       ),
-                                      IconButton(onPressed: () => controller.refreshData(), icon: const Icon(Icons.refresh_sharp))
+                                      IconButton(
+                                          onPressed: () =>
+                                              controller.refreshData(),
+                                          icon: const Icon(Icons.refresh_sharp))
                                     ],
                                   ),
                                 ),
@@ -136,7 +142,8 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                               height: 15,
                             ),
                             WidgetDataProject(
-                                controller: controller.projectData, userData: controller.userdata),
+                                controller: controller.projectData,
+                                userData: controller.userdata),
                             const SizedBox(
                               height: 20,
                             ),
@@ -258,5 +265,136 @@ class ProjectProgressView extends GetView<ProjectProgressController> {
                     ],
                   ),
                 ))));
+  }
+}
+
+class WidgetloadingProjectProgres extends StatelessWidget {
+  const WidgetloadingProjectProgres({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: greenColor30,
+      highlightColor: greyColor,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Container(
+                        width: 50,
+                        height: 30,
+                        decoration: BoxDecoration(
+                            color: greyColor,
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Container(
+                        width: 150,
+                        height: 30,
+                        decoration: BoxDecoration(
+                            color: greyColor,
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    width: 50,
+                    height: 30,
+                    decoration: BoxDecoration(
+                        color: greyColor,
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height:30,
+            ),
+            CircularPercentIndicator(
+              radius: 140,
+              lineWidth: 24,
+              percent: 0.0,
+              progressColor: greyColor,
+              backgroundColor: greyColor,
+              center: Container(
+                width: 120,
+                height: 100,
+                decoration: BoxDecoration(
+                    color: greyColor,
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: 250,
+                height: 30,
+                decoration: BoxDecoration(
+                    color: greyColor,
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Container(
+                width: double.infinity,
+                height: 100,
+                decoration: BoxDecoration(
+                    color: greyColor,
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+             const SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    decoration: BoxDecoration(
+                        color: greyColor,
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    decoration: BoxDecoration(
+                        color: greyColor,
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                ),
+              ],
+            ),
+           
+          ],
+        ),
+      ),
+    );
   }
 }

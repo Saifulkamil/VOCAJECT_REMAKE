@@ -22,6 +22,7 @@ class ProjectProgressController extends GetxController {
   void onInit() {
     super.onInit();
     projectData = Get.arguments;
+
     getUserFromStorage();
     getprojectByid();
   }
@@ -48,10 +49,10 @@ class ProjectProgressController extends GetxController {
       final response = await http.get(url);
       Map<String, dynamic> data = json.decode(response.body);
       if (response.statusCode == 200) {
-        isProjectLoaded.value = true;
         // Pengecekan keberadaan kunci 'message' dan 'data'
         if (data.containsKey('message') && data.containsKey('data')) {
           projectsData = ProjectsData.fromJson(data["data"]);
+          isProjectLoaded.value = true;
 
           return projectsData;
         } else {

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class LoginController extends GetxController {
    RxBool isHidden = true.obs;
 
-  final TextEditingController emailC = TextEditingController(text: "husaini@gmail.com");
+  final TextEditingController emailC = TextEditingController(text: "saiful@gmail.com");
   final TextEditingController passC = TextEditingController(text: "vocaject");
   //  @override
   // void onInit() async {

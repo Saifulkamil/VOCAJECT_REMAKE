@@ -6,6 +6,7 @@ import 'package:vocaject_remake_v1/app/Models/ProjectData.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_loading.dart';
+import '../../../utils/component/widget_no_data.dart';
 import '../../../utils/component/widget_poject_terbaru.dart';
 import '../../../utils/string.dart';
 import '../controllers/project_history_controller.dart';
@@ -14,7 +15,6 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
   const ProjectHistoryDosenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: DefaultTabController(
           length: 4,
@@ -78,7 +78,10 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                         return const Center(child: WidgetLoadingproject());
                       } else if (controller
                           .proposalListDosenAcceptOnProgres.isEmpty) {
-                        return const Text("kosong");
+                        return const WidgetNoData(
+                          text: "Proyek Belum Tersedia",
+                          image: "assets/image/img_empty_project.png",
+                        );
                       } else {
                         return CustomScrollView(
                           slivers: [
@@ -117,9 +120,12 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                 child: GetX<ProjectHistoryController>(builder: (controller) {
                   if (!controller.isProjectLoaded.value) {
                     // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: WidgetLoadingproject());
                   } else if (controller.proposalListDosenPending.isEmpty) {
-                    return const Text("kosong");
+                    return const WidgetNoData(
+                      text: "Proyek Belum Tersedia",
+                      image: "assets/image/img_empty_project.png",
+                    );
                   } else {
                     return Scaffold(
                       backgroundColor: Colors.transparent,
@@ -160,9 +166,12 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                 child: GetX<ProjectHistoryController>(builder: (controller) {
                   if (!controller.isProjectLoaded.value) {
                     // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: WidgetLoadingproject());
                   } else if (controller.proposalListDosenselesai.isEmpty) {
-                    return const Text("kosong");
+                    return const WidgetNoData(
+                      text: "Proyek Belum Tersedia",
+                      image: "assets/image/img_empty_project.png",
+                    );
                   } else {
                     return Scaffold(
                       backgroundColor: Colors.transparent,
@@ -179,8 +188,7 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                                       left: 15.0, right: 15, top: 20),
                                   child: InkWell(
                                       onTap: () {
-                                        Get.toNamed(
-                                            Routes.PROJECT_PROGRESS,
+                                        Get.toNamed(Routes.PROJECT_PROGRESS,
                                             arguments: project);
                                       },
                                       child: WidgetImgProgresPoject(
@@ -198,13 +206,16 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                 }),
               ),
               RefreshIndicator(
-                    onRefresh: controller.refreshData ,
+                onRefresh: controller.refreshData,
                 child: GetX<ProjectHistoryController>(builder: (controller) {
                   if (!controller.isProjectLoaded.value) {
                     // Jika data proyek belum dimuat, tampilkan loading atau indikator lainnya
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: WidgetLoadingproject());
                   } else if (controller.proposalListDosenReject.isEmpty) {
-                    return const Text("kosong");
+                    return const WidgetNoData(
+                      text: "Proyek Belum Tersedia",
+                      image: "assets/image/img_empty_project.png",
+                    );
                   } else {
                     return Scaffold(
                       backgroundColor: Colors.transparent,
@@ -215,13 +226,14 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                                   (context, index) {
                                 ProjectData project =
                                     controller.proposalListDosenselesai[index];
-                
+
                                 return Padding(
                                   padding: const EdgeInsets.only(
                                       left: 15.0, right: 15, top: 20),
                                   child: InkWell(
                                     onTap: () {
-                                      Get.toNamed(Routes.PROJECT_DETAILS_PENDING,
+                                      Get.toNamed(
+                                          Routes.PROJECT_DETAILS_PENDING,
                                           arguments: project);
                                     },
                                     child: WidgetImgProgresPoject(
@@ -230,8 +242,8 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                                   ),
                                 );
                               },
-                                  childCount:
-                                      controller.proposalListDosenselesai.length),
+                                  childCount: controller
+                                      .proposalListDosenselesai.length),
                               prototypeItem: const WidgetPojectTerbaruKosong())
                         ],
                       ),

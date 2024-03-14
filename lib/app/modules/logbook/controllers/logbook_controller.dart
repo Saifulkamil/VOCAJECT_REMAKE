@@ -146,4 +146,8 @@ class LogbookController extends GetxController {
       }
     }
   }
+  Future<void> refreshData() async {
+  isProjectLoaded.value = false; // Set nilai isProjectLoaded kembali ke false
+  await getProjectLogbook(); // Panggil kembali metode untuk mendapatkan data proyek
+}
 }

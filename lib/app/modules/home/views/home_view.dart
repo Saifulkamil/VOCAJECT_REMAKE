@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../Models/ProjectsData.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/component/widget_cari_text_from_field.dart';
 import '../../../utils/component/widget_loading.dart';
+import '../../../utils/component/widget_no_data.dart';
 import '../../../utils/component/widget_spotlight.dart';
 import '../../../utils/component/widget_poject_terbaru.dart';
 import '../../../utils/component/widget_kategori_poject.dart';
@@ -189,6 +189,12 @@ class HomeView extends GetView<HomeController> {
                 SliverPrototypeExtentList(
                     delegate: SliverChildBuilderDelegate((context, index) {
                       ProjectsData project = controller.listProject[index];
+                      if (controller.listProject.isEmpty) {
+                        return const WidgetNoData(
+                          text: "Proyek Belum Tersedia",
+                          image: "assets/image/img_empty_project.png",
+                        );
+                      }
 
                       return Padding(
                           padding: const EdgeInsets.only(
@@ -209,4 +215,3 @@ class HomeView extends GetView<HomeController> {
         })));
   }
 }
-
