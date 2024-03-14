@@ -18,7 +18,6 @@ UserDetail _$UserDetailFromJson(Map<String, dynamic> json) => UserDetail(
       nidn: json['nidn'] as String?,
       role: json['role'] as String?,
       status: json['status'] as String?,
-      college: CompanyDetail.fromJson(json['college'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UserDetailToJson(UserDetail instance) =>
@@ -34,5 +33,4 @@ Map<String, dynamic> _$UserDetailToJson(UserDetail instance) =>
       'phone': instance.phone,
       'role': instance.role,
       'status': instance.status,
-      'college': instance.college.toJson(),
     };

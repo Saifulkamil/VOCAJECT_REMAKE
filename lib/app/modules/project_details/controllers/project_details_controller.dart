@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:vocaject_remake_v1/app/Models/CompanyDetail.dart';
 
 import '../../../Models/ListMahasiswaModel.dart';
 import '../../../Models/ProjectsData.dart';
@@ -18,6 +19,7 @@ import '../../../utils/baseUrl.dart';
 class ProjectDetailsController extends GetxController {
   final widgetController = WidgetController();
   UserModel? userdata;
+  CompanyDetail? companyDetail;
   final user = GetStorage();
   ProjectsData? projectData;
   // Status untuk menunjukkan apakah zproses pengambilan data proyek sudah selesai atau belum.
@@ -67,23 +69,24 @@ class ProjectDetailsController extends GetxController {
     getUserFromStorage();
   }
 
-  UserModel? getUserFromStorage() {
+  void getUserFromStorage() {
     // Baca UserModel dari GetStorage dengan kunci yang sesuai, misalnya "user"
     final userJson = user.read('user');
+    final companyJson = user.read('company');
 
     // Jika UserModel ditemukan, deserialisasi JSON menjadi UserModel
     if (userJson != null) {
       userdata = UserModel.fromJson(userJson);
-      // print(" ini id user ${userdata!.data.user.id}");
-
-      return userdata;
     }
-    return null; // Return null jika UserModel tidak ditemukan
+    if (userJson != null) {
+      companyDetail = CompanyDetail.fromJson(companyJson);
+    }
+    return; // Return null jika UserModel tidak ditemukan
   }
 
   Future<ListMahasiswaModel?> getUserMhsAccepted() async {
     Uri url = Uri.parse(
-        "${UrlDomain.baseurl}/api/user/student/${userdata!.data.user.college.id}?status=accepted");
+        "${UrlDomain.baseurl}/api/user/student/${companyDetail!.id}?status=accepted");
 
     try {
       final response = await http.get(url);

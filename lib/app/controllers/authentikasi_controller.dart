@@ -7,6 +7,7 @@ import 'package:vocaject_remake_v1/app/Models/UserModel.dart';
 // import 'package:vocaject_remake_v1/app/Models/UserDataResponse.dart';
 import 'package:http/http.dart' as http;
 
+import '../Models/CompanyDetail.dart';
 import '../utils/baseUrl.dart';
 import 'fungsi_widget_random.dart';
 
@@ -14,24 +15,20 @@ class AuthController extends GetxController {
   final widgetController = WidgetController();
   final user = GetStorage();
 
+  UserModel? userdata;
+
+  CompanyDetail? companyDetail;
+
 // Fungsi untuk menyimpan UserModel ke GetStorage
   void saveUserToStorage(UserModel userModel) {
     // Simpan UserModel ke GetStorage dengan kunci tertentu, misalnya "user"
     user.write('user', userModel.toJson());
   }
 
-  UserModel? getUserFromStorage() {
-    // Baca UserModel dari GetStorage dengan kunci yang sesuai, misalnya "user"
-    final userJson = user.read('user');
-    if (userJson != null) {
-      // Jika UserModel ditemukan, deserialisasi JSON menjadi UserModel
-
-      return UserModel.fromJson(userJson);
-    }
-    return null; // Return null jika UserModel tidak ditemukan
+  void saveUserToStorageCompanyDetails(CompanyDetail companyDetail) {
+    // Simpan companyDetail ke GetStorage dengan kunci tertentu, misalnya "user"
+    user.write('company', companyDetail.toJson());
   }
-
-  // ignore: non_constant_identifier_names
 
   // Fungsi untuk melakukan proses login dan mendapatkan UserModel
   Future<UserModel?> login(String email, String pass) async {
@@ -49,18 +46,17 @@ class AuthController extends GetxController {
       );
       // Decode JSON string menjadi Map
       Map<String, dynamic> data = json.decode(response.body);
-      // print(data["data"]["user"]["college"]);
+
       // Memeriksa status code response dari server
       if (response.statusCode == 200) {
         // Pengecekan keberadaan kunci 'message' dan 'data'
         if (data.containsKey('message') && data.containsKey('data')) {
           // Deserialisasi JSON menjadi objek UserModel
-          final userdata = UserModel.fromJson(data);
-          // print(userdata.data.user.college.id);
-      
-          // Simpan UserModel ke GetStorage-=0
-          saveUserToStorage(userdata);
+          userdata = UserModel.fromJson(data);
 
+          // Simpan UserModel ke GetStorage-=0
+          saveUserToStorage(userdata!);
+          userDetails();
           return userdata;
         } else {
           // Jika 'data' atau 'support' tidak ada, return null
@@ -79,6 +75,40 @@ class AuthController extends GetxController {
         print("Error catch $e");
       }
       return null; // Return null jika terjadi kesalahan
+    }
+  }
+
+  Future<void> userDetails() async {
+    Uri url = Uri.parse("${UrlDomain.baseurl}/api/auth/me");
+
+    try {
+      final response = await http.get(url, headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${userdata!.data.access_token}',
+      });
+      Map<String, dynamic> data = json.decode(response.body);
+      if (response.statusCode == 200) {
+        // Pengecekan keberadaan kunci 'message' dan 'data'
+        if (data.containsKey('message') && data.containsKey('data')) {
+          // Deserialisasi JSON menjadi objek UserModel
+          companyDetail = CompanyDetail.fromJson(data["data"]["college"]);
+          saveUserToStorageCompanyDetails(companyDetail!);
+        } else {
+          // Jika 'data' atau 'support' tidak ada, return null
+          return;
+        }
+      } else {
+        // Jika status code bukan 200, bisa jadi terjadi kesalahan pada server
+        if (kDebugMode) {
+          print("Error: ${response.reasonPhrase}");
+        }
+        return; // Return null jika terjadi kesalahan
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error catch $e");
+      }
+      return;
     }
   }
 }
