@@ -56,7 +56,9 @@ class AuthController extends GetxController {
 
           // Simpan UserModel ke GetStorage-=0
           saveUserToStorage(userdata!);
+          if (userdata!.data.user.role == "lecture") {
           userDetails();
+          }
           return userdata;
         } else {
           // Jika 'data' atau 'support' tidak ada, return null
@@ -106,7 +108,7 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       if (kDebugMode) {
-        print("Error catch $e");
+        print("Error catch me $e");
       }
       return;
     }

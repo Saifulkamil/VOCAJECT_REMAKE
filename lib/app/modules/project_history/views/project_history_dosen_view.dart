@@ -23,10 +23,16 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
             appBar: AppBar(
               centerTitle: true,
               automaticallyImplyLeading: false,
-              title: Center(
-                  child: Text(Daftar_Project,
-                      style: ColorApp.secondColorTextStyly(context)
-                          .copyWith(fontSize: 20, fontWeight: semiBold))),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      controller.refreshData();
+                    },
+                    icon: Icon(Icons.refresh_sharp))
+              ],
+              title: Text(Daftar_Project,
+                  style: ColorApp.secondColorTextStyly(context)
+                      .copyWith(fontSize: 20, fontWeight: semiBold)),
               backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
               elevation: 0,
               bottom: const TabBar(
@@ -225,7 +231,7 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                               delegate: SliverChildBuilderDelegate(
                                   (context, index) {
                                 ProjectData project =
-                                    controller.proposalListDosenselesai[index];
+                                    controller.proposalListDosenReject[index];
 
                                 return Padding(
                                   padding: const EdgeInsets.only(
@@ -243,7 +249,7 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                                 );
                               },
                                   childCount: controller
-                                      .proposalListDosenselesai.length),
+                                      .proposalListDosenReject.length),
                               prototypeItem: const WidgetPojectTerbaruKosong())
                         ],
                       ),

@@ -191,7 +191,6 @@ class LoginView extends GetView<LoginController> {
                           text: Masuk,
                           onPressed: () async {
                             // Melakukan login dan mendapatkan UserModel
-                            // UserModel? user = await
                             final authC = Get.put(AuthController());
 
                             // authC.getUserFromStorage();

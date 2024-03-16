@@ -52,15 +52,11 @@ class ProjectHistoryController extends GetxController {
           proposalListDosenselesai);
       getProposal("${link["role"][0]}", "${link["status"][3]}",
           proposalListDosenReject);
-      listProject.clear();
-      listProject.addAll(proposalListDosenAcceptOnProgres);
     } else if (userdata!.data.user.role == "student") {
       getProposal("${link["role"][1]}", "${link["status"][0]}",
           proposalListMhsAcceptOnProgres);
       getProposal(
-          "${link["role"][1]}", "${link["status"][3]}", proposalListMhsselesai);
-      listProject.clear();
-      listProject.addAll(proposalListMhsAcceptOnProgres);
+          "${link["role"][1]}", "${link["status"][2]}", proposalListMhsselesai);
     } else if (userdata!.data.user.role == "company") {
       getProposal("${link["role"][2]}", "${link["status"][0]}",
           proposalListindustriDankampusAcceptOnProgres);
@@ -70,8 +66,6 @@ class ProjectHistoryController extends GetxController {
           proposalListindustriDankampusSelesai);
       getProposal("${link["role"][2]}", "${link["status"][3]}",
           proposalListindustriDankampusReject);
-      listProject.clear();
-      listProject.addAll(proposalListindustriDankampusAcceptOnProgres);
     } else {
       getProposal("${link["role"][3]}", "${link["status"][0]}",
           proposalListindustriDankampusAcceptOnProgres);
@@ -141,13 +135,10 @@ class ProjectHistoryController extends GetxController {
           } else if (userdata!.data.user.role == "student") {
             listProject.clear();
             listProject.addAll(proposalListMhsAcceptOnProgres);
-          } else if (userdata!.data.user.role == "company") {
-            listProject.clear();
-            listProject.addAll(proposalListindustriDankampusAcceptOnProgres);
           } else {
             listProject.clear();
             listProject.addAll(proposalListindustriDankampusAcceptOnProgres);
-          }
+          } 
 
           isProjectLoaded.value = true;
           // print(isProjectLoaded);

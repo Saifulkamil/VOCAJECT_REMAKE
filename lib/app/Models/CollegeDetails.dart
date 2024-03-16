@@ -2,38 +2,34 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-import 'CollegeDetails.dart';
-
-part 'MahasiswaDetails.g.dart';
+part 'CollegeDetails.g.dart';
 
 @JsonSerializable()
-class MahasiswaDetails {
-   final int? id;
+class CollegeDetails {
+  final int? id;
   final String? name;
   final String? email;
   final String? picture;
-  final String? nim;
+  final String? description;
   final String? address;
   final String? phone;
   final String? role;
   final String? status;
-  final CollegeDetails college;
 
-  MahasiswaDetails({
+  CollegeDetails({
     required this.id,
     required this.name,
     required this.email,
     required this.picture,
-    required this.nim,
+    required this.description,
     required this.address,
     required this.phone,
     required this.role,
     required this.status,
-    required this.college,
   });
-  factory MahasiswaDetails.fromJson(Map<String, dynamic> json) => _$MahasiswaDetailsFromJson(json);
+  factory CollegeDetails.fromJson(Map<String, dynamic> json) => _$CollegeDetailsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MahasiswaDetailsToJson(this);
+  Map<String, dynamic> toJson() => _$CollegeDetailsToJson(this);
 
 
 }
