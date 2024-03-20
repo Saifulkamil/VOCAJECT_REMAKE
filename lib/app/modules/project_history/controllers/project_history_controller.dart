@@ -57,7 +57,7 @@ class ProjectHistoryController extends GetxController {
           proposalListMhsAcceptOnProgres);
       getProposal(
           "${link["role"][1]}", "${link["status"][2]}", proposalListMhsselesai);
-    } else if (userdata!.data.user.role == "company") {
+    } else  {
       getProposal("${link["role"][2]}", "${link["status"][0]}",
           proposalListindustriDankampusAcceptOnProgres);
       getProposal("${link["role"][2]}", "${link["status"][1]}",
@@ -66,18 +66,7 @@ class ProjectHistoryController extends GetxController {
           proposalListindustriDankampusSelesai);
       getProposal("${link["role"][2]}", "${link["status"][3]}",
           proposalListindustriDankampusReject);
-    } else {
-      getProposal("${link["role"][3]}", "${link["status"][0]}",
-          proposalListindustriDankampusAcceptOnProgres);
-      getProposal("${link["role"][3]}", "${link["status"][1]}",
-          proposalListindustriDankampuspendding);
-      getProposal("${link["role"][3]}", "${link["status"][2]}",
-          proposalListindustriDankampusSelesai);
-      getProposal("${link["role"][3]}", "${link["status"][3]}",
-          proposalListindustriDankampusReject);
-      listProject.clear();
-      listProject.addAll(proposalListindustriDankampusAcceptOnProgres);
-    }
+    } 
   }
 
   // fungsi untuk baca userModel dari GetStorage
@@ -98,7 +87,6 @@ class ProjectHistoryController extends GetxController {
       "/api/project?lecture_id=",
       "/api/project?student_id=",
       "/api/project?company_id=",
-      "/api/project?college_id="
     ],
     "status": [
       "&proposal_status=accepted&status=closed",

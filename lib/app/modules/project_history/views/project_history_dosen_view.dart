@@ -28,7 +28,7 @@ class ProjectHistoryDosenView extends GetView<ProjectHistoryController> {
                     onPressed: () {
                       controller.refreshData();
                     },
-                    icon: Icon(Icons.refresh_sharp))
+                    icon: const Icon(Icons.refresh_sharp))
               ],
               title: Text(Daftar_Project,
                   style: ColorApp.secondColorTextStyly(context)
